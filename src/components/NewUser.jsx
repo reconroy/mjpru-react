@@ -204,7 +204,7 @@ const NewUser = () => {
             <h2 className="text-danger text-center">
               <b>DECLARATION STATEMENT</b>
             </h2>
-            <p className="text-danger  text-justify">
+            <p className="text-danger text-justify" style={{textAlign: "justify"}}>
               I have read and understood all the eligibility conditions and
               instructions regarding the Recruitment Process for the Faculty
               Recruitment of the Mahatma Jyotiba Phule Rohilkhand University,

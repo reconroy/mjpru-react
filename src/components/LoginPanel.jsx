@@ -32,6 +32,7 @@ const LoginPanel = () => {
                     </div>
                     <div className='m-3 d-flex justify-content-between align-items-center'>
                         <Link to="/forgot-password">Forgot Password?</Link>
+                        <Link to="/">Back To Home</Link>
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </form>
