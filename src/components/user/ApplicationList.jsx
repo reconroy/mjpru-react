@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFile } from "react-icons/fa";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const ApplicationList = () => {
@@ -62,7 +63,7 @@ const ApplicationList = () => {
                                     <td>2024-08-12</td>
                                     <td>Completed </td>
                                     <td>
-                                        <a href="/">Click here to Fill</a>
+                                        <Link to="/user">Click here to Fill</Link>
                                         {/* <button className="btn btn-sm btn-primary me-2">Print</button>
                     <button className="btn btn-sm btn-secondary">Update</button> */}
                                     </td>

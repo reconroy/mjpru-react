@@ -9,9 +9,9 @@ const AfterLoginTopBar = () => {
     <div className="">
       <div className="card mb-5">
         <div className="card-header text-light p-3 rounded-bottom-1 d-flex flex-column flex-md-row align-items-center justify-content-between" style={{backgroundColor:"#005174"}}>
-          <h3 className="text-center text-md-start mb-3 mb-md-0">Welcome To MJRUP RECRUITMENT</h3>
+          <h3 className="text-center text-md-start mb-3 mb-md-0">Welcome To MJPRU RECRUITMENT</h3>
           <div className="d-flex flex-column flex-md-row justify-content-center align-items-center">
-            <Link to={"/"} className="btn btn-primary mb-2 mb-md-0 me-0 me-md-3 fw-bold card-button">
+            <Link to="/user/applicationlist" className="btn btn-primary mb-2 mb-md-0 me-0 me-md-3 fw-bold card-button">
               <TfiMenuAlt size={18} className="me-2 " />
               My Applications
             </Link>

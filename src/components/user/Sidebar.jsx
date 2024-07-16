@@ -4,9 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AfterLoginTopBar from "./AfterLoginTopBar";
 // ---------------- numbers--------------------------
 import { Bs1Circle, Bs2Circle, Bs3Circle, Bs4Circle, Bs5Circle, Bs6Circle, Bs7Circle, Bs8Circle, Bs9Circle } from "react-icons/bs";
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import ApplicationList from './ApplicationList';
-
+import Status from './Status';
+import PersonalDetails from './PersonalDetails';
 
 const Sidebar = () => {
   return (
@@ -18,10 +19,10 @@ const Sidebar = () => {
           style={{ backgroundColor: "#005174" }}
         >
           <Nav className="flex-column mt-3">
-            <Nav.Link href="#home" className="text-white border-bottom d-flex align-items-center">
+            <Nav.Link as={Link} to="/user" className="text-white border-bottom d-flex align-items-center">
               <span className="d-none d-md-inline">Status</span>
             </Nav.Link>
-            <Nav.Link href="#link" className="text-white border-bottom d-flex align-items-center">
+            <Nav.Link as={Link} to="/user/PersonalDetails" className="text-white border-bottom d-flex align-items-center">
               <span className="d-none d-md-inline"><Bs1Circle />Personal Details</span>
             </Nav.Link>
             <Nav.Link href="#link" className="text-white border-bottom d-flex align-items-center">
@@ -90,7 +91,8 @@ const Sidebar = () => {
           <Container fluid className="main-content">
             <AfterLoginTopBar />
             <Routes>
-              <Route path='/application' element={<ApplicationList />} />
+              <Route path='/' element={<Status />} />
+              <Route path='/PersonalDetails' element={<PersonalDetails />} />
             </Routes>
           </Container>
         </Col>

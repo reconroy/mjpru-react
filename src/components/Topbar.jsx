@@ -18,7 +18,7 @@ const Topbar = () => {
         </div>
       </div>
       <div className="">
-        <div className="border-top border-4 mt-3" style={{ border: '3px solid blue' }}></div>
+        <div className="border-top border-4 mt-3" style={{ border: '3px solid #005174' }}></div>
       </div>
     </div>
   );
