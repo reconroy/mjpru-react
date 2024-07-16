@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFile } from "react-icons/fa";
+import './../../customStyles/statusAnimation.css';
 
 const Status = () => {
   return (
@@ -40,8 +41,9 @@ const Status = () => {
                 </p>
               </div>
             </div>
-            <div className="table-responsive">
-              <table className="table border rounded-3 table-striped table-bordered">
+            <div className="table-responsive d-flex justify-content-center">
+              <table className="table border rounded-3 table-striped table-bordered"
+              style={{overflow:"hidden",width:"90%"}}>
                 <thead>
                   <tr>
                     <th scope="col" className="bg-dark text-light">Sr. No.</th>
