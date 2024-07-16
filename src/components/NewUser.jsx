@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Homebar from "./Homebar";
+import "./../customStyles/buttonAnimation.css";
 const NewUser = () => {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
@@ -233,7 +234,7 @@ const NewUser = () => {
             </label>
           </div>
           <div className="text-center mt-4">
-            <button className="btn btn-primary" onClick={handleProceed}>
+            <button className="btn btn-primary card-button" onClick={handleProceed}>
               Proceed to Registration
             </button>
           </div>
@@ -249,7 +250,7 @@ const NewUser = () => {
           Please agree to the declaration statement before proceeding.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal} className="btn-danger">
+          <Button variant="secondary" onClick={handleCloseModal} className="btn-danger card-button">
             Close
           </Button>
         </Modal.Footer>

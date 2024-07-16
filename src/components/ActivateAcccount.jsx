@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 import Captcha1 from './../assets/captcha/captcha_1.png';
 import { Link } from 'react-router-dom';
 import Homebar from './Homebar';
+import "./../customStyles/buttonAnimation.css";
 
 const ActivateAccount = () => {
   const [showModal, setShowModal] = useState(false);
@@ -44,7 +45,7 @@ const ActivateAccount = () => {
           </div>
           <div className='m-3 d-flex justify-content-between align-items-center'>
             <Link to="/">Back To Login</Link>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary card-button">Submit</button>
           </div>
         </form>
       </div>

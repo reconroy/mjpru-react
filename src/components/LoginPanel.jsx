@@ -3,6 +3,7 @@ import { FaUserLock } from "react-icons/fa6";
 import Captcha1 from './../assets/captcha/captcha_1.png';
 import { Link } from 'react-router-dom';
 import Homebar from './Homebar';
+import "./../customStyles/buttonAnimation.css";
 
 const LoginPanel = () => {
     // const 
@@ -38,7 +39,7 @@ const LoginPanel = () => {
                             <Link to="/forgot-password">Forgot Password?</Link>
                             <Link to="/">Back To Home</Link>
                             {/* <button type="submit" className="btn btn-primary">Submit</button> */}
-                            <Link to={"/UserLayout"} type="submit" className="btn btn-primary">Submit</Link>
+                            <Link to={"/UserLayout"} type="submit" className="btn btn-primary card-button">Submit</Link>
                         </div>
                     </form>
                 </div>

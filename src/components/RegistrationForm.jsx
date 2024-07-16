@@ -4,7 +4,7 @@ import countryCodes from "./../countryCodes.json";
 import Captcha1 from "./../assets/captcha/captcha_1.png";
 import { Link } from "react-router-dom";
 import Homebar from "./Homebar";
-
+import "./../customStyles/buttonAnimation.css";
 const RegistrationForm = () => {
     console.log(countryCodes);
 
@@ -222,11 +222,11 @@ const RegistrationForm = () => {
                         <Link
                             to={"/registration-complete"}
                             type="submit"
-                            className="btn btn-primary m-1"
+                            className="btn btn-primary m-1 card-button"
                         >
                             Submit
                         </Link>
-                        <button type="reset" className="btn btn-danger m-1">
+                        <button type="reset" className="btn btn-danger m-1 card-button">
                             Clear Form
                         </button>
                     </form>

@@ -4,6 +4,7 @@ import { Modal, Button, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import Homebar from './Homebar';
+import "./../customStyles/buttonAnimation.css";
 
 const RegistrationComplete = () => {
     const [showModal, setShowModal] = useState(false);
@@ -47,13 +48,13 @@ const RegistrationComplete = () => {
                             <p className="text-start">Please follow your email to activate your account.</p>
                             <p className="text-start text-danger fw-bold">Please check your inbox/SPAM folder for the email.</p>
                             <div className="form-btns d-flex justify-content-evenly mt-3">
-                                <Button className="btn btn-primary m-2" variant="primary" onClick={handleShow}>
+                                <Button className="btn btn-primary m-2 card-button" variant="primary" onClick={handleShow}>
                                     Show Notification
                                 </Button>
-                                <Link to="/" className="btn btn-primary m-2">
+                                <Link to="/" className="btn btn-primary m-2 card-button">
                                     Go To Home
                                 </Link>
-                                <Button className="btn btn-primary m-2" variant="primary" onClick={handleResend} disabled={resendDisabled}>
+                                <Button className="btn btn-primary m-2 card-button" variant="primary" onClick={handleResend} disabled={resendDisabled}>
                                     Resend Activation Link
                                     {showSpinner && <Spinner animation="border" size="sm" className="ms-2" />}
                                 </Button>
@@ -71,7 +72,7 @@ const RegistrationComplete = () => {
                     <p className="text-success fw-bold">An Activation Link has been sent to "VARIABLE". Please follow email instructions to activate your account. Please check your Inbox/Spam folder for the email.</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="success" onClick={handleClose} className='card-button'>
                         Close
                     </Button>
                 </Modal.Footer>

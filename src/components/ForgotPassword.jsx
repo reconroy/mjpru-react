@@ -3,6 +3,7 @@ import Captcha1 from './../assets/captcha/captcha_1.png';
 import { FaLock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Homebar from './Homebar';
+import "./../customStyles/buttonAnimation.css";
 
 const ForgotPassword = () => {
   return (
@@ -31,7 +32,7 @@ const ForgotPassword = () => {
                     <div className='m-3 d-flex justify-content-between align-items-center'>
                         <Link to="/login">Back To Login</Link>
                         <Link to="/">Back To Home</Link>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary card-button">Submit</button>
                     </div>
                 </form>
             </div>
