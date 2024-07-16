@@ -11,6 +11,10 @@ import NewUser from './components/NewUser';
 import RegistrationForm from './components/RegistrationForm';
 import withSpinner from './withSpinner';
 import RegistrationComplete from './components/RegistrationComplete';
+import ApplicationList from './components/user/ApplicationList';
+import AfterLoginTopBar from './components/user/AfterLoginTopBar';
+import Sidebar from './components/user/Sidebar';
+
 
 const HomeWithSpinner = withSpinner(Home);
 const LoginPanelWithSpinner = withSpinner(LoginPanel);
@@ -19,25 +23,31 @@ const ForgotPasswordWithSpinner = withSpinner(ForgotPassword);
 const NewUserWithSpinner = withSpinner(NewUser);
 const RegistrationFormWithSpinner = withSpinner(RegistrationForm);
 const RegistrationCompleteWithSpinner = withSpinner(RegistrationComplete);
+// const ApplicationListWithSpinner = withSpinner(ApplicationList)
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Topbar />
-        <Homebar />
-        <Routes>
-          <Route path="/" element={<HomeWithSpinner />} />
-          <Route path="/login" element={<LoginPanelWithSpinner />} />
-          <Route path="/activate-account" element={<ActivateAcccountWithSpinner />} />
-          <Route path="/forgot-password" element={<ForgotPasswordWithSpinner />} />
-          <Route path="/new-user" element={<NewUserWithSpinner />} />
-          <Route path="/registration-page" element={<RegistrationFormWithSpinner />} />
-          <Route path="/registration-complete" element={<RegistrationCompleteWithSpinner />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    // <Router>
+    //   <div>
+    //     <Topbar />
+    //     <Homebar />
+    //     <Routes>
+    //       <Route path="/" element={<HomeWithSpinner />} />
+    //       <Route path="/login" element={<LoginPanelWithSpinner />} />
+    //       <Route path="/activate-account" element={<ActivateAcccountWithSpinner />} />
+    //       <Route path="/forgot-password" element={<ForgotPasswordWithSpinner />} />
+    //       <Route path="/new-user" element={<NewUserWithSpinner />} />
+    //       <Route path="/registration-page" element={<RegistrationFormWithSpinner />} />
+    //       <Route path="/registration-complete" element={<RegistrationCompleteWithSpinner />} />
+    //     </Routes>
+    //     <Footer />
+    //   </div>
+    // </Router>
+    <>
+      <Sidebar/>
+      {/* <AfterLoginTopBar/> */}
+      {/* <ApplicationList/> */}
+    </>
   );
 }
 
