@@ -9,7 +9,7 @@ const ApplicationList = () => {
         <Homebar/>
         <div className="container mt-3">
             <div className="card">
-                <div className="card-header bg-primary text-light d-flex justify-content-between align-items-center">
+                <div className="card-header  text-light d-flex justify-content-between align-items-center" style={{backgroundColor:"#005174"}}>
                     <div className="left-box d-flex align-items-center">
                         <FaFile size={24} style={{ marginRight: "8px" }} />
                         Your Applications
@@ -43,7 +43,7 @@ const ApplicationList = () => {
                                     <td>Advertisement 123</td>
                                     <td>Department XYZ</td>
                                     <td>2024-07-15</td>
-                                    <td>Incomplete</td>
+                                    <td className="text-success">Completed</td>
                                     <td>
                                         <button className="btn btn-sm btn-primary me-2">
                                             Print
@@ -57,7 +57,7 @@ const ApplicationList = () => {
                                     <td>Advertisement 456</td>
                                     <td>Department ABC</td>
                                     <td>2024-08-12</td>
-                                    <td>Completed </td>
+                                    <td className="text-danger">Incomplete </td>
                                     <td>
                                         <Link to="/user">Click here to Fill</Link>
                                     </td>

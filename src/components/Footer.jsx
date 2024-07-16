@@ -2,7 +2,7 @@ import React from 'react';
 
 const App = () => {
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div className="d-flex flex-column">
       <main className="flex-grow-1">
         {/* Your main content goes here */}
       </main>

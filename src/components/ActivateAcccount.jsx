@@ -24,7 +24,7 @@ const ActivateAccount = () => {
     <Homebar/>
     <div className='container d-flex justify-content-center align-items-center mt-5'>
       <div className='col-12 col-md-6 col-lg-4 border rounded-2 card '>
-        <div className="card-header bg-primary text-light ">
+        <div className="card-header  text-light " style={{ backgroundColor: '#005174' }}>
           <FaLock size={25} style={{ marginRight: '8px' }} />
           Account Verification
         </div>

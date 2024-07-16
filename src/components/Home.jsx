@@ -32,13 +32,13 @@ const Home = () => {
         <div className="row">
           <div className="col-lg-8 mb-3">
             <div className="card mt-2" style={{ borderColor: "#005174", borderWidth: "2px", borderStyle: "solid" }}>
-              <h5 className="card-header bg-primary text-white d-flex align-items-center">
+              <h5 className="card-header  text-white d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
                 <IoMdNotifications className="me-2" /> Notice Board
               </h5>
               <div className="card-body">
                 <p className="card-text fw-bold text-dark">{latestUpdates}</p>
                 <p className="card-text fw-bold text-dark">{latestUpdates}</p>
-                <button className="btn btn-primary card-button" onClick={fetchData}>
+                <button className="btn btn-primary card-button" onClick={fetchData} >
                   Refresh
                 </button>
               </div>
@@ -46,7 +46,7 @@ const Home = () => {
           </div>
           <div className="col-lg-4 mb-3">
       <div className="card mt-2" style={{ borderColor: "#005174", borderWidth: "2px", borderStyle: "solid", height: '300px' }}>
-        <h5 className="card-header bg-primary text-white d-flex align-items-center">
+        <h5 className="card-header  text-white d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
           <FaUsers className="me-2" /> Applicant's Corner
         </h5>
         <div className="card-body d-flex justify-content-center align-items-center">
@@ -57,7 +57,7 @@ const Home = () => {
             <Link to="/new-user" type="button" className="btn btn-success mb-2 card-button">
               New User Registration
             </Link>
-            <Link to="/activate-account" type="button" className="btn btn-danger mb-2 card-button">
+            <Link to="/activate-account" type="button" className="btn btn-warning mb-2 card-button" >
               Activate Your Account
             </Link>
             <Link to="/forgot-password" type="button" className="btn btn-danger mb-2 card-button">

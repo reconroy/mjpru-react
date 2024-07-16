@@ -35,7 +35,7 @@ const RegistrationComplete = () => {
             <div className="row justify-content-center">
                 <div className="col-md-8 col-lg-6">
                     <div className="card border border-black">
-                        <div className="card-header bg-primary text-light fs-5 d-flex align-items-center">
+                        <div className="card-header  text-light fs-5 d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
                             <HiUserAdd size="30px" className="me-2" />
                             New User Registration
                         </div>

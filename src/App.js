@@ -10,8 +10,8 @@ import NewUser from './components/NewUser';
 import RegistrationForm from './components/RegistrationForm';
 import withSpinner from './withSpinner';
 import RegistrationComplete from './components/RegistrationComplete';
-import UserLayout from './components/User/UserLayout';
-import ApplicationList from './components/User/ApplicationList';
+import UserLayout from './components/user/UserLayout';
+import ApplicationList from "./components/user/ApplicationList";
 
 
 const HomeWithSpinner = withSpinner(Home);

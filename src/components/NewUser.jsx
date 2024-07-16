@@ -32,7 +32,7 @@ const NewUser = () => {
     <><Homebar />
       <div className="container my-5">
         <div className="card">
-          <div className="card-header bg-primary text-light d-flex align-items-center">
+          <div className="card-header  text-light d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
             <FaInfoCircle size={25} style={{ marginRight: "8px" }} />
             Instructions to the Applicants
           </div>
@@ -244,9 +244,9 @@ const NewUser = () => {
         {/* Modal for Agreement */}
         <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Agreement</Modal.Title>
+            <Modal.Title >Agreement</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="text-danger">
             Please agree to the declaration statement before proceeding.
           </Modal.Body>
           <Modal.Footer>
