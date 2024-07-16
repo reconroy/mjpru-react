@@ -32,7 +32,7 @@ const Home = () => {
               <IoMdNotifications className="me-2" /> Notice Board
             </h5>
             <div className="card-body d-flex flex-column h-100">
-              <p className="card-text flex-grow-1 fw-bold text-dark">{latestUpdates}</p>
+              <p className="card-text flex-grow-1 fw-bold text-dark fs-5">{latestUpdates}</p>
               <button className="btn btn-primary" onClick={fetchData}>
                 Refresh
               </button>
