@@ -4,12 +4,12 @@ import { FaPowerOff } from "react-icons/fa";
 
 const AfterLoginTopBar = () => {
   return (
-    <div className="container">
+    <div className="">
       <div className="card mb-5">
-        <div className="card-header text-light bg-primary p-3 rounded-bottom-1 d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <div className="card-header text-light p-3 rounded-bottom-1 d-flex flex-column flex-md-row align-items-center justify-content-between" style={{backgroundColor:"#005174"}}>
           <h3 className="text-center text-md-start mb-3 mb-md-0">Welcome To MJRUP RECRUITMENT</h3>
           <div className="d-flex justify-content-center justify-content-md-start">
-            <button className="btn btn-success me-3 mb-2 mb-md-0 fw-bold">
+            <button className="btn btn-primary me-3 mb-2 mb-md-0 fw-bold">
               <TfiMenuAlt size={18} className="me-2" />
               My Applications
             </button>

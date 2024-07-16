@@ -4,7 +4,7 @@ import { ImArrowRight } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
+import Homebar from "./Homebar";
 const NewUser = () => {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
@@ -28,6 +28,7 @@ const NewUser = () => {
   };
 
   return (
+    <><Homebar/>
     <div className="container my-5">
       <div className="card">
         <div className="card-header bg-primary text-light d-flex align-items-center">
@@ -254,6 +255,7 @@ const NewUser = () => {
         </Modal.Footer>
       </Modal>
     </div>
+    </>
   );
 };
 

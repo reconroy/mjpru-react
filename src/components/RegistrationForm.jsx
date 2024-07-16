@@ -3,11 +3,14 @@ import { HiUserAdd } from "react-icons/hi";
 import countryCodes from "./../countryCodes.json";
 import Captcha1 from "./../assets/captcha/captcha_1.png";
 import { Link } from "react-router-dom";
+import Homebar from "./Homebar";
 
 const RegistrationForm = () => {
     console.log(countryCodes);
 
     return (
+        <>
+        <Homebar/>
         <div className="container mt-5 ">
             <div className="card border border-black">
                 <div className="card-header bg-primary text-light fs-5 d-flex align-items-center">
@@ -230,6 +233,7 @@ const RegistrationForm = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

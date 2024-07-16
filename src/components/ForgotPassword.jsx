@@ -2,10 +2,11 @@ import React from 'react'
 import Captcha1 from './../assets/captcha/captcha_1.png';
 import { FaLock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-
+import Homebar from './Homebar';
 
 const ForgotPassword = () => {
   return (
+    <><Homebar/>
     <div className='container d-flex justify-content-center align-items-center mt-5 mb-5'>
             <div className='col-12 col-md-6 col-lg-4 border rounded-2 card '>
                 <div className="card-header bg-primary text-light ">
@@ -35,6 +36,7 @@ const ForgotPassword = () => {
                 </form>
             </div>
         </div>
+        </>
   )
 }
 

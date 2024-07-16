@@ -1,6 +1,6 @@
 import React from 'react';
 import headerImg from './../assets/images/header.jpg';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 const Topbar = () => {
   return (

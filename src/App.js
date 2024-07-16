@@ -11,9 +11,7 @@ import NewUser from './components/NewUser';
 import RegistrationForm from './components/RegistrationForm';
 import withSpinner from './withSpinner';
 import RegistrationComplete from './components/RegistrationComplete';
-import ApplicationList from './components/User/ApplicationList';
-import AfterLoginTopBar from './components/User/AfterLoginTopBar';
-import Sidebar from './components/User/Sidebar';
+import UserLayout from './components/User/UserLayout';
 
 
 const HomeWithSpinner = withSpinner(Home);
@@ -23,14 +21,14 @@ const ForgotPasswordWithSpinner = withSpinner(ForgotPassword);
 const NewUserWithSpinner = withSpinner(NewUser);
 const RegistrationFormWithSpinner = withSpinner(RegistrationForm);
 const RegistrationCompleteWithSpinner = withSpinner(RegistrationComplete);
-const ApplicationListWithSpinner = withSpinner(ApplicationList)
+const UserLayoutWithSpinner = withSpinner(UserLayout);
 
 function App() {
   return (
     <Router>
       <div>
         <Topbar />
-        <Homebar />
+        {/* <Homebar /> */}
         <Routes>
           <Route path="/" element={<HomeWithSpinner />} />
           <Route path="/login" element={<LoginPanelWithSpinner />} />
@@ -39,16 +37,12 @@ function App() {
           <Route path="/new-user" element={<NewUserWithSpinner />} />
           <Route path="/registration-page" element={<RegistrationFormWithSpinner />} />
           <Route path="/registration-complete" element={<RegistrationCompleteWithSpinner />} />
-          <Route path="/user-dashboard" element={<ApplicationListWithSpinner />} />
+          <Route path="/user/*" element={<UserLayoutWithSpinner />} />
         </Routes>
         <Footer />
       </div>
     </Router>
-    // <>
-    //   {/* <Sidebar/> */}
-    //   {/* <AfterLoginTopBar/> */}
-    //   {/* <ApplicationList/> */}
-    // </>
+    
   );
 }
 

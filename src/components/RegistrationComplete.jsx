@@ -3,6 +3,7 @@ import { HiUserAdd } from "react-icons/hi";
 import { Modal, Button, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import Homebar from './Homebar';
 
 const RegistrationComplete = () => {
     const [showModal, setShowModal] = useState(false);
@@ -27,6 +28,8 @@ const RegistrationComplete = () => {
     };
 
     return (
+        <>
+        <Homebar/>
         <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-md-8 col-lg-6">
@@ -74,6 +77,7 @@ const RegistrationComplete = () => {
                 </Modal.Footer>
             </Modal>
         </div>
+        </>
     );
 }
 
