@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Topbar = () => {
   return (
-    <div>
+    <>
       <div className="container">
         <div className="row align-items-center">
           <div className="col-12 col-md-6 p-2">
@@ -18,9 +18,9 @@ const Topbar = () => {
         </div>
       </div>
       <div className="">
-        <div className="border-top border-4 mt-3" style={{ border: '3px solid #005174' }}></div>
+        {/* <div className="border-top border-4 mt-3" style={{ border: '3px solid #005174' }}></div> */}
       </div>
-    </div>
+    </>
   );
 };
 

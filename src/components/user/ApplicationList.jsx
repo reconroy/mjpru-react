@@ -1,11 +1,13 @@
 import React from "react";
 import { FaFile } from "react-icons/fa";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import Homebar from './../Homebar';
 
 const ApplicationList = () => {
     return (
-        <div className="container">
+        <>
+        <Homebar/>
+        <div className="container mt-3">
             <div className="card">
                 <div className="card-header bg-primary text-light d-flex justify-content-between align-items-center">
                     <div className="left-box d-flex align-items-center">
@@ -18,11 +20,6 @@ const ApplicationList = () => {
                             className="btn btn-light text-decoration-none">
                             + New Application
                         </button>
-                        {/* <Link to="/ApplicationList"
-                            type="button"
-                            className="btn btn-light text-decoration-none">
-                            + New Application
-                        </Link> */}
                     </div>
                 </div>
                 <div className="card-body">
@@ -40,7 +37,6 @@ const ApplicationList = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* Example row, replace with dynamic content */}
                                 <tr>
                                     <td>1</td>
                                     <td>APP-001</td>
@@ -64,8 +60,6 @@ const ApplicationList = () => {
                                     <td>Completed </td>
                                     <td>
                                         <Link to="/user">Click here to Fill</Link>
-                                        {/* <button className="btn btn-sm btn-primary me-2">Print</button>
-                    <button className="btn btn-sm btn-secondary">Update</button> */}
                                     </td>
                                 </tr>
                             </tbody>
@@ -74,6 +68,7 @@ const ApplicationList = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
