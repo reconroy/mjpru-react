@@ -59,7 +59,7 @@ const ApplicationList = () => {
                                     <td>2024-08-12</td>
                                     <td className="text-danger">Incomplete </td>
                                     <td>
-                                        <Link to="/user">Click here to Fill</Link>
+                                        <Link to="/user/Status">Click here to Fill</Link>
                                     </td>
                                 </tr>
                             </tbody>
