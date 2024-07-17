@@ -43,62 +43,62 @@ const Status = () => {
             </div>
             <div className="table-responsive d-flex justify-content-center">
               <table className="table border rounded-3 table-striped table-bordered"
-              style={{overflow:"hidden",width:"90%"}}>
+              style={{overflow:"hidden",width:"90%",cursor: "zoom-in"}}>
                 <thead>
                   <tr>
-                    <th scope="col" className="bg-dark text-light">Sr. No.</th>
+                    <th scope="col" className="bg-dark text-light col-1">Sr. No.</th>
                     <th scope="col" className="bg-dark text-light">Application Step</th>
                     <th scope="col" className="bg-dark text-light">Status</th>
                   </tr>
                 </thead>
                 <tbody className="table-group-divider">
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row" style={{textAlign:"center"}}>1</th>
                     <td>Personal Details</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
+                    <th scope="row" style={{textAlign:"center"}}>2</th>
                     <td>Academic Qualification</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">3</th>
+                    <th scope="row" style={{textAlign:"center"}}>3</th>
                     <td>Research Qualification</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">4</th>
+                    <th scope="row" style={{textAlign:"center"}}>4</th>
                     <td>JRF / NET / SLET / SET</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">5</th>
+                    <th scope="row" style={{textAlign:"center"}}>5</th>
                     <td>Details of Employment</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">6</th>
+                    <th scope="row" style={{textAlign:"center"}}>6</th>
                     <td>References</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">7</th>
+                    <th scope="row" style={{textAlign:"center"}}>7</th>
                     <td>Research Guidance</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">8</th>
+                    <th scope="row" style={{textAlign:"center"}}>8</th>
                     <td>Research Papers</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">9</th>
+                    <th scope="row" style={{textAlign:"center"}}>9</th>
                     <td>Research Publications</td>
                     <td>"Variable"</td>
                   </tr>
                   <tr>
-                    <th scope="row">10</th>
+                    <th scope="row" style={{textAlign:"center"}}>10</th>
                     <td>Research Articles</td>
                     <td>"Variable"</td>
                   </tr>

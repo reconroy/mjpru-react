@@ -24,8 +24,8 @@ const ApplicationList = () => {
                 </div>
                 <div className="card-body">
                     <div className="table-responsive">
-                        <table className="table table-striped table-hover table-bordered">
-                            <thead className="bg-info text-dark">
+                        <table className="table table-striped table-hover table-bordered rounded-3" style={{overflow:"hidden",cursor: "zoom-in"}}>
+                            <thead className="bg-info text-dark table-dark">
                                 <tr>
                                     <th scope="col">Sr.No.</th>
                                     <th scope="col">Application Id</th>
@@ -36,9 +36,9 @@ const ApplicationList = () => {
                                     <th scope="col">Print / Update</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="table-group-divider">
                                 <tr>
-                                    <td>1</td>
+                                    <td className="sn">1</td>
                                     <td>APP-001</td>
                                     <td>Advertisement 123</td>
                                     <td>Department XYZ</td>
@@ -52,7 +52,7 @@ const ApplicationList = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2</td>
+                                    <td className="sn">2</td>
                                     <td>APP-002</td>
                                     <td>Advertisement 456</td>
                                     <td>Department ABC</td>

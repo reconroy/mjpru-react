@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Topbar from './components/Topbar';
+import Topbar from './components/Header';
 import Home from './components/Home';
 import LoginPanel from './components/LoginPanel';
 import ActivateAcccount from './components/ActivateAcccount';

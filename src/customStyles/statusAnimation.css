@@ -3,6 +3,9 @@
   }
   
   .table tbody tr:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
   
+  .sn{
+    text-align: center;
+  }
