@@ -145,8 +145,8 @@ const Sidebar = () => {
               <NumberIcons number='2' status={getStatus('/user/AcademicQualifications')} />
               <span className="d-none d-md-inline ms-2">Academic Qualification</span>
             </Nav.Link>
-            <Nav.Link as={Link} to="/ResearchQualifications" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='3' status={getStatus('/ResearchQualifications')} />
+            <Nav.Link as={Link} to="/user/ResearchQualifications" className="text-white border-bottom d-flex align-items-center">
+              <NumberIcons number='3' status={getStatus('/user/ResearchQualifications')} />
               <span className="d-none d-md-inline ms-2">Research Qualification</span>
             </Nav.Link>
             <Nav.Link as={Link} to="/JRF_NET_SLET_SET" className="text-white border-bottom d-flex align-items-center">
