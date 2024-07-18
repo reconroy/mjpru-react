@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { FaPowerOff } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
 import "./../../customStyles/buttonAnimation.css";
 
 const AfterLoginTopBar = () => {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+  const handleLogout = () => {
+    handleCloseModal();
+    navigate('/');
+  };
+
   return (
     <div className="">
       <div className="card mb-2">
@@ -15,13 +26,30 @@ const AfterLoginTopBar = () => {
               <TfiMenuAlt size={18} className="me-2 " />
               My Applications
             </Link>
-            <Link to={"/"} className="btn btn-danger rounded fw-bold card-button">
+            <Button onClick={handleShowModal} className="btn btn-danger rounded fw-bold card-button">
               <FaPowerOff size={18} className="me-2 " />
               Logout
-            </Link>
+            </Button>
           </div>
         </div>
       </div>
+
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Logout</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to logout?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleLogout}>
+            Logout
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
