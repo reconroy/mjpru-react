@@ -36,8 +36,8 @@ const Sidebar = () => {
               <NumberIcons number='1' status={getStatus('/user/PersonalDetails')} />
               <span className="d-none d-md-inline ms-2">Personal Details</span>
             </Nav.Link>
-            <Nav.Link as={Link} to="/AcademicQualifications" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='2' status={getStatus('/AcademicQualifications')} />
+            <Nav.Link as={Link} to="/user/AcademicQualifications" className="text-white border-bottom d-flex align-items-center">
+              <NumberIcons number='2' status={getStatus('/user/AcademicQualifications')} />
               <span className="d-none d-md-inline ms-2">Academic Qualification</span>
             </Nav.Link>
             <Nav.Link as={Link} to="/ResearchQualifications" className="text-white border-bottom d-flex align-items-center">
@@ -122,12 +122,12 @@ const Sidebar = () => {
           <Container fluid className="main-content">
             <AfterLoginTopBar />
             <Routes>
-              <Route path='/Status' element={<Status/>} />
-              <Route path='/PersonalDetails' element={<PersonalDetails />} />
-              <Route path='/AcademicQualifications' element={<AcademicQualifications />} />
-              <Route path='/ResearchQualifications' element={<ResearchQualifications />} />
-              <Route path='/EmploymentQualification' element={<EmploymentQualification />} />
-              <Route path='/JRF_NET_SLET_SET' element={<JRF_NET_SLET_SET />} />
+              <Route path='/user/Status' element={<Status/>} />
+              <Route path='/user/PersonalDetails' element={<PersonalDetails />} />
+              <Route path='/user/AcademicQualifications' element={<AcademicQualifications />} />
+              <Route path='/user/ResearchQualifications' element={<ResearchQualifications />} />
+              <Route path='/user/EmploymentQualification' element={<EmploymentQualification />} />
+              <Route path='/user/JRF_NET_SLET_SET' element={<JRF_NET_SLET_SET />} />
             </Routes>
           </Container>
         </Col>

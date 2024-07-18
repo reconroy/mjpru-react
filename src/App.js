@@ -37,9 +37,9 @@ function App() {
           <Route path="/new-user" element={<NewUserWithSpinner />} />
           <Route path="/registration-page" element={<RegistrationFormWithSpinner />} />
           <Route path="/registration-complete" element={<RegistrationCompleteWithSpinner />} />
-          <Route path="/user" element={<UserLayoutWithSpinner />} />
-          <Route path="/user/*" element={<UserLayoutWithSpinner />} />
           <Route path="/user/applicationlist" element={<ApplicationListWithSpinner />} />
+          <Route path="/*" element={<UserLayoutWithSpinner />} />
+          <Route path="/user" element={<UserLayoutWithSpinner />} />
         </Routes>
         <Footer />
       </div>
