@@ -3,6 +3,62 @@ import { FaFile } from "react-icons/fa";
 import './../../customStyles/statusAnimation.css';
 
 const Status = () => {
+  const applicationDetails = [
+    { label: "Advertisement No", value: "Variable" },
+    { label: "Appl Id", value: "Variable" },
+    { label: "Post", value: "Variable" },
+    { label: "Department", value: "Variable" }
+  ];
+
+  const applicationSteps = [
+    "Personal Details",
+    "Academic Qualification",
+    "Research Qualification",
+    "JRF / NET / SLET / SET",
+    "Details of Employment",
+    "References",
+    "Research Guidance",
+    "Research Papers",
+    "Research Publications",
+    "Research Articles",
+    "Research Projects",
+    "Consultancy Projects",
+    "Policy Documents",
+    "Patents",
+    "Papers Presentation",
+    "Invited Lectures",
+    "ICT",
+    "Awards / Fellowships",
+    "Extra Curricular Activities",
+    "Uploads",
+    "Preview & Submit"
+  ];
+
+  const renderApplicationDetails = () => (
+    <div className="row mb-2">
+      {applicationDetails.map((detail, index) => (
+        <div className="col-12 col-md-6" key={index}>
+          <p className="card-text">
+            <b>{detail.label}:</b>
+            <span>&nbsp;{detail.value}</span>
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+
+  const renderApplicationSteps = () => (
+    <tbody className="table-group-divider">
+      {applicationSteps.map((step, index) => (
+        <tr key={index}>
+          <th scope="row" style={{ textAlign: "center" }}>{index + 1}</th>
+          <td>{step}</td>
+          <td>"Variable"</td>
+        </tr>
+      ))}
+    </tbody>
+  );
+
   return (
     <div className="container mt-3">
       <div className="rounded-3" style={{ border: "2px solid #005174" }}>
@@ -15,35 +71,10 @@ const Status = () => {
             <span>Application Status</span>
           </div>
           <div className="card-body">
-            <div className="row mb-2">
-              <div className="col-12 col-md-6">
-                <p className="card-text">
-                  <b>Advertisement No:</b>
-                  <span>&nbsp;"Variable"</span>
-                </p>
-              </div>
-              <div className="col-12 col-md-6">
-                <p className="card-text">
-                  <b>Appl Id:</b>
-                  <span>&nbsp;"Variable"</span>
-                </p>
-              </div>
-              <div className="col-12 col-md-6">
-                <p className="card-text">
-                  <b>Post:</b>
-                  <span>&nbsp;"Variable"</span>
-                </p>
-              </div>
-              <div className="col-12 col-md-6">
-                <p className="card-text">
-                  <b>Department:</b>
-                  <span>&nbsp;"Variable"</span>
-                </p>
-              </div>
-            </div>
+            {renderApplicationDetails()}
             <div className="table-responsive d-flex justify-content-center">
               <table className="table border rounded-3 table-striped table-bordered"
-              style={{overflow:"hidden",width:"90%",cursor: "zoom-in"}}>
+                style={{ overflow: "hidden", width: "90%", cursor: "zoom-in" }}>
                 <thead>
                   <tr>
                     <th scope="col" className="bg-dark text-light col-1">Sr. No.</th>
@@ -51,58 +82,7 @@ const Status = () => {
                     <th scope="col" className="bg-dark text-light">Status</th>
                   </tr>
                 </thead>
-                <tbody className="table-group-divider">
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>1</th>
-                    <td>Personal Details</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>2</th>
-                    <td>Academic Qualification</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>3</th>
-                    <td>Research Qualification</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>4</th>
-                    <td>JRF / NET / SLET / SET</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>5</th>
-                    <td>Details of Employment</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>6</th>
-                    <td>References</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>7</th>
-                    <td>Research Guidance</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>8</th>
-                    <td>Research Papers</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>9</th>
-                    <td>Research Publications</td>
-                    <td>"Variable"</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" style={{textAlign:"center"}}>10</th>
-                    <td>Research Articles</td>
-                    <td>"Variable"</td>
-                  </tr>
-                </tbody>
+                {renderApplicationSteps()}
               </table>
             </div>
           </div>

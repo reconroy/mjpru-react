@@ -1,16 +1,5 @@
 import React from 'react';
 
-// const App = () => {
-//   return (
-//     <div className="d-flex flex-column">
-//       <main className="flex-grow-1">
-//         {/* Your main content goes here */}
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// }
-
 const Footer = () => {
   return (
     <footer className="mt-auto text-center text-light fs-6 p-1 fixed-bottom mt-5" style={{ backgroundColor: '#005174' }}>
