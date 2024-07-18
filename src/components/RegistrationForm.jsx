@@ -38,14 +38,14 @@ const RegistrationForm = () => {
                                 New user Registration
                             </div>
                             <div className="card-body">
-                                <h5 className="card-title text-primary mb-4">
+                                <h5 className="card-title text-danger mb-3 text-center">
                                     All communication related to your applications will be sent to
                                     this email id. Account Activation link will be sent to this
                                     email Id.
                                 </h5>
                                 <form onSubmit={handleSubmit}>
                                     {/* Email IDs */}
-                                    <div className="row mb-5">
+                                    <div className="row mb-3">
                                         <div className="col-md-6">
                                             <label
                                                 htmlFor="exampleInputEmail1"
@@ -79,7 +79,7 @@ const RegistrationForm = () => {
                                     </div>
 
                                     {/* Names */}
-                                    <div className="row mb-5">
+                                    <div className="row mb-3">
                                         <div className="col-md-4">
                                             <label
                                                 htmlFor="exampleInputPassword1"
@@ -125,7 +125,7 @@ const RegistrationForm = () => {
                                     </div>
 
                                     {/* Parents' Names and Mobile Numbers */}
-                                    <div className="row mb-5">
+                                    <div className="row mb-3">
                                         <div className="col-md-6">
                                             <label
                                                 htmlFor="exampleInputPassword1"
@@ -155,7 +155,7 @@ const RegistrationForm = () => {
                                             />
                                         </div>
                                     </div>
-                                    <div className="row mb-5">
+                                    <div className="row mb-3">
                                         <div className="col-md-6">
                                             <label
                                                 htmlFor="exampleInputPassword1"
