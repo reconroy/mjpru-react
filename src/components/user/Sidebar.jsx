@@ -27,8 +27,9 @@ const Sidebar = () => {
         <Button variant="" className="d-md-none d-flex justify-content-center align-items-center border-light " onClick={handleShow} style={{position:"fixed",zIndex:"1",width:"40px",height:"40px",left:"12px",top:"11px",borderRadius:"50%",backgroundColor:"#005174"}}>
         <HiMenuAlt1 size="35" color='white'/>
         </Button>
-        <Offcanvas show={show} onHide={handleClose} className="d-md-none" style={{ backgroundColor: "#005174" }}>
-          <Offcanvas.Header closeButton>
+        <Offcanvas show={show} onHide={handleClose} className="d-md-none w-75" style={{ backgroundColor: "#005174" }}>
+
+          <Offcanvas.Header closeButton className="custom-offcanvas-header">
             <Offcanvas.Title><span className='text-light'>Steps Menu</span></Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
@@ -123,7 +124,7 @@ const Sidebar = () => {
               </Nav.Link>
             </Nav>
           </Offcanvas.Body>
-        </Offcanvas>
+        </Offcanvas >
         <Col
           xs={2} md={3} lg={2}
           className="text-white d-none d-md-flex flex-column justify-content-between p-0 rounded-end-3"

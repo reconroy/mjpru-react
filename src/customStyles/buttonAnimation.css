@@ -31,3 +31,8 @@
     margin-right: 0;
   }
 }
+
+
+.offcanvas-header .btn-close {
+  filter: invert(1);
+}
