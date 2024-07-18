@@ -11,7 +11,7 @@ import EmploymentQualification from "./RegistrationData/EmployementQualification
 import JRF_NET_SLET_SET from "./RegistrationData/JRF_NET_SLET_SET";
 import ResearchQualifications from "./RegistrationData/ResearchQualifications";
 import { IoBarChart } from "react-icons/io5";
-
+import { HiMenuAlt1 } from "react-icons/hi";
 const Sidebar = () => {
   const location = useLocation();
   const [show, setShow] = useState(false);
@@ -24,12 +24,12 @@ const Sidebar = () => {
   return (
     <Container fluid className="vh-100 d-flex p-0">
       <Row className="flex-nowrap w-100">
-        <Button variant="primary" className="d-md-none" onClick={handleShow} style={{position:"fixed",zIndex:"1",width:"140px",left:"12px",top:"11px"}}>
-          Steps
+        <Button variant="" className="d-md-none d-flex justify-content-center align-items-center border-light " onClick={handleShow} style={{position:"fixed",zIndex:"1",width:"40px",height:"40px",left:"12px",top:"11px",borderRadius:"50%",backgroundColor:"#005174"}}>
+        <HiMenuAlt1 size="35" color='white'/>
         </Button>
         <Offcanvas show={show} onHide={handleClose} className="d-md-none" style={{ backgroundColor: "#005174" }}>
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Menu</Offcanvas.Title>
+            <Offcanvas.Title><span className='text-light'>Steps Menu</span></Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="flex-column">
