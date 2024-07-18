@@ -2,6 +2,7 @@ import React from "react";
 import { FaFile } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Homebar from './../Homebar';
+import "./../../customStyles/buttonAnimation.css"
 
 const ApplicationList = () => {
     return (
@@ -17,7 +18,7 @@ const ApplicationList = () => {
                     <div className="right-box">
                         <button
                             type="button"
-                            className="btn btn-light text-decoration-none">
+                            className="btn btn-light text-decoration-none card-button">
                             + New Application
                         </button>
                     </div>
@@ -45,10 +46,10 @@ const ApplicationList = () => {
                                     <td>2024-07-15</td>
                                     <td className="text-success">Completed</td>
                                     <td>
-                                        <button className="btn btn-sm btn-primary me-2">
+                                        <button className="btn btn-sm btn-primary me-2 card-button">
                                             Print
                                         </button>
-                                        <button className="btn btn-sm btn-secondary">Update</button>
+                                        <button className="btn btn-sm btn-secondary card-button">Update</button>
                                     </td>
                                 </tr>
                                 <tr>
