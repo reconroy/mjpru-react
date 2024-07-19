@@ -149,8 +149,8 @@ const Sidebar = () => {
               <NumberIcons number='3' status={getStatus('/user/ResearchQualifications')} />
               <span className="d-none d-md-inline ms-2">Research Qualification</span>
             </Nav.Link>
-            <Nav.Link as={Link} to="/JRF_NET_SLET_SET" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='4' status={getStatus('/JRF_NET_SLET_SET')} />
+            <Nav.Link as={Link} to="/user/JRF_NET_SLET_SET" className="text-white border-bottom d-flex align-items-center">
+              <NumberIcons number='4' status={getStatus('/user/JRF_NET_SLET_SET')} />
               <span className="d-none d-md-inline ms-2">JRF-NET/NET/SLET/SET</span>
             </Nav.Link>
             <Nav.Link as={Link} to="/EmploymentQualification" className="text-white border-bottom d-flex align-items-center">

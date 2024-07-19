@@ -120,10 +120,10 @@ const ResearchQualifications = () => {
     <div className="card">
       <div className="card-header text-light d-flex justify-content-between align-items-center" style={{ backgroundColor: "#005174" }}>
         <div className="left d-flex align-items-center fs-6">
-          <HiAcademicCap className="me-2" />Research Qualification
+          <HiAcademicCap className="me-2" size="24"/>Research Qualification
         </div>
         <div className="right">
-          <button type='button' className="btn btn-light card-button" onClick={handleShowAddModal}>Add Other Qualification</button>
+          <button type='button' disabled className="btn btn-light card-button" onClick={handleShowAddModal}>Add Other Qualification</button>
         </div>
       </div>
       <div className="container mt-3">
