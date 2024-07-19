@@ -229,7 +229,7 @@ const AcademicQualifications = () => {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
+            <Button variant="danger" onClick={handleCloseModal}>Close</Button>
             <Button variant="primary" onClick={handleSaveChanges}>Save changes</Button>
           </Modal.Footer>
         </Modal>

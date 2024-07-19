@@ -93,7 +93,7 @@ const ApplicationList = () => {
                                                         <button className="btn btn-sm btn-primary me-2 card-button">
                                                             Print
                                                         </button>
-                                                        <button className="btn btn-sm btn-secondary card-button">Update</button>
+                                                        <button className="btn btn-sm btn-success card-button">Update</button>
                                                     </>
                                                 ) : (
                                                     <Link to="/user/Status">Click here to Fill</Link>
