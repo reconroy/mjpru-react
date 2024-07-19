@@ -30,54 +30,65 @@ const RegistrationComplete = () => {
 
     return (
         <>
-        <Homebar/>
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-8 col-lg-6">
-                    <div className="card border border-black">
-                        <div className="card-header  text-light fs-5 d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
-                            <HiUserAdd size="30px" className="me-2" />
-                            New User Registration
-                        </div>
-                        <div className="card-body">
-                            <h3 className="text-center text-success">Activate Your Account</h3>
-                            <br />
-                            <p className="text-start">Dear <span className="fw-bold">"Variable"</span></p>
-                            <p className="text-start">Thank you for registering for FACULTY RECRUITMENT 2021.</p>
-                            <p className="text-start">This one-time registration process will give you continuous access to the account.</p>
-                            <p className="text-start">Please follow your email to activate your account.</p>
-                            <p className="text-start text-danger fw-bold">Please check your inbox/SPAM folder for the email.</p>
-                            <div className="form-btns d-flex justify-content-evenly mt-3">
-                                <Button className="btn btn-primary m-2 card-button" variant="primary" onClick={handleShow}>
-                                    Show Notification
-                                </Button>
-                                <Link to="/" className="btn btn-primary m-2 card-button">
-                                    Go To Home
-                                </Link>
-                                <Button className="btn btn-primary m-2 card-button" variant="primary" onClick={handleResend} disabled={resendDisabled}>
-                                    Resend Activation Link
-                                    {showSpinner && <Spinner animation="border" size="sm" className="ms-2" />}
-                                </Button>
+            <Homebar/>
+            <div className="mt-5 w-100">
+                <div className="row justify-content-center">
+                    <div className="col-md-8 col-lg-6">
+                        <div className="card border border-black">
+                            <div className="card-header text-light fs-5 d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
+                                <HiUserAdd size="30px" className="me-2" />
+                                New User Registration
+                            </div>
+                            <div className="card-body">
+                                <h3 className="text-center text-success">Activate Your Account</h3>
+                                <br />
+                                <p className="text-start">Dear <span className="fw-bold">"Variable"</span></p>
+                                <p className="text-start">Thank you for registering for FACULTY RECRUITMENT 2021.</p>
+                                <p className="text-start">This one-time registration process will give you continuous access to the account.</p>
+                                <p className="text-start">Please follow your email to activate your account.</p>
+                                <p className="text-start text-danger fw-bold">Please check your inbox/SPAM folder for the email.</p>
+                                <div className="form-btns row mt-3">
+                                    <div className="col-12 col-md-6 col-lg-3 mb-2">
+                                        <Button className="btn btn-primary w-100 card-button" variant="primary" onClick={handleShow}>
+                                            Show Notification
+                                        </Button>
+                                    </div>
+                                    <div className="col-12 col-md-6 col-lg-3 mb-2">
+                                        <Link to="/login" className="btn btn-primary w-100 card-button">
+                                            Go To Login
+                                        </Link>
+                                    </div>
+                                    <div className="col-12 col-md-6 col-lg-3 mb-2">
+                                        <Link to="/activate-account" className="btn btn-primary w-100 card-button">
+                                            Go To Activation
+                                        </Link>
+                                    </div>
+                                    <div className="col-12 col-md-6 col-lg-3 mb-2">
+                                        <Button className="btn btn-primary w-100 card-button" variant="primary" onClick={handleResend} disabled={resendDisabled}>
+                                            Resend Activation Link
+                                            {showSpinner && <Spinner animation="border" size="sm" className="ms-2" />}
+                                        </Button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <Modal show={showModal} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>OTP</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p className="text-success fw-bold">An Activation Link has been sent to "VARIABLE". Please follow email instructions to activate your account. Please check your Inbox/Spam folder for the email.</p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="success" onClick={handleClose} className='card-button'>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
+                <Modal show={showModal} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>OTP</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p className="text-success fw-bold">An Activation Link has been sent to "VARIABLE". Please follow email instructions to activate your account. Please check your Inbox/Spam folder for the email.</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="success" onClick={handleClose} className='card-button'>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
         </>
     );
 }
