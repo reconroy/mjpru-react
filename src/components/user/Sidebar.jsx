@@ -7,7 +7,7 @@ import PersonalDetails from './RegistrationData/PersonalDetails';
 import NumberIcons from '../NumberIcons';
 import Status from './Status';
 import AcademicQualifications from "./RegistrationData/AcademicQualifications";
-import EmploymentQualification from "./RegistrationData/EmployementQualification";
+import EmployementDetails from "./RegistrationData/EmployementDetails";
 import JRF_NET_SLET_SET from "./RegistrationData/JRF_NET_SLET_SET";
 import ResearchQualifications from "./RegistrationData/ResearchQualifications";
 import { IoBarChart } from "react-icons/io5";
@@ -46,16 +46,16 @@ const Sidebar = () => {
                 <NumberIcons number='2' status={getStatus('/user/AcademicQualifications')} />
                 <span className="ms-2">Academic Qualification</span>
               </Nav.Link>
-              <Nav.Link as={Link} to="/ResearchQualifications" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='3' status={getStatus('/ResearchQualifications')} />
+              <Nav.Link as={Link} to="/user/ResearchQualifications" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
+                <NumberIcons number='3' status={getStatus('/user/ResearchQualifications')} />
                 <span className="ms-2">Research Qualification</span>
               </Nav.Link>
-              <Nav.Link as={Link} to="/JRF_NET_SLET_SET" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='4' status={getStatus('/JRF_NET_SLET_SET')} />
+              <Nav.Link as={Link} to="/user/JRF_NET_SLET_SET" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
+                <NumberIcons number='4' status={getStatus('/user/JRF_NET_SLET_SET')} />
                 <span className="ms-2">JRF-NET/NET/SLET/SET</span>
               </Nav.Link>
-              <Nav.Link as={Link} to="/EmploymentQualification" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='5' status={getStatus('/EmploymentQualification')} />
+              <Nav.Link as={Link} to="/user/EmployementDetails" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
+                <NumberIcons number='5' status={getStatus('/user/EmployementDetails')} />
                 <span className="ms-2">Employment Details</span>
               </Nav.Link>
               <Nav.Link href="#link" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
@@ -153,8 +153,8 @@ const Sidebar = () => {
               <NumberIcons number='4' status={getStatus('/user/JRF_NET_SLET_SET')} />
               <span className="d-none d-md-inline ms-2">JRF-NET/NET/SLET/SET</span>
             </Nav.Link>
-            <Nav.Link as={Link} to="/EmploymentQualification" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='5' status={getStatus('/EmploymentQualification')} />
+            <Nav.Link as={Link} to="/user/EmployementDetails" className="text-white border-bottom d-flex align-items-center">
+              <NumberIcons number='5' status={getStatus('/user/EmployementDetails')} />
               <span className="d-none d-md-inline ms-2">Employment Details</span>
             </Nav.Link>
             <Nav.Link href="#link" className="text-white border-bottom d-flex align-items-center">
@@ -231,7 +231,7 @@ const Sidebar = () => {
               <Route path='/user/PersonalDetails' element={<PersonalDetails />} />
               <Route path='/user/AcademicQualifications' element={<AcademicQualifications />} />
               <Route path='/user/ResearchQualifications' element={<ResearchQualifications />} />
-              <Route path='/user/EmploymentQualification' element={<EmploymentQualification />} />
+              <Route path='/user/EmployementDetails' element={<EmployementDetails />} />
               <Route path='/user/JRF_NET_SLET_SET' element={<JRF_NET_SLET_SET />} />
             </Routes>
           </Container>

@@ -118,7 +118,7 @@ const JRF_NET_SLET_SET = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
+          <Button variant="danger" onClick={handleCloseModal}>Close</Button>
           <Button variant="primary" onClick={handleSave}>{editIndex !== null ? 'Update' : 'Save'}</Button>
         </Modal.Footer>
       </Modal>

@@ -284,7 +284,7 @@ const AcademicQualifications = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseAddModal}>Close</Button>
+          <Button variant="danger" onClick={handleCloseAddModal}>Close</Button>
           <Button variant="primary" onClick={handleAddQualification}>Add Qualification</Button>
         </Modal.Footer>
       </Modal>
