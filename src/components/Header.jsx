@@ -1,6 +1,6 @@
 import React from 'react';
 import headerImg from './../assets/images/header.jpg';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 // import "./../customStyles/buttonAnimation.css";
 
 const Topbar = () => {

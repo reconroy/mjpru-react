@@ -4,7 +4,7 @@ import { BiSolidEdit } from "react-icons/bi";
 import { TiDelete } from "react-icons/ti";
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const JRF_NET_SLET_SET = () => {
+const JRFNetSletSet = () => {
   const [showModal, setShowModal] = useState(false);
   const [qualifications, setQualifications] = useState([]);
   const [formData, setFormData] = useState({ certificate: '', organization: '', title: '', year: '' });
@@ -131,4 +131,4 @@ const JRF_NET_SLET_SET = () => {
   );
 }
 
-export default JRF_NET_SLET_SET;
+export default JRFNetSletSet;

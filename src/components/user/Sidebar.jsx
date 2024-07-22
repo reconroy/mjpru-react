@@ -7,15 +7,24 @@ import Status from './Status';
 import PersonalDetails from './RegistrationData/PersonalDetails';
 import AcademicQualifications from "./RegistrationData/AcademicQualifications";
 import EmployementDetails from "./RegistrationData/EmployementDetails";
-import JRF_NET_SLET_SET from "./RegistrationData/JRF_NET_SLET_SET";
+import JRFNetSletSet from './RegistrationData/JRF_NET_SLET_SET';
 import ResearchQualifications from "./RegistrationData/ResearchQualifications";
 import References from './RegistrationData/References';
 import { IoBarChart } from "react-icons/io5";
 import { HiMenuAlt1 } from "react-icons/hi";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./../../customStyles/sidebar.css";
-
+import withSpinner from './../../withSpinner';
+import Footer from './../Footer';
 const Sidebar = () => {
+  const StatusWithSpinner = withSpinner(Status);
+  const PersonalDetailsWithSpinner = withSpinner(PersonalDetails);
+  const AcademicQualificationsWithSpinner = withSpinner(AcademicQualifications);
+  const ResearchQualificationsWithSpinner = withSpinner(ResearchQualifications);
+  const EmployementDetailsWithSpinner = withSpinner(EmployementDetails);
+  const ReferencesWithSpinner = withSpinner(References);
+  const JRFNetSletSetWithSpinner = withSpinner(JRFNetSletSet);
+
   const location = useLocation();
   const [show, setShow] = useState(false);
 
@@ -108,17 +117,18 @@ const Sidebar = () => {
           </Nav>
         </Col>
         <Col className="p-0">
-          <Container fluid className="main-content">
+          <Container fluid className="main-content" >
             <AfterLoginTopBar />
             <Routes>
-              <Route path='/user/Status' element={<Status />} />
-              <Route path='/user/PersonalDetails' element={<PersonalDetails />} />
-              <Route path='/user/AcademicQualifications' element={<AcademicQualifications />} />
-              <Route path='/user/ResearchQualifications' element={<ResearchQualifications />} />
-              <Route path='/user/EmployementDetails' element={<EmployementDetails />} />
-              <Route path='/user/JRF_NET_SLET_SET' element={<JRF_NET_SLET_SET />} />
-              <Route path='/user/References' element={<References />} />
+              <Route path='/user/Status' element={<StatusWithSpinner />} />
+              <Route path='/user/PersonalDetails' element={<PersonalDetailsWithSpinner />} />
+              <Route path='/user/AcademicQualifications' element={<AcademicQualificationsWithSpinner />} />
+              <Route path='/user/ResearchQualifications' element={<ResearchQualificationsWithSpinner />} />
+              <Route path='/user/EmployementDetails' element={<EmployementDetailsWithSpinner />} />
+              <Route path='/user/JRF_NET_SLET_SET' element={<JRFNetSletSetWithSpinner />} />
+              <Route path='/user/References' element={<ReferencesWithSpinner />} />
             </Routes>
+            {/* <Footer/> */}
           </Container>
         </Col>
       </Row>

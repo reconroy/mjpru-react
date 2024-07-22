@@ -107,7 +107,6 @@ const ApplicationList = () => {
                     </div>
                 </div>
             </div>
-
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Add New Application</Modal.Title>
