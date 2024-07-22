@@ -1,16 +1,16 @@
-/* Add this CSS to your stylesheet or in a <style> tag */
+.full-height {
+  height: 100vh;
+}
 
 .sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-  }
-  
-  @media (max-width: 991px) {
-    .sidebar {
-      position: relative;
-      height: auto;
-    }
-  }
-  
+  background-color: #005174;
+  color: white;
+}
+
+.offcanvas-custom {
+  background-color: #005174;
+}
+
+.offcanvas-header-custom {
+  background-color: #003d4c;
+}
