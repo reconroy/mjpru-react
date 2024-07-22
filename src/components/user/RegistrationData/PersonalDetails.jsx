@@ -1,18 +1,84 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaFile } from 'react-icons/fa';
 
 const PersonalDetails = () => {
   const formRef = useRef(null);
 
+  const [correspondenceAddress, setCorrespondenceAddress] = useState({
+    address: '',
+    state: '',
+    district: '',
+    pincode: ''
+  });
+
+  const [permanentAddress, setPermanentAddress] = useState({
+    address: '',
+    state: '',
+    district: '',
+    pincode: ''
+  });
+
+  const [sameAsCorrespondence, setSameAsCorrespondence] = useState(false);
+
   const handleClear = () => {
     if (formRef.current) {
       formRef.current.reset();
+      setCorrespondenceAddress({
+        address: '',
+        state: '',
+        district: '',
+        pincode: ''
+      });
+      setPermanentAddress({
+        address: '',
+        state: '',
+        district: '',
+        pincode: ''
+      });
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // submission logic here
+  };
+
+  const handleCorrespondenceChange = (e) => {
+    const { name, value } = e.target;
+    setCorrespondenceAddress(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+    if (sameAsCorrespondence) {
+      setPermanentAddress(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+    }
+  };
+
+  const handlePermanentChange = (e) => {
+    const { name, value } = e.target;
+    setPermanentAddress(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleCheckboxChange = (e) => {
+    setSameAsCorrespondence(e.target.checked);
+    if (e.target.checked) {
+      setPermanentAddress(correspondenceAddress);
+      }
+      else{
+      setSameAsCorrespondence(false);
+      setPermanentAddress({
+        address: '',
+        state: '',
+        district: '',
+        pincode: ''
+      });
+    }
   };
 
   return (
@@ -136,73 +202,133 @@ const PersonalDetails = () => {
                 <h4 className="text-primary">CORRESPONDENCE ADDRESS</h4>
                 <div className="mb-3 mt-5">
                   <label htmlFor="correspondenceAddress" className="form-label">Address</label>
-                  <textarea className="form-control" placeholder="Enter correspondence address" id="correspondenceAddress" style={{ resize: "none" }}></textarea>
+                  <textarea
+                    className="form-control"
+                    placeholder="Enter correspondence address"
+                    id="correspondenceAddress"
+                    name="address"
+                    value={correspondenceAddress.address}
+                    onChange={handleCorrespondenceChange}
+                    style={{ resize: "none" }}
+                  ></textarea>
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="correspondenceAddress" className="form-label">State</label>
-                  <select className="form-select" id="correspondenceAddress">
-                    <option value="">Select Correspondance State</option>
-                    <option value="">State 1</option>
-                    <option value="">State 2</option>
+                  <label htmlFor="correspondenceState" className="form-label">State</label>
+                  <select
+                    className="form-select"
+                    id="correspondenceState"
+                    name="state"
+                    value={correspondenceAddress.state}
+                    onChange={handleCorrespondenceChange}
+                  >
+                    <option value="">Select Correspondence State</option>
+                    <option value="state1">State 1</option>
+                    <option value="state2">State 2</option>
                   </select>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="correspondenceDistrict" className="form-label">District</label>
-                  <select className="form-select" id="correspondenceDistrict">
+                  <select
+                    className="form-select"
+                    id="correspondenceDistrict"
+                    name="district"
+                    value={correspondenceAddress.district}
+                    onChange={handleCorrespondenceChange}
+                  >
                     <option value="">Select District</option>
-                    <option value="">District 1</option>
-                    <option value="">District 2</option>
+                    <option value="district1">District 1</option>
+                    <option value="district2">District 2</option>
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="correspondancePincode" className="form-label">Pincode</label>
-                  <input type="text" className="form-control" id="correspondancePincode" />
+                  <label htmlFor="correspondancePincode" className="form-label">Pin Code</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter pin code"
+                    id="correspondancePincode"
+                    name="pincode"
+                    value={correspondenceAddress.pincode}
+                    onChange={handleCorrespondenceChange}
+                  />
                 </div>
               </div>
-              {/* -------------------------------------- */}
+
               <div className="col-md-6">
-                <div className="d-flex justify-content-between flex-column">
-                  <h4 className="text-primary d-inline-block">PERMANENT ADDRESS</h4>
-                  <div className="mb-3 form-check d-inline-block ">
-                    <input type="checkbox" className="form-check-input" id="validateData" />
-                    <label className="form-check-label text-danger" htmlFor="validateData">Same as correspondence</label>
-                  </div>
+                <h4 className="text-primary">PERMANENT ADDRESS</h4>
+                <div className="form-check ">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="sameAsCorrespondence"
+                    checked={sameAsCorrespondence}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label className="form-check-label" htmlFor="sameAsCorrespondence">
+                    Same as correspondence
+                  </label>
                 </div>
-                <div className="mb-3">
+                <div className="mb-3 mt-3">
                   <label htmlFor="permanentAddress" className="form-label">Address</label>
-                  <textarea className="form-control" placeholder="Enter permanent address" id="permanentAddress" style={{ resize: "none" }}></textarea>
+                  <textarea
+                    className="form-control"
+                    placeholder="Enter permanent address"
+                    id="permanentAddress"
+                    name="address"
+                    value={permanentAddress.address}
+                    onChange={handlePermanentChange}
+                    style={{ resize: "none" }}
+                    disabled={sameAsCorrespondence}
+                  ></textarea>
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="permanentAddress" className="form-label">State</label>
-                  <select className="form-select" id="permanentAddress">
+                  <label htmlFor="permanentState" className="form-label">State</label>
+                  <select
+                    className="form-select"
+                    id="permanentState"
+                    name="state"
+                    value={permanentAddress.state}
+                    onChange={handlePermanentChange}
+                    disabled={sameAsCorrespondence}
+                  >
                     <option value="">Select Permanent State</option>
-                    <option value="">State 1</option>
-                    <option value="">State 2</option>
+                    <option value="state1">State 1</option>
+                    <option value="state2">State 2</option>
                   </select>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="permanentDistrict" className="form-label">District</label>
-                  <select className="form-select" id="permanentDistrict">
+                  <select
+                    className="form-select"
+                    id="permanentDistrict"
+                    name="district"
+                    value={permanentAddress.district}
+                    onChange={handlePermanentChange}
+                    disabled={sameAsCorrespondence}
+                  >
                     <option value="">Select District</option>
-                    <option value="">District 1</option>
-                    <option value="">District 2</option>
+                    <option value="district1">District 1</option>
+                    <option value="district2">District 2</option>
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="permanentPincode" className="form-label">Pincode</label>
-                  <input type="text" className="form-control" id="permanentPincode" />
+                  <label htmlFor="permanentPincode" className="form-label">Pin Code</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter pin code"
+                    id="permanentPincode"
+                    name="pincode"
+                    value={permanentAddress.pincode}
+                    onChange={handlePermanentChange}
+                    disabled={sameAsCorrespondence}
+                  />
                 </div>
               </div>
             </div>
 
-            <div className="mb-3 form-check">
-              <input type="checkbox" className="form-check-input" id="validateData" />
-              <label className="form-check-label text-danger" htmlFor="validateData">I certify that all the above information is correct.</label>
-            </div>
-            <div className="d-flex justify-content-end mb-5">
-              <button type="button" className="btn btn-danger m-1" onClick={handleClear}>Clear</button>
-              <button type="submit" className="btn btn-success m-1">Save & Next</button>
-            </div>
+            <button type="button" className="btn btn-danger me-2" onClick={handleClear}>Clear</button>
+            <button type="submit" className="btn btn-primary">Save</button>
           </form>
         </div>
       </div>

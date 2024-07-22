@@ -9,6 +9,7 @@ const JRF_NET_SLET_SET = () => {
   const [qualifications, setQualifications] = useState([]);
   const [formData, setFormData] = useState({ certificate: '', organization: '', title: '', year: '' });
   const [editIndex, setEditIndex] = useState(null);
+  const [isSaveNextDisabled, setIsSaveNextDisabled] = useState(true);
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -28,6 +29,7 @@ const JRF_NET_SLET_SET = () => {
       setQualifications([...qualifications, formData]);
     }
     setFormData({ certificate: '', organization: '', title: '', year: '' });
+    setIsSaveNextDisabled(false);
     handleCloseModal();
   };
 
@@ -40,6 +42,9 @@ const JRF_NET_SLET_SET = () => {
   const handleDelete = (index) => {
     const updatedQualifications = qualifications.filter((_, i) => i !== index);
     setQualifications(updatedQualifications);
+    if (updatedQualifications.length === 0) {
+      setIsSaveNextDisabled(true);
+    }
   };
 
   return (
@@ -87,7 +92,7 @@ const JRF_NET_SLET_SET = () => {
             </tbody>
           </table>
           <div className="d-flex justify-content-end">
-            <button type="submit" className="btn btn-success m-1 card-button">Save & Next</button>
+            <button type="submit" className="btn btn-success m-1 card-button" disabled={isSaveNextDisabled}>Save & Next</button>
             <button type="button" className="btn text-light m-1 card-button" style={{ backgroundColor: "#005174" }}>Skip This Step</button>
           </div>
         </div>
