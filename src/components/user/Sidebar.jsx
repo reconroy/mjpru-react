@@ -15,7 +15,7 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./../../customStyles/sidebar.css";
 import withSpinner from './../../withSpinner';
-import Footer from './../Footer';
+// import Footer from './../Footer';
 const Sidebar = () => {
   const StatusWithSpinner = withSpinner(Status);
   const PersonalDetailsWithSpinner = withSpinner(PersonalDetails);
@@ -45,7 +45,7 @@ const Sidebar = () => {
           <HiMenuAlt1 size="35" color='white' />
         </Button>
         <Offcanvas show={show} onHide={handleClose} className="d-md-none w-75 offcanvas-custom" style={{ backgroundColor: "#005174" }}>
-          <Offcanvas.Header closeButton className="offcanvas-header-custom">
+          <Offcanvas.Header closeButton className="offcanvas-header-custom text-light">
             <Offcanvas.Title><span className='text-light'>Steps Menu</span></Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>

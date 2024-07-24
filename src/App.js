@@ -11,7 +11,7 @@ import withSpinner from './withSpinner';
 import RegistrationComplete from './components/RegistrationComplete';
 import UserLayout from './components/user/UserLayout';
 import ApplicationList from "./components/user/ApplicationList";
-
+import Footer from './components/Footer';
 
 const HomeWithSpinner = withSpinner(Home);
 const LoginPanelWithSpinner = withSpinner(LoginPanel);
@@ -40,6 +40,7 @@ function App() {
           <Route path="/*" element={<UserLayout/>} />
           <Route path="/user" element={<UserLayout/>} />
         </Routes>
+        <Footer/>
       </div>
     </Router>
     
