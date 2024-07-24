@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { FaFile } from 'react-icons/fa';
-import Footer from './../../Footer';
 const PersonalDetails = () => {
   const formRef = useRef(null);
 
