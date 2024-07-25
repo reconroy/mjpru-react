@@ -76,7 +76,7 @@ const References = () => {
                     <HiAcademicCap className="me-2" size="24" />
                     References
                 </span>
-                <Button variant="light" onClick={handleShow}>
+                <Button variant="light" onClick={handleShow} className='card-button'>
                     + Add Reference
                 </Button>
             </div>

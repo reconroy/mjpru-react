@@ -2,7 +2,8 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Footer from './../Footer';
 import { Outlet } from 'react-router-dom';
-import AfterLoginTopBar from './AfterLoginTopBar';
+import "./../../customStyles/buttonAnimation.css";
+// import AfterLoginTopBar from './AfterLoginTopBar';
 
 const LayoutCompo = () => {
     return (
@@ -10,7 +11,7 @@ const LayoutCompo = () => {
             {/* <AfterLoginTopBar /> */}
             <div className="d-flex">
                 <Sidebar />
-                <div style={{ marginLeft: '', padding: '20px', marginTop: '', width: '', paddingBottom: '1180px' }}>
+                <div style={{ marginLeft: '', padding: '20px', marginTop: '', width: '', paddingBottom: '1100px' }}>
                     <Outlet />
                 </div>
             </div>
