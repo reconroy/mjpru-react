@@ -12,6 +12,7 @@ import RegistrationComplete from './components/RegistrationComplete';
 import UserLayout from './components/user/UserLayout';
 import ApplicationList from "./components/user/ApplicationList";
 import Footer from './components/Footer';
+import "./customStyles/buttonAnimation.css";
 
 const HomeWithSpinner = withSpinner(Home);
 const LoginPanelWithSpinner = withSpinner(LoginPanel);

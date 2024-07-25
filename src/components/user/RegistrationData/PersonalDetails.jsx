@@ -68,8 +68,8 @@ const PersonalDetails = () => {
     setSameAsCorrespondence(e.target.checked);
     if (e.target.checked) {
       setPermanentAddress(correspondenceAddress);
-      }
-      else{
+    }
+    else {
       setSameAsCorrespondence(false);
       setPermanentAddress({
         address: '',
@@ -325,9 +325,10 @@ const PersonalDetails = () => {
                 </div>
               </div>
             </div>
-
-            <button type="button" className="btn btn-danger me-2" onClick={handleClear}>Clear</button>
-            <button type="submit" className="btn btn-primary">Save</button>
+            <div className="d-flex justify-content-end">
+              <button type="button" className="btn btn-danger m-1 card-button" onClick={handleClear}>Clear</button>
+              <button type="submit" className="btn btn-success m-1 card-button">Save & Next</button>
+            </div>
           </form>
         </div>
       </div>
