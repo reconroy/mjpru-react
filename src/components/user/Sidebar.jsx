@@ -15,7 +15,7 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./../../customStyles/sidebar.css";
 import withSpinner from './../../withSpinner';
-// import Footer from './../Footer';
+
 const Sidebar = () => {
   const StatusWithSpinner = withSpinner(Status);
   const PersonalDetailsWithSpinner = withSpinner(PersonalDetails);
@@ -34,8 +34,9 @@ const Sidebar = () => {
   const getStatus = (path) => (location.pathname === path ? 'active' : 'inactive');
 
   return (
-    <Container fluid className="p-0 full-height">
-      <Row className="flex-nowrap w-100 h-100">
+    <Container fluid className="p-0">
+      <Row className="flex-nowrap h-100">
+        {/* Offcanvas menu button */}
         <Button
           variant=""
           className="d-md-none d-flex justify-content-center align-items-center border-light"
@@ -44,12 +45,16 @@ const Sidebar = () => {
         >
           <HiMenuAlt1 size="35" color='white' />
         </Button>
+
+        {/* Offcanvas menu */}
         <Offcanvas show={show} onHide={handleClose} className="d-md-none w-75 offcanvas-custom" style={{ backgroundColor: "#005174" }}>
           <Offcanvas.Header closeButton className="offcanvas-header-custom text-light">
             <Offcanvas.Title><span className='text-light'>Steps Menu</span></Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="flex-column">
+              {/* Nav links for offcanvas menu */}
+             
               <Nav.Link as={Link} to="/user/Status" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
                 <IoBarChart size="35px" number='0' status={getStatus('/user/Status')} />
                 <span className="ms-2">Status</span>
@@ -81,11 +86,11 @@ const Sidebar = () => {
             </Nav>
           </Offcanvas.Body>
         </Offcanvas>
-        <Col
-          xs={2} md={3} lg={2}
-          className="sidebar text-white d-none d-md-flex flex-column justify-content-between p-0 rounded-end-3"
-        >
+
+        {/* Sidebar */}
+        <Col xs={2} md={3} lg={2} className="sidebar text-white d-none d-md-flex flex-column justify-content-between p-0 rounded-end-3">
           <Nav className="flex-column mt-3">
+            {/* Nav links for sidebar */}
             <Nav.Link as={Link} to="/user/Status" className="text-white border-bottom d-flex align-items-center">
               <IoBarChart size="35px" number='0' status={getStatus('/user/Status')} />
               <span className="d-none d-md-inline ms-2">Status</span>
@@ -116,9 +121,14 @@ const Sidebar = () => {
             </Nav.Link>
           </Nav>
         </Col>
+
+        {/* Main content */}
         <Col className="p-0">
-          <Container fluid className="main-content" >
+          <Container fluid className="main-content" style={{ overflowY: "auto", minHeight: "calc(100vh - 10rem)" }}>
+            {/* Render top bar component */}
             <AfterLoginTopBar />
+
+            {/* Render routes */}
             <Routes>
               <Route path='/user/Status' element={<StatusWithSpinner />} />
               <Route path='/user/PersonalDetails' element={<PersonalDetailsWithSpinner />} />
@@ -128,7 +138,9 @@ const Sidebar = () => {
               <Route path='/user/JRF_NET_SLET_SET' element={<JRFNetSletSetWithSpinner />} />
               <Route path='/user/References' element={<ReferencesWithSpinner />} />
             </Routes>
-            {/* <Footer/> */}
+
+            {/* Uncomment if you have a footer */}
+            {/* <Footer /> */}
           </Container>
         </Col>
       </Row>
