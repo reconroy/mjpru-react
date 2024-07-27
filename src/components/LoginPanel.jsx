@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaUserLock } from "react-icons/fa";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { FaEye ,FaEyeSlash } from "react-icons/fa6";
 import Captcha1 from './../assets/captcha/captcha_1.png';
 import { Link, useNavigate } from 'react-router-dom';
 import Homebar from './Homebar';
@@ -9,7 +9,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import "./../customStyles/buttonAnimation.css";
 import 'react-toastify/dist/ReactToastify.css';
-import './../customStyles/toastifyStyles.css';//also contains the animation for eye icon in password input
+import './../customStyles/toastifyStyles.css';
 
 const LoginPanel = () => {
     const [formData, setFormData] = useState({
@@ -106,11 +106,11 @@ const LoginPanel = () => {
                                     onChange={handleChange}
                                 />
                                 <span
-                                    className="password-icon"
+                                    className={`password-icon ${passwordVisible ? 'active' : ''}`}
                                     onClick={() => setPasswordVisible(!passwordVisible)}
                                     aria-label={passwordVisible ? 'Hide password' : 'Show password'}
                                 >
-                                    {passwordVisible ?  <AiOutlineEye /> : <AiOutlineEyeInvisible /> }
+                                    {passwordVisible ? <FaEye/> : <FaEyeSlash />}
                                 </span>
                             </div>
                             {errors.password && <div className="invalid-feedback">{errors.password}</div>}
