@@ -1,0 +1,16 @@
+.custom-toast-error {
+  background-color: #dc3545 !important; /* Bootstrap red color */
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.custom-toast-error .Toastify__close-button {
+  color: white !important;
+}
+
+.custom-toast-error .custom-toast-icon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: white;
+}

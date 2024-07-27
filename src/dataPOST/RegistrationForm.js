@@ -1,44 +1,52 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-const API_ENDPOINT = 'YOUR_API_ENDPOINT';
+// const API_ENDPOINT = 'YOUR_API_ENDPOINT';
 
-export const submitFormData = async (formData) => {
-    try {
-        const response = await axios.post(API_ENDPOINT, formData);
-        return response.data;
-    } catch (error) {
-        console.error('Error submitting form data:', error);
-        throw error;
-    }
-};
+// export const submitFormData = async (formData) => {
+//     try {
+//         const response = await axios.post(API_ENDPOINT, formData);
+//         return response.data;
+//     } catch (error) {
+//         console.error('Error submitting form data:', error);
+//         throw error;
+//     }
+// };
 
-// Validations Here -->
-export const validateFormData = (formData) => {
-    const errors = {};
+export const validateFormData = (data) => {
+    let errors = {};
 
     // Email validation
-    if (!formData.email || !formData.confirmEmail) {
-        errors.email = "Both email fields are required.";
-    } else if (formData.email !== formData.confirmEmail) {
-        errors.email = "Email and Confirm Email must match.";
+    if (!data.email) {
+        errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(data.email)) {
+        errors.email = "Email is invalid";
+    }
+    if (!data.confirmEmail) {
+        errors.confirmEmail = "Confirmation email is required";
+    } else if (data.email !== data.confirmEmail) {
+        errors.confirmEmail = "Emails do not match";
     }
 
-    // Required fields validation
-    const requiredFields = ['firstName', 'middleName', 'lastName', 'fatherName', 'motherName', 'mobile', 'countryCode', 'captcha', 'altMobile'];
+    // Required fields for validation
+    const requiredFields = ['FirstName', 'FatherName', 'MotherName', 'Mobile', 'CountryCode', 'captcha'];
     requiredFields.forEach(field => {
-        if (!formData[field]) {
+        if (!data[field]) {
             errors[field] = `${field.replace(/([A-Z])/g, ' $1')} is required.`;
         }
     });
 
     // Additional validations
-    // Example: Mobile number should be numeric and valid
-    if (formData.mobile && isNaN(formData.mobile)) {
-        errors.mobile = "Mobile number should be numeric.";
+    if (data.mobile && !/^\d+$/.test(data.mobile)) {
+        errors.mobile = "Mobile number is invalid";
     }
-    if (formData.altMobile && isNaN(formData.altMobile)) {
-        errors.altMobile = "Alternate mobile number should be numeric.";
+    // if (data.altMobile && !/^\d+$/.test(data.altMobile)) {
+    //     errors.altMobile = "Alternate mobile number is invalid";
+    // }
+    
+    // Custom validation: Mobile and Alternate Mobile numbers should not be the same
+    if (data.mobile && data.altMobile && data.mobile === data.altMobile) {
+        errors.altMobile = "Alternate mobile number must be different from the primary mobile number";
     }
-
+    console.log(errors)
     return errors;
 };

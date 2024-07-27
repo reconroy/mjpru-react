@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Nav, Offcanvas, Button } from 'react-bootstrap';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
-// import AfterLoginTopBar from "./LogoutBar";
 import NumberIcons from '../NumberIcons';
 import Status from './Status';
 import PersonalDetails from './RegistrationData/PersonalDetails';

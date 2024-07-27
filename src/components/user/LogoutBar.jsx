@@ -3,7 +3,6 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { FaPowerOff } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
-import "./../../customStyles/buttonAnimation.css";
 
 const AfterLoginTopBar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -42,10 +41,10 @@ const AfterLoginTopBar = () => {
           Are you sure you want to logout?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+          <Button variant="secondary" onClick={handleCloseModal} className="card-button">
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleLogout}>
+          <Button variant="danger" onClick={handleLogout} className="card-button">
             Logout
           </Button>
         </Modal.Footer>
