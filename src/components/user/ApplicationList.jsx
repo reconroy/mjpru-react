@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { FaFile } from "react-icons/fa";
+import { FaFile, FaPowerOff } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
 import Homebar from './../Homebar';
-import "./../../customStyles/buttonAnimation.css"
+import "./../../customStyles/buttonAnimation.css";
 
 const ApplicationList = () => {
     const [show, setShow] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [applications, setApplications] = useState([
         {
             sn: 1,
@@ -36,6 +37,9 @@ const ApplicationList = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const handleLogoutClose = () => setShowModal(false);
+    const handleLogoutShow = () => setShowModal(true);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -48,25 +52,37 @@ const ApplicationList = () => {
         handleClose();
     };
 
+    const handleLogout = () => {
+        handleLogoutClose();
+        // Clear token or logout logic here
+        // For example: localStorage.removeItem('token');
+        // Redirect to home or login page
+        window.location.href = "/";
+    };
+
     return (
         <>
             <Homebar />
             <div className="container mt-3">
                 <div className="card">
-                    <div className="card-header  text-light d-flex justify-content-between align-items-center" style={{ backgroundColor: "#005174" }}>
-                        <div className="left-box d-flex align-items-center">
+                    <div className="card-header text-light d-flex justify-content-between align-items-center" style={{ backgroundColor: "#005174" }}>
+                        <div className="d-flex align-items-center">
                             <FaFile size={24} style={{ marginRight: "8px" }} />
                             Your Applications
                         </div>
-                        <div className="right-box">
-                            <Button onClick={handleShow} className="btn btn-light text-decoration-none card-button">
+                        <div>
+                            <Button onClick={handleShow} className="btn btn-light text-decoration-none me-2">
                                 + New Application
+                            </Button>
+                            <Button onClick={handleLogoutShow} className="btn btn-danger rounded fw-bold">
+                                <FaPowerOff size={18} className="me-2 " />
+                                Logout
                             </Button>
                         </div>
                     </div>
                     <div className="card-body">
-                        <div className="table-responsive">
-                            <table className="table table-striped table-hover table-bordered rounded-3" style={{ overflow: "hidden", cursor: "zoom-in" }}>
+                        <div className="table-responsive" style={{overflowX:"hidden"}}>
+                            <table className="table table-striped table-hover table-bordered rounded-3">
                                 <thead className="bg-info text-dark table-dark">
                                     <tr>
                                         <th scope="col">Sr.No.</th>
@@ -167,12 +183,24 @@ const ApplicationList = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <Modal show={showModal} onHide={handleLogoutClose} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Logout</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to logout?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleLogoutClose}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={handleLogout}>
+                        Logout
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 };
 
 export default ApplicationList;
-
-
-
-

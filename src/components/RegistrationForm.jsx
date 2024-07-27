@@ -42,25 +42,50 @@ const RegistrationForm = () => {
     } else {
       setErrors({});
       
+      // Show processing toast
+      const processingToastId = toast.loading("Processing your registration...", {
+        toastId: 'processingToast',
+      });
+
       try {
-        const response = await axios.post("https://localhost:7142/api/Users", formData);
+        const response = await axios.post("https://localhost:7142/api/Users", formData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
         console.log(formData)
         console.log("Form submitted successfully:", response);
         if (response.data) {
-          toast.success("Registration Successful", {
-            className: 'custom-toast-error'
+          toast.update(processingToastId, {
+            render: "Registration Successful",
+            type: "success",
+            autoClose: 5000,
           });
           navigate("/registration-complete");
         }
       } catch (error) {
         console.error("Error submitting form:", error);
-        toast.error("Error submitting data", {
-          className: 'custom-toast-error'
+        if (error.response) {
+          console.log("Error data:", error.response.data);
+          console.log("Error status:", error.response.status);
+          console.log("Error headers:", error.response.headers);
+          const serverErrors = error.response.data.errors;
+          if (serverErrors) {
+            Object.keys(serverErrors).forEach((field) => {
+              toast.error(`${field}: ${serverErrors[field].join(', ')}`, {
+                className: 'custom-toast-error'
+              });
+            });
+          }
+        }
+        toast.update(processingToastId, {
+          render: `Error: ${error.response?.data?.title || 'Error submitting data'}`,
+          type: "error",
+          autoClose: 5000,
         });
       }
     }
   };
-
 
   const handleReset = () => {
     setFormData({});
@@ -385,11 +410,6 @@ const RegistrationForm = () => {
                         Clear Form
                       </button>
                     </div>
-                    {/* {message.length > 0 && (
-                      <div className="container mt-3">
-                        <p className="alert alert-danger text-center w-100">{message}</p>
-                      </div>
-                    )} */}
                   </div>
 
                 </form>
@@ -425,3 +445,4 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
+

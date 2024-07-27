@@ -4,13 +4,18 @@ import { FaPowerOff } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 
-const AfterLoginTopBar = () => {
+const LogoutBar = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
+
   const handleLogout = () => {
+    // Clear local storage or any authentication state
+    localStorage.removeItem('userToken'); // Clear the authentication token
+
+    // Redirect to home page
     handleCloseModal();
     navigate('/');
   };
@@ -53,4 +58,4 @@ const AfterLoginTopBar = () => {
   );
 };
 
-export default AfterLoginTopBar;
+export default LogoutBar;
