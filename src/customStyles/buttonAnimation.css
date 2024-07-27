@@ -9,7 +9,7 @@
 
 .card-button {
   display: inline-block;
-  transition: transform 400ms; 
+  transition: transform 400ms !important;
 }
 
 .card-button:hover {
