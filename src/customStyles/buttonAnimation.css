@@ -10,7 +10,8 @@
 .card-button {
   display: inline-block;
   white-space: nowrap;
-  transition: transform 0.3s ease; /* Adding a 0.5s delay */
+  transition: 400ms; 
+  /* transition: transform 0.3s ease-in-out 0.5; Adding a 0.5s delay */
 }
 
 .card-button:hover {
