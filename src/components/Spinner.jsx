@@ -36,14 +36,14 @@ export default Spinner;
 // import './../customStyles/spinnerStyles.css'; 
 
 // const Spinner = () => {
-  //   return (
-    //     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-    //       <div className="custom-spinner"></div>
-    //     </div>
-    //   );
-    // };
-    
-    // export default Spinner;
+//   return (
+//     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+//       <div className="custom-spinner"></div>
+//     </div>
+//   );
+// };
+
+// export default Spinner;
 // -------------------------------------------------------------------------------------------------
 // import React from 'react';
 // import { Spinner as BootstrapSpinner } from 'react-bootstrap';
@@ -56,5 +56,21 @@ export default Spinner;
 //   );
 // };
 
-// export default Spinner;
+// -------------------------------------------------------------------------------------------------
 
+// import React from 'react';
+// import styles from './../customStyles/spinnerStyles.css';
+// import './../customStyles/spinnerStyles.css'; 
+
+// const Spinner = () => (
+//   <div className={styles.hand}>
+//     <div className={styles.finger}></div>
+//     <div className={styles.finger}></div>
+//     <div className={styles.finger}></div>
+//     <div className={styles.finger}></div>
+//     <div className={styles.palm}></div>
+//     <div className={styles.thumb}></div>
+//   </div>
+// );
+
+// export default Spinner;

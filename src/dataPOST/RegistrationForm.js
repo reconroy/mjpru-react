@@ -1,17 +1,3 @@
-// import axios from 'axios';
-
-// const API_ENDPOINT = 'YOUR_API_ENDPOINT';
-
-// export const submitFormData = async (formData) => {
-//     try {
-//         const response = await axios.post(API_ENDPOINT, formData);
-//         return response.data;
-//     } catch (error) {
-//         console.error('Error submitting form data:', error);
-//         throw error;
-//     }
-// };
-
 export const validateFormData = (data) => {
     let errors = {};
 
@@ -36,17 +22,32 @@ export const validateFormData = (data) => {
     });
 
     // Additional validations
-    if (data.mobile && !/^\d+$/.test(data.mobile)) {
-        errors.mobile = "Mobile number is invalid";
+    if (data.Mobile) {
+        if (!/^\d+$/.test(data.Mobile)) {
+            errors.Mobile = "Mobile number must be numeric";
+        } else if (data.altMobile && data.Mobile === data.altMobile) {
+            errors.altMobile = "Alternate mobile number must be different from the primary mobile number";
+        }
     }
-    // if (data.altMobile && !/^\d+$/.test(data.altMobile)) {
-    //     errors.altMobile = "Alternate mobile number is invalid";
-    // }
-    
-    // Custom validation: Mobile and Alternate Mobile numbers should not be the same
-    if (data.mobile && data.altMobile && data.mobile === data.altMobile) {
-        errors.altMobile = "Alternate mobile number must be different from the primary mobile number";
+    if (data.altMobile) {
+        if (!/^\d+$/.test(data.altMobile)) {
+            errors.altMobile = "Alternate mobile number must be numeric";
+        }
     }
-    console.log(errors)
+
+    // Validation to ensure names do not contain numbers
+    const nameFields = ['FirstName', 'LastName', 'middleName', 'FatherName', 'MotherName'];
+    nameFields.forEach(field => {
+        if (data[field] && /\d/.test(data[field])) {
+            errors[field] = `${field.replace(/([A-Z])/g, ' $1')} should not contain numbers.`;
+        }
+    });
+
+    // CountryCode validation
+    if (!data.CountryCode || data.CountryCode === "default") { // Adjust default value check if necessary
+        errors.CountryCode = "Country Code is required";
+    }
+
+    console.log(errors);
     return errors;
 };

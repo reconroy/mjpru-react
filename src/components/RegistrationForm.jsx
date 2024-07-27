@@ -47,7 +47,7 @@ const RegistrationForm = () => {
         if (response.data) {
           toast.success("Registration Successful", {
             className: 'custom-toast-error'
-            });
+          });
           navigate("/registration-complete");
         }
       } catch (error) {
@@ -294,6 +294,7 @@ const RegistrationForm = () => {
                           value={formData.altCountryCode || ""}
                           onChange={handleChange}
                         >
+                          <option defaultValue>Code</option>
                           {CountryCodes.map((country, index) => (
                             <option key={index} value={country.value}>
                               {country.label}
