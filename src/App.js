@@ -21,7 +21,6 @@ const ForgotPasswordWithSpinner = withSpinner(ForgotPassword);
 const NewUserWithSpinner = withSpinner(NewUser);
 const RegistrationFormWithSpinner = withSpinner(RegistrationForm);
 const RegistrationCompleteWithSpinner = withSpinner(RegistrationComplete);
-// const UserLayoutWithSpinner = withSpinner(UserLayout);
 const ApplicationListWithSpinner = withSpinner(ApplicationList);
 
 function App() {

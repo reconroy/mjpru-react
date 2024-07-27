@@ -1,15 +1,16 @@
-import { React} from 'react';
+import { React } from 'react';
 import { FaUserLock } from "react-icons/fa6";
 import Captcha1 from './../assets/captcha/captcha_1.png';
 import { Link } from 'react-router-dom';
 import Homebar from './Homebar';
 import "./../customStyles/buttonAnimation.css";
 
-const LoginPanel = () => { 
+const LoginPanel = () => {
     return (
         <>
-        <Homebar/>
-            <div className='container d-flex justify-content-center align-items-center mt-5'>
+            <Homebar />
+            <div className='container d-flex justify-content-center align-items-center mt-5 pb-5'>
+                <div className="pb-5"></div>
                 <div className='col-12 col-md-6 col-lg-4 border rounded-2 card '>
                     <div className="card-header  text-light " style={{ backgroundColor: '#005174' }}>
                         <FaUserLock size={25} style={{ marginRight: '8px' }} />
@@ -42,6 +43,7 @@ const LoginPanel = () => {
                     </form>
                 </div>
             </div>
+            <div className="pb-5"></div>
         </>
     )
 }

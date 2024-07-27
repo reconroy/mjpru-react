@@ -88,6 +88,8 @@ const Status = () => {
           </div>
         </div>
       </div>
+      <div className="pb-5"></div>
+      <div className="pb-5"></div>
     </div>
   );
 };

@@ -5,15 +5,24 @@ import Captcha1 from "./../assets/captcha/captcha_1.png";
 import { useNavigate } from "react-router-dom";
 import Homebar from "./Homebar";
 import { Modal, Button } from "react-bootstrap";
-import { submitFormData } from "./../dataPOST/RegistrationForm";
+import axios from "axios";
 import { validateFormData } from "./../dataPOST/RegistrationForm";
-import "./../customStyles/buttonAnimation.css";
+import "./../customScripts/registrationValidation";
 
 const RegistrationForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,28 +31,14 @@ const RegistrationForm = () => {
       return;
     }
 
-    const formData = {
-        email: e.target.email.value,
-        confirmEmail: e.target.confirmEmail.value,
-        firstName: e.target.firstName.value,
-        middleName: e.target.middleName.value,
-        lastName: e.target.lastName.value,
-        fatherName: e.target.fatherName.value,
-        motherName: e.target.motherName.value,
-        mobile: e.target.mobile.value,
-        countryCode: e.target.countryCode.value,
-        altMobile: e.target.altMobile.value,
-        altCountryCode: e.target.altCountryCode.value,
-        captcha: e.target.captcha.value,
-    };
-
     const validationErrors = validateFormData(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
       setErrors({});
       try {
-        const response = await submitFormData(formData);
+        // Post form data using Axios
+        const response = await axios.post("/your-api-endpoint", formData);
         console.log("Form submitted successfully:", response);
         navigate("/registration-complete");
       } catch (error) {
@@ -82,12 +77,13 @@ const RegistrationForm = () => {
                       <input
                         placeholder="Enter Email ID"
                         type="email"
-                        className={`form-control border-dark ${
-                          errors.email ? "is-invalid" : ""
-                        }`}
+                        className={`form-control border-dark ${errors.email ? "is-invalid" : ""
+                          }`}
                         id="email"
                         name="email"
                         aria-describedby="emailHelp"
+                        value={formData.email || ""}
+                        onChange={handleChange}
                       />
                       {errors.email && (
                         <div className="invalid-feedback">{errors.email}</div>
@@ -103,13 +99,21 @@ const RegistrationForm = () => {
                       <input
                         placeholder="Enter Email ID"
                         type="email"
-                        className={`form-control border-dark ${
-                          errors.email ? "is-invalid" : ""
-                        }`}
+                        className={`form-control border-dark ${errors.confirmEmail ? "is-invalid" : ""}`}
                         id="confirmEmail"
                         name="confirmEmail"
                         aria-describedby="emailHelp"
+                        value={formData.confirmEmail || ""}
+                        onChange={handleChange}
+                        onPaste={(e) => e.preventDefault()}
+                        autoComplete="off"
                       />
+
+                      {errors.confirmEmail && (
+                        <div className="invalid-feedback">
+                          {errors.confirmEmail}
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -122,11 +126,12 @@ const RegistrationForm = () => {
                       <input
                         placeholder="Enter First Name"
                         type="text"
-                        className={`form-control border-dark ${
-                          errors.firstName ? "is-invalid" : ""
-                        }`}
+                        className={`form-control border-dark ${errors.firstName ? "is-invalid" : ""
+                          }`}
                         id="firstName"
                         name="firstName"
+                        value={formData.firstName || ""}
+                        onChange={handleChange}
                       />
                       {errors.firstName && (
                         <div className="invalid-feedback">
@@ -147,6 +152,8 @@ const RegistrationForm = () => {
                         className="form-control border-dark"
                         id="middleName"
                         name="middleName"
+                        value={formData.middleName || ""}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="col-md-4">
@@ -156,21 +163,16 @@ const RegistrationForm = () => {
                       <input
                         placeholder="Enter Last Name"
                         type="text"
-                        className={`form-control border-dark ${
-                          errors.lastName ? "is-invalid" : ""
-                        }`}
+                        className="form-control border-dark"
                         id="lastName"
                         name="lastName"
+                        value={formData.lastName || ""}
+                        onChange={handleChange}
                       />
-                      {errors.lastName && (
-                        <div className="invalid-feedback">
-                          {errors.lastName}
-                        </div>
-                      )}
                     </div>
                   </div>
 
-                  {/* Parents' Names and Mobile Numbers */}
+                  {/* Parents' Names */}
                   <div className="row mb-3">
                     <div className="col-md-6">
                       <label
@@ -182,10 +184,18 @@ const RegistrationForm = () => {
                       <input
                         placeholder="Enter Father's Name"
                         type="text"
-                        className="form-control border-dark"
+                        className={`form-control border-dark ${errors.fatherName ? "is-invalid" : ""
+                          }`}
                         id="fatherName"
                         name="fatherName"
+                        value={formData.fatherName || ""}
+                        onChange={handleChange}
                       />
+                      {errors.fatherName && (
+                        <div className="invalid-feedback">
+                          {errors.fatherName}
+                        </div>
+                      )}
                     </div>
                     <div className="col-md-6">
                       <label
@@ -197,12 +207,22 @@ const RegistrationForm = () => {
                       <input
                         placeholder="Enter Mother's Name"
                         type="text"
-                        className="form-control border-dark"
+                        className={`form-control border-dark ${errors.motherName ? "is-invalid" : ""
+                          }`}
                         id="motherName"
                         name="motherName"
+                        value={formData.motherName || ""}
+                        onChange={handleChange}
                       />
+                      {errors.motherName && (
+                        <div className="invalid-feedback">
+                          {errors.motherName}
+                        </div>
+                      )}
                     </div>
                   </div>
+
+                  {/* Mobile Numbers */}
                   <div className="row mb-3">
                     <div className="col-md-6">
                       <label htmlFor="mobile" className="form-label fw-bold">
@@ -212,8 +232,9 @@ const RegistrationForm = () => {
                         <select
                           className="form-select border-dark"
                           name="countryCode"
+                          value={formData.countryCode || ""}
+                          onChange={handleChange}
                         >
-                          <option defaultValue>Select Country Code</option>
                           {countryCodes.map((country, index) => (
                             <option key={index} value={country.value}>
                               {country.label}
@@ -222,12 +243,13 @@ const RegistrationForm = () => {
                         </select>
                         <input
                           placeholder="Enter Mobile Number"
-                          type="phone"
-                          className={`form-control border-dark ${
-                            errors.mobile ? "is-invalid" : ""
-                          }`}
+                          style={{ width: "60%" }}
+                          type="text"
+                          className={`form-control border-dark ${errors.mobile ? "is-invalid" : ""}`}
                           id="mobile"
                           name="mobile"
+                          value={formData.mobile || ""}
+                          onChange={handleChange}
                         />
                         {errors.mobile && (
                           <div className="invalid-feedback">
@@ -244,8 +266,9 @@ const RegistrationForm = () => {
                         <select
                           className="form-select border-dark"
                           name="altCountryCode"
+                          value={formData.altCountryCode || ""}
+                          onChange={handleChange}
                         >
-                          <option defaultValue>Select Country Code</option>
                           {countryCodes.map((country, index) => (
                             <option key={index} value={country.value}>
                               {country.label}
@@ -253,34 +276,57 @@ const RegistrationForm = () => {
                           ))}
                         </select>
                         <input
+                          style={{ width: "60%" }}
                           placeholder="Enter Alternate Mobile Number"
                           type="text"
-                          className="form-control border-dark"
+                          className={`form-control border-dark ${errors.altMobile ? "is-invalid" : ""}`}
                           id="altMobile"
                           name="altMobile"
+                          value={formData.altMobile || ""}
+                          onChange={handleChange}
                         />
+                        {errors.altMobile && (
+                          <div className="invalid-feedback">
+                            {errors.altMobile}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
 
                   {/* Captcha */}
-                  <div className="mb-3" style={{ width: "100%" }}>
+                  <div className="mb-3 w-100">
                     <label htmlFor="captcha" className="form-label fw-bold">
                       Enter Captcha Code
                     </label>
-                    <input
-                      placeholder="Enter Captcha"
-                      type="text"
-                      className={`form-control border-dark ${
-                        errors.captcha ? "is-invalid" : ""
-                      }`}
-                      id="captcha"
-                      name="captcha"
-                    />
-                    {errors.captcha && (
-                      <div className="invalid-feedback">{errors.captcha}</div>
-                    )}
-                    <img src={Captcha1} alt="Captcha" className="mt-2" />
+                    <div className="d-flex align-items-center">
+                      <div className="d-flex flex-column">
+                        <input
+                          placeholder="Enter Captcha"
+                          type="text"
+                          className={`form-control border-dark ${errors.captcha ? "is-invalid" : ""
+                            }`}
+                          id="captcha"
+                          name="captcha"
+                          style={{ width: "150px" }}
+                          value={formData.captcha || ""}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="ms-2">
+                        <img
+                          src={Captcha1}
+                          alt="Captcha"
+                          className="border border-3 border-dark rounded-2"
+                          style={{ width: "150px", height: "40px" }}
+                        />
+                      </div>
+                      {errors.captcha && (
+                        <div className="invalid-feedback d-block ms-2">
+                          {errors.captcha}
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {/* Checkbox and Buttons */}
@@ -342,6 +388,7 @@ const RegistrationForm = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <div className="pb-5"></div>
     </>
   );
 };

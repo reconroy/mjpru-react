@@ -256,6 +256,7 @@ const NewUser = () => {
           </Modal.Footer>
         </Modal>
       </div>
+      <div className="pb-5"></div>
     </>
   );
 };

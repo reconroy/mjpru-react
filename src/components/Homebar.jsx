@@ -1,7 +1,6 @@
 import React from 'react'
 import { IoHome } from 'react-icons/io5'; 
 import { Link } from 'react-router-dom';
-import "./../customStyles/tooltipStyles.css";
 const Homebar = () => {
   return (
     <div  style={{borderTop: '3px solid #005174'}}>

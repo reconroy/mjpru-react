@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Nav, Offcanvas, Button } from 'react-bootstrap';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
-import AfterLoginTopBar from "./AfterLoginTopBar";
+// import AfterLoginTopBar from "./LogoutBar";
 import NumberIcons from '../NumberIcons';
 import Status from './Status';
 import PersonalDetails from './RegistrationData/PersonalDetails';
@@ -126,7 +126,7 @@ const Sidebar = () => {
         <Col className="p-0">
           <Container fluid className="main-content" style={{ overflowY: "auto", minHeight: "calc(100vh - 10rem)" }}>
             {/* Render top bar component */}
-            <AfterLoginTopBar />
+            {/* <AfterLoginTopBar /> */}
 
             {/* Render routes */}
             <Routes>

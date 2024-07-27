@@ -65,6 +65,8 @@ const ActivateAccount = () => {
         </Modal.Footer>
       </Modal>
     </div>
+    <div className="pb-5"></div>
+    <div className="pb-5"></div>
     </>
   );
 };

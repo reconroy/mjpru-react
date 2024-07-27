@@ -9,16 +9,13 @@
 
 .card-button {
   display: inline-block;
-  white-space: nowrap;
-  transition: 400ms; 
-  /* transition: transform 0.3s ease-in-out 0.5; Adding a 0.5s delay */
+  transition: transform 400ms; 
 }
 
 .card-button:hover {
   transform: scale(1.1);
   z-index: 1;
 }
-
 
 @media (min-width: 768px) {
   .card-button {

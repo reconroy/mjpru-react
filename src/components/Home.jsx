@@ -3,7 +3,7 @@ import { IoMdNotifications } from "react-icons/io";
 import { FaUsers } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Homebar from "./Homebar";
-import "./../customStyles/buttonAnimation.css";
+
 
 const Home = () => {
   const [latestUpdates, setLatestUpdates] = useState("Loading latest updates...");
@@ -69,6 +69,8 @@ const Home = () => {
     </div>
         </div>
       </div>
+      <div className="pb-5"></div>
+      <div className="pb-5"></div>
     </>
   );
 };
