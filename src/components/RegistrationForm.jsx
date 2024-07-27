@@ -41,8 +41,10 @@ const RegistrationForm = () => {
       });
     } else {
       setErrors({});
+      
       try {
-        const response = await axios.post("https://jsonplaceholder.typicode.com/todos/1", formData);
+        const response = await axios.post("https://localhost:7142/api/Users", formData);
+        console.log(formData)
         console.log("Form submitted successfully:", response);
         if (response.data) {
           toast.success("Registration Successful", {
@@ -93,28 +95,28 @@ const RegistrationForm = () => {
               <div className="card-body">
                 <h5 className="card-title text-danger mb-3 text-center">
                   All communication related to your applications will be sent to
-                  this email id. Account Activation link will be sent to this
-                  email Id.
+                  this Email id. Account Activation link will be sent to this
+                  Email Id.
                 </h5>
                 <form onSubmit={handleSubmit}>
                   {/* Email IDs */}
                   <div className="row mb-3">
                     <div className="col-md-6">
-                      <label htmlFor="email" className="form-label fw-bold">
+                      <label htmlFor="Email" className="form-label fw-bold">
                         Email ID
                       </label>
                       <input
                         placeholder="Enter Email ID"
-                        type="email"
-                        className={`form-control border-dark ${errors.email ? "is-invalid" : ""}`}
-                        id="email"
-                        name="email"
-                        aria-describedby="emailHelp"
-                        value={formData.email || ""}
+                        type="Email"
+                        className={`form-control border-dark ${errors.Email ? "is-invalid" : ""}`}
+                        id="Email"
+                        name="Email"
+                        aria-describedby="EmailHelp"
+                        value={formData.Email || ""}
                         onChange={handleChange}
                       />
-                      {errors.email && (
-                        <div className="invalid-feedback">{errors.email}</div>
+                      {errors.Email && (
+                        <div className="invalid-feedback">{errors.Email}</div>
                       )}
                     </div>
                     <div className="col-md-6">
@@ -126,11 +128,11 @@ const RegistrationForm = () => {
                       </label>
                       <input
                         placeholder="Enter Email ID"
-                        type="email"
+                        type="Email"
                         className={`form-control border-dark ${errors.confirmEmail ? "is-invalid" : ""}`}
                         id="confirmEmail"
                         name="confirmEmail"
-                        aria-describedby="emailHelp"
+                        aria-describedby="EmailHelp"
                         value={formData.confirmEmail || ""}
                         onChange={handleChange}
                         onPaste={(e) => e.preventDefault()}
@@ -147,27 +149,27 @@ const RegistrationForm = () => {
                   {/* Names */}
                   <div className="row mb-3">
                     <div className="col-md-4">
-                      <label htmlFor="FirstName" className="form-label fw-bold">
+                      <label htmlFor="first_name" className="form-label fw-bold">
                         First Name
                       </label>
                       <input
                         placeholder="Enter First Name"
                         type="text"
-                        className={`form-control border-dark ${errors.FirstName ? "is-invalid" : ""}`}
-                        id="FirstName"
-                        name="FirstName"
-                        value={formData.FirstName || ""}
+                        className={`form-control border-dark ${errors.first_name ? "is-invalid" : ""}`}
+                        id="first_name"
+                        name="first_name"
+                        value={formData.first_name || ""}
                         onChange={handleChange}
                       />
-                      {errors.FirstName && (
+                      {errors.first_name && (
                         <div className="invalid-feedback">
-                          {errors.FirstName}
+                          {errors.first_name}
                         </div>
                       )}
                     </div>
                     <div className="col-md-4">
                       <label
-                        htmlFor="middleName"
+                        htmlFor="middle_name"
                         className="form-label fw-bold"
                       >
                         Middle Name
@@ -176,23 +178,23 @@ const RegistrationForm = () => {
                         placeholder="Enter Middle Name"
                         type="text"
                         className="form-control border-dark"
-                        id="middleName"
-                        name="middleName"
-                        value={formData.middleName || ""}
+                        id="middle_name"
+                        name="middle_name"
+                        value={formData.middle_name || ""}
                         onChange={handleChange}
                       />
                     </div>
                     <div className="col-md-4">
-                      <label htmlFor="lastName" className="form-label fw-bold">
+                      <label htmlFor="last_name" className="form-label fw-bold">
                         Last Name
                       </label>
                       <input
                         placeholder="Enter Last Name"
                         type="text"
                         className="form-control border-dark"
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName || ""}
+                        id="last_name"
+                        name="last_name"
+                        value={formData.last_name || ""}
                         onChange={handleChange}
                       />
                     </div>
@@ -202,7 +204,7 @@ const RegistrationForm = () => {
                   <div className="row mb-3">
                     <div className="col-md-6">
                       <label
-                        htmlFor="FatherName"
+                        htmlFor="Fathers_name"
                         className="form-label fw-bold"
                       >
                         Father's Name
@@ -210,21 +212,21 @@ const RegistrationForm = () => {
                       <input
                         placeholder="Enter Father's Name"
                         type="text"
-                        className={`form-control border-dark ${errors.FatherName ? "is-invalid" : ""}`}
-                        id="FatherName"
-                        name="FatherName"
-                        value={formData.FatherName || ""}
+                        className={`form-control border-dark ${errors.fathers_name ? "is-invalid" : ""}`}
+                        id="fathers_name"
+                        name="fathers_name"
+                        value={formData.fathers_name || ""}
                         onChange={handleChange}
                       />
-                      {errors.FatherName && (
+                      {errors.fathers_name && (
                         <div className="invalid-feedback">
-                          {errors.FatherName}
+                          {errors.fathers_name}
                         </div>
                       )}
                     </div>
                     <div className="col-md-6">
                       <label
-                        htmlFor="MotherName"
+                        htmlFor="mothers_name"
                         className="form-label fw-bold"
                       >
                         Mother's Name
@@ -232,15 +234,15 @@ const RegistrationForm = () => {
                       <input
                         placeholder="Enter Mother's Name"
                         type="text"
-                        className={`form-control border-dark ${errors.MotherName ? "is-invalid" : ""}`}
-                        id="MotherName"
-                        name="MotherName"
-                        value={formData.MotherName || ""}
+                        className={`form-control border-dark ${errors.mothers_name ? "is-invalid" : ""}`}
+                        id="mothers_name"
+                        name="mothers_name"
+                        value={formData.mothers_name || ""}
                         onChange={handleChange}
                       />
-                      {errors.MotherName && (
+                      {errors.mothers_name && (
                         <div className="invalid-feedback">
-                          {errors.MotherName}
+                          {errors.mothers_name}
                         </div>
                       )}
                     </div>
@@ -255,8 +257,9 @@ const RegistrationForm = () => {
                       <div className="input-group">
                         <select
                           className="form-select border-dark"
-                          name="CountryCode"
-                          value={formData.CountryCode || ""}
+                          name="country_code"
+                          id="country_code"
+                          value={formData.country_code || ""}
                           onChange={handleChange}
                         >
                           <option defaultValue>Code</option>
@@ -270,28 +273,28 @@ const RegistrationForm = () => {
                           placeholder="Enter Mobile Number"
                           style={{ width: "60%" }}
                           type="text"
-                          className={`form-control border-dark ${errors.Mobile ? "is-invalid" : ""}`}
-                          id="Mobile"
-                          name="Mobile"
-                          value={formData.Mobile || ""}
+                          className={`form-control border-dark ${errors.mobile_number ? "is-invalid" : ""}`}
+                          id="mobile_number"
+                          name="mobile_number"
+                          value={formData.mobile_number || ""}
                           onChange={handleChange}
                         />
-                        {errors.Mobile && (
+                        {errors.mobile_number && (
                           <div className="invalid-feedback">
-                            {errors.Mobile}
+                            {errors.mobile_number}
                           </div>
                         )}
                       </div>
                     </div>
                     <div className="col-md-6">
-                      <label htmlFor="altMobile" className="form-label fw-bold">
+                      <label htmlFor="Alternate_mobile_number" className="form-label fw-bold">
                         Alternate Mobile No. with Country Code
                       </label>
                       <div className="input-group">
                         <select
                           className="form-select border-dark"
-                          name="altCountryCode"
-                          value={formData.altCountryCode || ""}
+                          name="alternate_Mb_Country_code"
+                          value={formData.alternate_Mb_Country_code || ""}
                           onChange={handleChange}
                         >
                           <option defaultValue>Code</option>
@@ -305,15 +308,15 @@ const RegistrationForm = () => {
                           style={{ width: "60%" }}
                           placeholder="Enter Alternate Mobile Number"
                           type="text"
-                          className={`form-control border-dark ${errors.altMobile ? "is-invalid" : ""}`}
-                          id="altMobile"
-                          name="altMobile"
-                          value={formData.altMobile || ""}
+                          className={`form-control border-dark ${errors.Alternate_mobile_number ? "is-invalid" : ""}`}
+                          id="Alternate_mobile_number"
+                          name="Alternate_mobile_number"
+                          value={formData.Alternate_mobile_number || ""}
                           onChange={handleChange}
                         />
-                        {errors.altMobile && (
+                        {errors.Alternate_mobile_number && (
                           <div className="invalid-feedback">
-                            {errors.altMobile}
+                            {errors.Alternate_mobile_number}
                           </div>
                         )}
                       </div>
