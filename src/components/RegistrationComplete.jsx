@@ -31,8 +31,8 @@ const RegistrationComplete = () => {
     return (
         <>
             <Homebar/>
-            <div className="mt-5 w-100">
-                <div className="row justify-content-center">
+            <div className="mt-5 d-flex justify-content-center pb-5">
+                <div className="row justify-content-center pb-5 w-100">
                     <div className="col-md-8 col-lg-6">
                         <div className="card border border-black">
                             <div className="card-header text-light fs-5 d-flex align-items-center" style={{ backgroundColor: '#005174' }}>

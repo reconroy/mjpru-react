@@ -61,7 +61,7 @@ const RegistrationForm = () => {
             type: "success",
             autoClose: 5000,
           });
-          navigate("/registration-complete");
+          navigate("/registration-complete",);
         }
       } catch (error) {
         console.error("Error submitting form:", error);
@@ -79,10 +79,11 @@ const RegistrationForm = () => {
           }
         }
         toast.update(processingToastId, {
-          render: `Error: ${error.response?.data?.title || 'Error submitting data'}`,
+          render: `Error: ${error.response?.data?.title || 'Email already registered'}`,
           type: "error",
-          autoClose: 5000,
-        });
+          autoClose: true,
+          closeButton: true, 
+        });        
       }
     }
   };
@@ -121,14 +122,15 @@ const RegistrationForm = () => {
                 <h5 className="card-title text-danger mb-3 text-center">
                   All communication related to your applications will be sent to
                   this Email id. Account Activation link will be sent to this
-                  Email Id.
+                  Email Id.<br/>
+                  All fields marked with (*) are required.
                 </h5>
                 <form onSubmit={handleSubmit}>
                   {/* Email IDs */}
                   <div className="row mb-3">
                     <div className="col-md-6">
                       <label htmlFor="Email" className="form-label fw-bold">
-                        Email ID
+                        Email ID <span className="text-danger ">*</span>
                       </label>
                       <input
                         placeholder="Enter Email ID"
@@ -149,7 +151,7 @@ const RegistrationForm = () => {
                         htmlFor="confirmEmail"
                         className="form-label fw-bold"
                       >
-                        Confirm Email ID
+                        Confirm Email ID <span className="text-danger ">*</span>
                       </label>
                       <input
                         placeholder="Enter Email ID"
@@ -175,7 +177,7 @@ const RegistrationForm = () => {
                   <div className="row mb-3">
                     <div className="col-md-4">
                       <label htmlFor="first_name" className="form-label fw-bold">
-                        First Name
+                        First Name <span className="text-danger ">*</span>
                       </label>
                       <input
                         placeholder="Enter First Name"
@@ -232,7 +234,7 @@ const RegistrationForm = () => {
                         htmlFor="Fathers_name"
                         className="form-label fw-bold"
                       >
-                        Father's Name
+                        Father's Name <span className="text-danger ">*</span>
                       </label>
                       <input
                         placeholder="Enter Father's Name"
@@ -254,7 +256,7 @@ const RegistrationForm = () => {
                         htmlFor="mothers_name"
                         className="form-label fw-bold"
                       >
-                        Mother's Name
+                        Mother's Name <span className="text-danger ">*</span>
                       </label>
                       <input
                         placeholder="Enter Mother's Name"
@@ -277,7 +279,7 @@ const RegistrationForm = () => {
                   <div className="row mb-3">
                     <div className="col-md-6">
                       <label htmlFor="Mobile" className="form-label fw-bold">
-                        Mobile No. with Country Code
+                        Mobile No. with Country Code <span className="text-danger ">*</span>
                       </label>
                       <div className="input-group">
                         <select
@@ -313,7 +315,7 @@ const RegistrationForm = () => {
                     </div>
                     <div className="col-md-6">
                       <label htmlFor="Alternate_mobile_number" className="form-label fw-bold">
-                        Alternate Mobile No. with Country Code
+                        Alternate Mobile No. with Country Code <span className="text-danger ">*</span>
                       </label>
                       <div className="input-group">
                         <select
@@ -351,7 +353,7 @@ const RegistrationForm = () => {
                   {/* Captcha */}
                   <div className="mb-3 w-100">
                     <label htmlFor="captcha" className="form-label fw-bold">
-                      Enter Captcha Code
+                      Enter Captcha Code <span className="text-danger ">*</span>
                     </label>
                     <div className="d-flex align-items-center">
                       <div className="d-flex flex-column">
