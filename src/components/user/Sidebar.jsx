@@ -9,28 +9,73 @@ import EmployementDetails from "./RegistrationData/EmployementDetails";
 import JRFNetSletSet from './RegistrationData/JRF_NET_SLET_SET';
 import ResearchQualifications from "./RegistrationData/ResearchQualifications";
 import References from './RegistrationData/References';
+import ResearchGuidance from './RegistrationData/ResearchGuidance';
 import { IoBarChart } from "react-icons/io5";
 import { HiMenuAlt1 } from "react-icons/hi";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./../../customStyles/sidebar.css";
 import withSpinner from './../../withSpinner';
 
-const Sidebar = () => {
-  const StatusWithSpinner = withSpinner(Status);
-  const PersonalDetailsWithSpinner = withSpinner(PersonalDetails);
-  const AcademicQualificationsWithSpinner = withSpinner(AcademicQualifications);
-  const ResearchQualificationsWithSpinner = withSpinner(ResearchQualifications);
-  const EmployementDetailsWithSpinner = withSpinner(EmployementDetails);
-  const ReferencesWithSpinner = withSpinner(References);
-  const JRFNetSletSetWithSpinner = withSpinner(JRFNetSletSet);
+// Wrapping components with spinner
+const componentsWithSpinner = {
+  Status: withSpinner(Status),
+  PersonalDetails: withSpinner(PersonalDetails),
+  AcademicQualifications: withSpinner(AcademicQualifications),
+  ResearchQualifications: withSpinner(ResearchQualifications),
+  EmployementDetails: withSpinner(EmployementDetails),
+  References: withSpinner(References),
+  JRFNetSletSet: withSpinner(JRFNetSletSet),
+  ResearchGuidance: withSpinner(ResearchGuidance),
+};
 
+// List of sidebar and offcanvas links
+const links = [
+  { path: '/user/Status', number: '0', label: 'Status', icon: IoBarChart, size: '35px' },
+  { path: '/user/PersonalDetails', number: '1', label: 'Personal Details', icon: NumberIcons, size: '35px' },
+  { path: '/user/AcademicQualifications', number: '2', label: 'Academic Qualification', icon: NumberIcons, size: '35px' },
+  { path: '/user/ResearchQualifications', number: '3', label: 'Research Qualification', icon: NumberIcons, size: '35px' },
+  { path: '/user/JRFNetSletSet', number: '4', label: 'JRF-NET/NET/SLET/SET', icon: NumberIcons, size: '35px' },
+  { path: '/user/EmployementDetails', number: '5', label: 'Employment Details', icon: NumberIcons, size: '35px' },
+  { path: '/user/References', number: '6', label: 'References', icon: NumberIcons, size: '35px' },
+  { path: '/user/ResearchGuidance', number: '7', label: 'Research Guidance', icon: NumberIcons, size: '35px' },
+  { path: '/user/ResearchPapers', number: '8', label: 'Research Papers', icon: NumberIcons, size: '35px' },
+  { path: '/user/ResearchPublication', number: '9', label: 'Research Publication', icon: NumberIcons, size: '35px' },
+  { path: '/user/ResearchArticles', number: '10', label: 'Research Articles', icon: NumberIcons, size: '35px' },
+  { path: '/user/ResearchProjects', number: '11', label: 'Research Projects', icon: NumberIcons, size: '35px' },
+  { path: '/user/ConsultancyProjects', number: '12', label: 'Consultancy Projects', icon: NumberIcons, size: '35px' },
+  { path: '/user/PolicyDocuments', number: '13', label: 'Policy Documents', icon: NumberIcons, size: '35px' },
+  { path: '/user/PatentsGranted', number: '14', label: 'Patents Granted', icon: NumberIcons, size: '35px' },
+  { path: '/user/PaperPresentation', number: '15', label: 'Paper Presentation', icon: NumberIcons, size: '35px' },
+  { path: '/user/InvitedLectures', number: '16', label: 'Invited Lectures', icon: NumberIcons, size: '35px' },
+  { path: '/user/ICT', number: '17', label: 'ICT', icon: NumberIcons, size: '35px' },
+  { path: '/user/Awards&Fellowships', number: '18', label: 'Awards & Fellowships', icon: NumberIcons, size: '35px' },
+  { path: '/user/ExtraCurricularActivities', number: '19', label: 'Extra Curricular Activities', icon: NumberIcons, size: '35px' },
+  { path: '/user/Uploads', number: '20', label: 'Uploads', icon: NumberIcons, size: '35px' },
+  { path: '/user/Preview&Submit', number: '21', label: 'Preview & Submit', icon: NumberIcons, size: '35px' },
+];
+
+const Sidebar = () => {
   const location = useLocation();
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const getStatus = (path) => (location.pathname === path ? 'active' : 'inactive');
+
+  const renderLinks = (isMobile) => (
+    links.map(({ path, number, label, icon: Icon, size }) => (
+      <Nav.Link 
+        key={path}
+        as={Link}
+        to={path}
+        className={`text-white border-bottom d-flex align-items-center${isMobile ? '' : ' d-none d-md-flex'}`}
+        onClick={handleClose}
+      >
+        <Icon number={number} status={getStatus(path)} style={{ fontSize: size }} />
+        <span className={`ms-2${isMobile ? '' : ' d-none d-md-inline'}`}>{label}</span>
+      </Nav.Link>
+    ))
+  );
 
   return (
     <Container fluid className="p-0">
@@ -52,36 +97,7 @@ const Sidebar = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="flex-column">
-              {/* Nav links for offcanvas menu */}
-             
-              <Nav.Link as={Link} to="/user/Status" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <IoBarChart size="35px" number='0' status={getStatus('/user/Status')} />
-                <span className="ms-2">Status</span>
-              </Nav.Link>
-              <Nav.Link as={Link} to="/user/PersonalDetails" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='1' status={getStatus('/user/PersonalDetails')} />
-                <span className="ms-2">Personal Details</span>
-              </Nav.Link>
-              <Nav.Link as={Link} to="/user/AcademicQualifications" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='2' status={getStatus('/user/AcademicQualifications')} />
-                <span className="ms-2">Academic Qualification</span>
-              </Nav.Link>
-              <Nav.Link as={Link} to="/user/ResearchQualifications" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='3' status={getStatus('/user/ResearchQualifications')} />
-                <span className="ms-2">Research Qualification</span>
-              </Nav.Link>
-              <Nav.Link as={Link} to="/user/JRF_NET_SLET_SET" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='4' status={getStatus('/user/JRF_NET_SLET_SET')} />
-                <span className="ms-2">JRF-NET/NET/SLET/SET</span>
-              </Nav.Link>
-              <Nav.Link as={Link} to="/user/EmployementDetails" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='5' status={getStatus('/user/EmployementDetails')} />
-                <span className="ms-2">Employment Details</span>
-              </Nav.Link>
-              <Nav.Link as={Link} to="/user/References" className="text-white border-bottom d-flex align-items-center" onClick={handleClose}>
-                <NumberIcons number='6' status={getStatus('/user/References')} />
-                <span className="ms-2">References</span>
-              </Nav.Link>
+              {renderLinks(true)}
             </Nav>
           </Offcanvas.Body>
         </Offcanvas>
@@ -89,57 +105,18 @@ const Sidebar = () => {
         {/* Sidebar */}
         <Col xs={2} md={3} lg={2} className="sidebar text-white d-none d-md-flex flex-column justify-content-between p-0 rounded-end-3">
           <Nav className="flex-column mt-3">
-            {/* Nav links for sidebar */}
-            <Nav.Link as={Link} to="/user/Status" className="text-white border-bottom d-flex align-items-center">
-              <IoBarChart size="35px" number='0' status={getStatus('/user/Status')} />
-              <span className="d-none d-md-inline ms-2">Status</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to="/user/PersonalDetails" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='1' status={getStatus('/user/PersonalDetails')} />
-              <span className="d-none d-md-inline ms-2">Personal Details</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to="/user/AcademicQualifications" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='2' status={getStatus('/user/AcademicQualifications')} />
-              <span className="d-none d-md-inline ms-2">Academic Qualification</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to="/user/ResearchQualifications" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='3' status={getStatus('/user/ResearchQualifications')} />
-              <span className="d-none d-md-inline ms-2">Research Qualification</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to="/user/JRF_NET_SLET_SET" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='4' status={getStatus('/user/JRF_NET_SLET_SET')} />
-              <span className="d-none d-md-inline ms-2">JRF-NET/NET/SLET/SET</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to="/user/EmployementDetails" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='5' status={getStatus('/user/EmployementDetails')} />
-              <span className="d-none d-md-inline ms-2">Employment Details</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to="/user/References" className="text-white border-bottom d-flex align-items-center">
-              <NumberIcons number='6' status={getStatus('/user/References')} />
-              <span className="d-none d-md-inline ms-2">References</span>
-            </Nav.Link>
+            {renderLinks(false)}
           </Nav>
         </Col>
 
         {/* Main content */}
         <Col className="p-0">
           <Container fluid className="main-content" style={{ overflowY: "auto", minHeight: "calc(100vh - 10rem)" }}>
-            {/* Render top bar component */}
-            {/* <AfterLoginTopBar /> */}
-
-            {/* Render routes */}
             <Routes>
-              <Route path='/user/Status' element={<StatusWithSpinner />} />
-              <Route path='/user/PersonalDetails' element={<PersonalDetailsWithSpinner />} />
-              <Route path='/user/AcademicQualifications' element={<AcademicQualificationsWithSpinner />} />
-              <Route path='/user/ResearchQualifications' element={<ResearchQualificationsWithSpinner />} />
-              <Route path='/user/EmployementDetails' element={<EmployementDetailsWithSpinner />} />
-              <Route path='/user/JRF_NET_SLET_SET' element={<JRFNetSletSetWithSpinner />} />
-              <Route path='/user/References' element={<ReferencesWithSpinner />} />
+              {Object.entries(componentsWithSpinner).map(([key, Component]) => (
+                <Route key={key} path={`/user/${key}`} element={<Component />} />
+              ))}
             </Routes>
-
-            {/* Uncomment if you have a footer */}
-            {/* <Footer /> */}
           </Container>
         </Col>
       </Row>

@@ -9,11 +9,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./../customStyles/buttonAnimation.css";
 import { Bounce } from 'react-toastify';
 
-
 const ActivateAccount = () => {
   const [email, setEmail] = useState('');
   const [captcha, setCaptcha] = useState('123'); // Captcha code for frontend validation
   const [otp, setOtp] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const navigate = useNavigate(); // Hook for redirection
 
   const validateEmail = (email) => {
@@ -73,12 +73,17 @@ const ActivateAccount = () => {
             draggable: true,
             theme: "light",
             transition: Bounce,
-            onClose: () => navigate('/login'),
+            onClose: () => {
+              navigate('/login');
+              setIsButtonDisabled(true); // Disable the button on success
+              setTimeout(() => setIsButtonDisabled(false), 10000); // Re-enable the button after 10 seconds
+            },
           });
         } else if (response.data && response.data.error === 'No email found') {
           toast.error('No email found');
         } else {
-          console.log("Response data:", response.data); // Log response data for further debugging
+          console.log("Response data:", response.data); 
+          // Log response data for further debugging
           toast.error('Failed to send password. Please try again.');
         }
       } catch (error) {
@@ -152,7 +157,7 @@ const ActivateAccount = () => {
             </div>
             <div className='m-3 d-flex justify-content-between align-items-center'>
               <Link to="/">Back To Login</Link>
-              <button type="submit" className="btn btn-primary card-button">Submit</button>
+              <button type="submit" className="btn btn-primary card-button" disabled={isButtonDisabled}>Submit</button>
             </div>
           </form>
         </div>

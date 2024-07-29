@@ -81,7 +81,8 @@ const PersonalDetails = () => {
   };
 
   return (
-    <div className="container mb-5">
+    <div className="container d-flex justify-content-center ">
+    <div className="container mb-5 ">
       <div className="card mb-5">
         <div className="card-header text-light" style={{ backgroundColor: '#005174', display: 'flex', alignItems: 'center' }}>
           <FaFile style={{ marginRight: '10px' }} />
@@ -333,6 +334,7 @@ const PersonalDetails = () => {
         </div>
       </div>
       {/* <Footer/> */}
+    </div>
     </div>
   );
 };

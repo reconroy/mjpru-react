@@ -45,6 +45,7 @@ const RegistrationForm = () => {
       // Show processing toast
       const processingToastId = toast.loading("Processing your registration...", {
         toastId: 'processingToast',
+        theme:"Cloured"
       });
 
       try {
