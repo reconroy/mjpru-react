@@ -19,10 +19,10 @@ const RegistrationForm = () => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   //For params 
-  const [fullName , setFullName] = useState("");
-  const [fullEmail , setFullEmail] = useState("");
-          
-          
+  const [fullName, setFullName] = useState("");
+  const [fullEmail, setFullEmail] = useState("");
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -32,8 +32,8 @@ const RegistrationForm = () => {
     //For params 
     const email = `${formData.Email || ''}`
     const newFullName = `${formData.first_name || ''} ${formData.middle_name || ''} ${formData.last_name || ''}`.trim();
-      setFullName(newFullName);
-      setFullEmail(email);
+    setFullName(newFullName);
+    setFullEmail(email);
 
   };
 
@@ -52,11 +52,12 @@ const RegistrationForm = () => {
       });
     } else {
       setErrors({});
-      
+
       // Show processing toast
       const processingToastId = toast.loading("Processing your registration...", {
         toastId: 'processingToast',
-        theme:"Cloured"
+        theme: "colored",
+        className: 'toastify-blue'        
       });
 
       try {
@@ -72,6 +73,7 @@ const RegistrationForm = () => {
             render: "Registration Successful",
             type: "success",
             autoClose: 5000,
+            className: 'toastify-success'
           });
           // navigate("/registration-complete",);
           //For params 
@@ -98,8 +100,8 @@ const RegistrationForm = () => {
           render: `Error: ${error.response?.data?.title || 'Email already registered'}`,
           type: "error",
           autoClose: true,
-          closeButton: true, 
-        });        
+          closeButton: true,
+        });
       }
     }
   };
@@ -120,8 +122,9 @@ const RegistrationForm = () => {
         closeOnClick
         pauseOnHover
         draggable
-        theme="colored"
+        theme="colored" // Set to "light", "dark", or "colored"
       />
+
 
       <div className="mb-5">
         <div className="mb-5">
@@ -138,7 +141,7 @@ const RegistrationForm = () => {
                 <h5 className="card-title text-danger mb-3 text-center">
                   All communication related to your applications will be sent to
                   this Email id. Account Activation link will be sent to this
-                  Email Id.<br/>
+                  Email Id.<br />
                   All fields marked with (*) are required.
                 </h5>
                 <form onSubmit={handleSubmit}>

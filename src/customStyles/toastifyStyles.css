@@ -1,24 +1,14 @@
-.custom-toast-error {
-  background-color: #dc3545 !important; /* Bootstrap red color */
-  color: white;
-  display: flex;
-  align-items: center;
-}
-
-.custom-toast-error .Toastify__close-button {
-  color: white !important;
-}
-
-.custom-toast-error .custom-toast-icon {
-  margin-right: 10px;
-  font-size: 20px;
-  color: white;
-}
-
 /* customToastifyStyles.css */
+
+/* General Toast Style Adjustments */
+.Toastify__toast {
+  font-family: Arial, sans-serif;
+}
+
+/* Blue Toast */
 .toastify-blue {
-  background-color: #007bff; /* Blue background */
-  color: #ffffff; /* White text */
+  background-color: #007bff !important; /* Blue background */
+  color: #ffffff !important; /* White text */
 }
 
 .toastify-blue .Toastify__toast-body {
@@ -26,22 +16,38 @@
 }
 
 .toastify-blue .Toastify__progress-bar {
-  background: #0056b3; /* Darker blue for progress bar */
+  background: #003c7c !important; /* Darker blue for progress bar */
 }
 
-.toastify-white {
-  background-color: #ffffff; /* White background */
-  color: #007bff; /* Blue text */
-  border: 1px solid #007bff; /* Blue border */
+/* Green Toast (Success) */
+.toastify-green {
+  background-color: #28a745; /* Green background */
+  color: #ffffff; /* White text */
 }
 
-.toastify-white .Toastify__toast-body {
-  color: #007bff; /* Blue text */
+.toastify-green .Toastify__toast-body {
+  color: #ffffff; /* White text */
 }
 
-.toastify-white .Toastify__progress-bar {
-  background: #0056b3; /* Darker blue for progress bar */
+.toastify-green .Toastify__progress-bar {
+  background: #218838; /* Darker green for progress bar */
 }
+
+/* Red Toast (Error) */
+.toastify-red {
+  background-color: #dc3545; /* Red background */
+  color: #ffffff; /* White text */
+}
+
+.toastify-red .Toastify__toast-body {
+  color: #ffffff; /* White text */
+}
+
+.toastify-red .Toastify__progress-bar {
+  background: #c82333; /* Darker red for progress bar */
+}
+
+
 /* ------------------------------------------------------------------------------------------- */
 /* CSS for eye icon for password */
 .position-relative {
