@@ -16,3 +16,53 @@
 .offcanvas-header-custom {
   background-color: #003d4c;
 }
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  background-color: #003d4c;
+  color: yellow;
+}
+
+.number-icon-container {
+  display: flex;
+  align-items: center;
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.number-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.number-icon.active {
+  background-color: red;
+  color: white;
+}
+
+.number-icon.inactive {
+  background-color: white;
+  color: #005174;
+}
+
+.nav-link.active .number-icon {
+  background-color: red;
+  color: white;
+}
+
+.nav-link.active {
+  background-color: #003d4c;
+  color: yellow;
+}

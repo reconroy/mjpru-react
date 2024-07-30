@@ -16,7 +16,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./../../customStyles/sidebar.css";
 import withSpinner from './../../withSpinner';
 
-// Wrapping components with spinner
 const componentsWithSpinner = {
   Status: withSpinner(Status),
   PersonalDetails: withSpinner(PersonalDetails),
@@ -28,7 +27,6 @@ const componentsWithSpinner = {
   ResearchGuidance: withSpinner(ResearchGuidance),
 };
 
-// List of sidebar and offcanvas links
 const links = [
   { path: '/user/Status', number: '0', label: 'Status', icon: IoBarChart, size: '35px' },
   { path: '/user/PersonalDetails', number: '1', label: 'Personal Details', icon: NumberIcons, size: '35px' },
@@ -57,21 +55,25 @@ const links = [
 const Sidebar = () => {
   const location = useLocation();
   const [show, setShow] = useState(false);
+  const [hoveredPath, setHoveredPath] = useState(null);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const getStatus = (path) => (location.pathname === path ? 'active' : 'inactive');
-
+  
   const renderLinks = (isMobile) => (
     links.map(({ path, number, label, icon: Icon, size }) => (
       <Nav.Link 
         key={path}
         as={Link}
         to={path}
-        className={`text-white border-bottom d-flex align-items-center${isMobile ? '' : ' d-none d-md-flex'}`}
+        className={`sidebar-link text-white border-bottom d-flex align-items-center${isMobile ? '' : ' d-none d-md-flex'} ${getStatus(path)} ${hoveredPath === path ? 'hovered' : ''}`}
         onClick={handleClose}
+        onMouseEnter={() => setHoveredPath(path)}
+        onMouseLeave={() => setHoveredPath(null)}
       >
-        <Icon number={number} status={getStatus(path)} style={{ fontSize: size }} />
+        <Icon number={number} status={getStatus(path)} isHovered={hoveredPath === path} style={{ fontSize: size }} />
         <span className={`ms-2${isMobile ? '' : ' d-none d-md-inline'}`}>{label}</span>
       </Nav.Link>
     ))
@@ -80,7 +82,6 @@ const Sidebar = () => {
   return (
     <Container fluid className="p-0">
       <Row className="flex-nowrap h-100">
-        {/* Offcanvas menu button */}
         <Button
           variant=""
           className="d-md-none d-flex justify-content-center align-items-center border-light"
@@ -89,8 +90,6 @@ const Sidebar = () => {
         >
           <HiMenuAlt1 size="35" color='white' />
         </Button>
-
-        {/* Offcanvas menu */}
         <Offcanvas show={show} onHide={handleClose} className="d-md-none w-75 offcanvas-custom" style={{ backgroundColor: "#005174" }}>
           <Offcanvas.Header closeButton className="offcanvas-header-custom text-light">
             <Offcanvas.Title><span className='text-light'>Steps Menu</span></Offcanvas.Title>
@@ -101,15 +100,11 @@ const Sidebar = () => {
             </Nav>
           </Offcanvas.Body>
         </Offcanvas>
-
-        {/* Sidebar */}
         <Col xs={2} md={3} lg={2} className="sidebar text-white d-none d-md-flex flex-column justify-content-between p-0 rounded-end-3">
           <Nav className="flex-column mt-3">
             {renderLinks(false)}
           </Nav>
         </Col>
-
-        {/* Main content */}
         <Col className="p-0">
           <Container fluid className="main-content" style={{ overflowY: "auto", minHeight: "calc(100vh - 10rem)" }}>
             <Routes>
