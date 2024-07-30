@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { FaUserLock } from "react-icons/fa";
-import { FaEye ,FaEyeSlash } from "react-icons/fa6";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import Captcha1 from './../assets/captcha/captcha_1.png';
 import { Link, useNavigate } from 'react-router-dom';
 import Homebar from './Homebar';
-import { validateLoginForm } from './../customScripts/loginValidations.js';
+import { validateLoginForm } from './../customScripts/loginValidations'; // Adjust the import if necessary
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import "./../customStyles/buttonAnimation.css";
 import 'react-toastify/dist/ReactToastify.css';
-import './../customStyles/toastifyStyles.css';
+import './../customStyles/toastifyStyles.css'; // Ensure this file exists if used
 
 const LoginPanel = () => {
     const [formData, setFormData] = useState({
@@ -21,6 +20,7 @@ const LoginPanel = () => {
     const [errors, setErrors] = useState({});
     const [passwordVisible, setPasswordVisible] = useState(false);
     const navigate = useNavigate();
+    const [processingToastId, setProcessingToastId] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,30 +32,55 @@ const LoginPanel = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('Form submitted'); // Check if this log appears in the console
+        
         const validationErrors = validateLoginForm(formData);
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
-        } else {
-            setErrors({});
-            try {
-                const response = await axios.post('https://localhost:7142/api/Login', formData);
-                if (response.status === 200) {
-                    navigate('/user/applicationlist'); 
-                }
-            } catch (error) {
-                if (error.response) {
-                    if (error.response.status === 401) {
-                        toast.error('Invalid email or password');
-                    } else if (error.response.status === 404) {
-                        toast.error('User not found');
-                    } else {
-                        toast.error('An error occurred. Please try again.');
-                    }
-                } else if (error.request) {
-                    toast.error('No response from server');
+            console.log('Validation errors:', validationErrors); // Log validation errors
+            Object.values(validationErrors).forEach(error => toast.error(error)); // Show toast for validation errors
+            return;
+        }
+
+        setErrors({}); // Clear previous errors if validation passes
+
+        // Show processing toast
+        const processingId = toast.loading('Processing...', {
+            position: "top-right",
+            autoClose: false,
+            closeOnClick: false,
+            draggable: false,
+            theme: "colored"
+        });
+        setProcessingToastId(processingId);
+
+        try {
+            const response = await axios.post('https://localhost:7142/api/Login', formData);
+            console.log('Response:', response.data); // Log response data
+
+            // Remove processing toast before showing result
+            toast.dismiss(processingId);
+
+            if (response.status === 200) {
+                toast.success('Login successful');
+                navigate('/user/applicationlist'); // Redirect on success
+            }
+        } catch (error) {
+            // Remove processing toast before showing result
+            toast.dismiss(processingId);
+
+            if (error.response) {
+                if (error.response.status === 401) {
+                    toast.error('Invalid email or password');
+                } else if (error.response.status === 404) {
+                    toast.error('User not found');
                 } else {
-                    toast.error('An error occurred: ' + error.message);
+                    toast.error('An error occurred. Please try again.');
                 }
+            } else if (error.request) {
+                toast.error('No response from server');
+            } else {
+                toast.error('An error occurred: ' + error.message);
             }
         }
     };
@@ -65,7 +90,7 @@ const LoginPanel = () => {
             <Homebar />
             <ToastContainer
                 position="top-right"
-                autoClose={15000}
+                autoClose={5000}
                 hideProgressBar={false}
                 closeOnClick
                 pauseOnHover
@@ -73,7 +98,6 @@ const LoginPanel = () => {
                 theme="colored"
             />
             <div className='container d-flex justify-content-center align-items-center mt-5 pb-5'>
-                <div className="pb-5"></div>
                 <div className='col-12 col-md-6 col-lg-4 border rounded-2 card'>
                     <div className="card-header text-light" style={{ backgroundColor: '#005174' }}>
                         <FaUserLock size={25} style={{ marginRight: '8px' }} />
@@ -110,7 +134,7 @@ const LoginPanel = () => {
                                     onClick={() => setPasswordVisible(!passwordVisible)}
                                     aria-label={passwordVisible ? 'Hide password' : 'Show password'}
                                 >
-                                    {passwordVisible ? <FaEye/> : <FaEyeSlash />}
+                                    {passwordVisible ? <FaEye /> : <FaEyeSlash />}
                                 </span>
                             </div>
                             {errors.password && <div className="invalid-feedback">{errors.password}</div>}

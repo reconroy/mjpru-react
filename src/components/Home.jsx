@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { IoMdNotifications } from "react-icons/io";
-import { FaUsers } from "react-icons/fa";
+import { FaUsers, FaBrain, FaKey } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Homebar from "./Homebar";
-
+import { RiUserAddFill } from "react-icons/ri";
+import { IoLogIn } from "react-icons/io5";
 
 const Home = () => {
   const [latestUpdates, setLatestUpdates] = useState("Loading latest updates...");
@@ -45,28 +46,29 @@ const Home = () => {
             </div>
           </div>
           <div className="col-lg-4 mb-3">
-      <div className="card mt-2" style={{ borderColor: "#005174", borderWidth: "2px", borderStyle: "solid", height: '300px' }}>
-        <h5 className="card-header  text-white d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
-          <FaUsers className="me-2" /> Applicant's Corner
-        </h5>
-        <div className="card-body d-flex justify-content-center align-items-center">
-          <div className="d-grid gap-2 w-75">
-            <Link to="/login" type="button" className="btn btn-primary mb-2 card-button">
-              Existing User Login
-            </Link>
-            <Link to="/new-user" type="button" className="btn btn-success mb-2 card-button">
-              New User Registration
-            </Link>
-            <Link to="/activate-account" type="button" className="btn btn-warning mb-2 card-button" >
-              Activate Your Account
-            </Link>
-            <Link to="/forgot-password" type="button" className="btn btn-danger mb-2 card-button">
-              Forgot Password
-            </Link>
+            <div className="card mt-2" style={{ borderColor: "#005174", borderWidth: "2px", borderStyle: "solid", height: '300px' }}>
+              <h5 className="card-header  text-white d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
+                <FaUsers className="me-2" /> Applicant's Corner
+              </h5>
+              <div className="card-body d-flex justify-content-center align-items-center">
+                <div className="d-grid gap-2 w-75">
+                  <Link to="/login" type="button" className="btn btn-primary mb-2 d-flex align-items-center justify-content-center card-button">
+                    Existing User Login <IoLogIn className="ms-2" size="20"/>
+                  </Link>
+                  <Link to="/new-user" type="button" className="btn btn-success mb-2 d-flex align-items-center justify-content-center card-button">
+                    New User Registration <RiUserAddFill className="ms-2" size="20"/>
+                  </Link>
+                  <Link to="/activate-account" type="button" className="btn btn-warning mb-2 d-flex align-items-center justify-content-center card-button">
+                    Activate Your Account <FaKey className="ms-2" size="20"/>
+                  </Link>
+                  <Link to="/forgot-password" type="button" className="btn btn-danger mb-2 d-flex align-items-center justify-content-center card-button">
+                    Forgot Password <FaBrain className="ms-2" size="20"/>
+                  </Link>
+                </div>
+              </div>
+
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
         </div>
       </div>
       <div className="pb-5"></div>
