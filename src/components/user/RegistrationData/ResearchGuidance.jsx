@@ -84,7 +84,7 @@ const ResearchGuidance = () => {
             <HiAcademicCap size="25px" />
             <h5 className="ms-2 mb-0">Research Guidance (Students currently working/completed their thesis (Numbers Only))</h5>
           </div>
-          <button className="btn btn-light" onClick={handleShowModal}>Add</button>
+          <button className="btn btn-light card-button" onClick={handleShowModal}>Add</button>
         </div>
         <div className="card-body">
           <div className="table-responsive">
