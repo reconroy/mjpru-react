@@ -10,6 +10,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './../customStyles/toastifyStyles.css';
 import axios from "axios";
+import { encrypt } from "./Security";
 
 const RegistrationForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -17,13 +18,23 @@ const RegistrationForm = () => {
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
-
+  //For params 
+  const [fullName , setFullName] = useState("");
+  const [fullEmail , setFullEmail] = useState("");
+          
+          
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+    //For params 
+    const email = `${formData.Email || ''}`
+    const newFullName = `${formData.first_name || ''} ${formData.middle_name || ''} ${formData.last_name || ''}`.trim();
+      setFullName(newFullName);
+      setFullEmail(email);
+
   };
 
   const handleSubmit = async (e) => {
@@ -62,7 +73,11 @@ const RegistrationForm = () => {
             type: "success",
             autoClose: 5000,
           });
-          navigate("/registration-complete",);
+          // navigate("/registration-complete",);
+          //For params 
+          const enName = encrypt(fullName);
+          const enEmail = encrypt(fullEmail);
+          navigate(`/registration-complete/${enName}/${enEmail}`,);
         }
       } catch (error) {
         console.error("Error submitting form:", error);

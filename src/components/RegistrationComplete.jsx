@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import Homebar from './Homebar';
 import "./../customStyles/buttonAnimation.css";
+import { useParams } from 'react-router-dom'
+import { decrypt } from './Security';
 
 const RegistrationComplete = () => {
     const [showModal, setShowModal] = useState(false);
@@ -27,7 +29,10 @@ const RegistrationComplete = () => {
             setShowSpinner(false);
         }, 10000);
     };
-
+    //For params 
+    const {name,email} = useParams();
+    const dName = decrypt(name);
+    const dEmail = decrypt(email);
     return (
         <>
             <Homebar/>
@@ -42,7 +47,7 @@ const RegistrationComplete = () => {
                             <div className="card-body">
                                 <h3 className="text-center text-success">Activate Your Account</h3>
                                 <br />
-                                <p className="text-start">Dear <span className="fw-bold">"Variable"</span></p>
+                                <p className="text-start">Dear <span className="fw-bold">{dName}</span></p>
                                 <p className="text-start">Thank you for registering for FACULTY RECRUITMENT 2021.</p>
                                 <p className="text-start">This one-time registration process will give you continuous access to the account.</p>
                                 <p className="text-start">Please follow your email to activate your account.</p>
@@ -65,7 +70,7 @@ const RegistrationComplete = () => {
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-3 mb-2">
                                         <Button className="btn btn-primary w-100 card-button" variant="primary" onClick={handleResend} disabled={resendDisabled}>
-                                            Resend Activation Link
+                                            Resend OTP
                                             {showSpinner && <Spinner animation="border" size="sm" className="ms-2" />}
                                         </Button>
                                     </div>
@@ -80,7 +85,7 @@ const RegistrationComplete = () => {
                         <Modal.Title>OTP</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <p className="text-success fw-bold">An Activation Link has been sent to "VARIABLE". Please follow email instructions to activate your account. Please check your Inbox/Spam folder for the email.</p>
+                        <p className="text-success fw-bold">An OTP has been sent to {dEmail}. Please follow email instructions to activate your account. Please check your Inbox/Spam folder for the email.</p>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="success" onClick={handleClose} className='card-button'>

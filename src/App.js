@@ -13,6 +13,7 @@ import UserLayout from './components/user/UserLayout';
 import ApplicationList from "./components/user/ApplicationList";
 import Footer from './components/Footer';
 import "./customStyles/buttonAnimation.css";
+// import {encrypt, decrypt} from "./components/Security";
 
 const HomeWithSpinner = withSpinner(Home);
 const LoginPanelWithSpinner = withSpinner(LoginPanel);
@@ -35,7 +36,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPasswordWithSpinner />} />
           <Route path="/new-user" element={<NewUserWithSpinner />} />
           <Route path="/registration-page" element={<RegistrationFormWithSpinner />} />
-          <Route path="/registration-complete" element={<RegistrationCompleteWithSpinner />} />
+          <Route path="/registration-complete/:name/:email" element={<RegistrationCompleteWithSpinner />} />
           <Route path="/user/applicationlist" element={<ApplicationListWithSpinner />} />
           <Route path="/*" element={<UserLayout/>} />
           <Route path="/user" element={<UserLayout/>} />
