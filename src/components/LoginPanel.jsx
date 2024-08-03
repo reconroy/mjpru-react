@@ -83,6 +83,10 @@ const LoginPanel = () => {
         }
     };
 
+    const handleRefreshCaptcha = () => {
+        setGeneratedCaptcha(generateCaptcha());
+    };
+
     return (
         <>
             <Homebar />
@@ -151,13 +155,16 @@ const LoginPanel = () => {
                                 />
                                 {errors.captcha && <div className="invalid-feedback">{errors.captcha}</div>}
                             </div>
-                            <div className="captcha-code ">
-                                <div style={{ border: '2px solid black', padding: '5px', fontSize: '20px',userSelect:"none",letterSpacing:"5px",backgroundImage:`url(${CaptchaBG})`}} 
-                                className='text-dark poppins-bold rounded-3'>
-                                    <span style={{color:"rgba(0,0,0,.7)"}}>
-                                    {generatedCaptcha}
-                                    </span>
+                            <div className="d-flex align-items-center">
+                                <div className="captcha-code mx-2">
+                                    <div style={{ border: '2px solid black', padding: '5px', fontSize: '20px', userSelect: "none", letterSpacing: "5px", backgroundImage: `url(${CaptchaBG})` }}
+                                        className='text-dark poppins-bold rounded-3'>
+                                        <span style={{ color: "rgba(0,0,0,.7)" }}>
+                                            {generatedCaptcha}
+                                        </span>
+                                    </div>
                                 </div>
+                                <button type="button" className="btn btn-secondary btn-sm" onClick={handleRefreshCaptcha}>Refresh</button>
                             </div>
                         </div>
                         <div className='m-3 d-flex justify-content-between align-items-center'>
