@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Nav, Offcanvas, Button } from 'react-bootstrap';
-import { Link, Route, Routes, useLocation } from 'react-router-dom';
+import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import NumberIcons from './../NumberIcons';
 import Status from './Status';
 import PersonalDetails from './RegistrationData/PersonalDetails';
@@ -111,6 +111,7 @@ const Sidebar = () => {
               {Object.entries(componentsWithSpinner).map(([key, Component]) => (
                 <Route key={key} path={`/user/${key}`} element={<Component />} />
               ))}
+              <Route path="*" element={<Navigate to="/404" />} /> 
             </Routes>
           </Container>
         </Col>

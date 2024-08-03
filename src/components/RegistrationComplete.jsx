@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { HiUserAdd } from "react-icons/hi";
 import { Modal, Button, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Homebar from './Homebar';
 import "./../customStyles/buttonAnimation.css";
 import { useParams } from 'react-router-dom'
@@ -12,6 +12,7 @@ const RegistrationComplete = () => {
     const [showModal, setShowModal] = useState(false);
     const [resendDisabled, setResendDisabled] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
+    const navigate = useNavigate()
 
     useEffect(() => {
         setShowModal(true);
@@ -31,8 +32,8 @@ const RegistrationComplete = () => {
     };
     //For params 
     const {name,email} = useParams();
-    const dName = decrypt(name);
-    const dEmail = decrypt(email);
+    const dName = decrypt(name) || navigate('/404');
+    const dEmail = decrypt(email) || navigate('/404');
     return (
         <>
             <Homebar/>

@@ -12,6 +12,7 @@ import RegistrationComplete from './components/RegistrationComplete';
 import UserLayout from './components/user/UserLayout';
 import ApplicationList from "./components/user/ApplicationList";
 import Footer from './components/Footer';
+import NotFound from './components/NotFound-404';
 import "./customStyles/buttonAnimation.css";
 // import {encrypt, decrypt} from "./components/Security";
 
@@ -23,6 +24,7 @@ const NewUserWithSpinner = withSpinner(NewUser);
 const RegistrationFormWithSpinner = withSpinner(RegistrationForm);
 const RegistrationCompleteWithSpinner = withSpinner(RegistrationComplete);
 const ApplicationListWithSpinner = withSpinner(ApplicationList);
+const NotFoundWithSpinner = withSpinner(NotFound);
 
 function App() {
   return (
@@ -38,8 +40,9 @@ function App() {
           <Route path="/registration-page" element={<RegistrationFormWithSpinner />} />
           <Route path="/registration-complete/:name/:email" element={<RegistrationCompleteWithSpinner />} />
           <Route path="/user/applicationlist" element={<ApplicationListWithSpinner />} />
-          <Route path="/*" element={<UserLayout/>} />
           <Route path="/user" element={<UserLayout/>} />
+          <Route path="/*" element={<UserLayout/>} />
+          <Route path="/404" element={<NotFoundWithSpinner />} />
         </Routes>
         <Footer/>
       </div>
