@@ -71,10 +71,10 @@ const ApplicationList = () => {
                             Your Applications
                         </div>
                         <div>
-                            <Button onClick={handleShow} className="btn btn-light text-decoration-none me-2">
+                            <Button onClick={handleShow} className="btn btn-light text-decoration-none me-2 card-button">
                                 + New Application
                             </Button>
-                            <Button onClick={handleLogoutShow} className="btn btn-danger rounded fw-bold">
+                            <Button onClick={handleLogoutShow} className="btn btn-danger rounded fw-bold card-button">
                                 <FaPowerOff size={18} className="me-2 " />
                                 Logout
                             </Button>

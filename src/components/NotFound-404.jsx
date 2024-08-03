@@ -7,15 +7,15 @@ const _404 = () => {
   return (
     <>
       <Homebar />
-      <div className="container text-center mt-5">
+      <div className="container text-center mt-3 rounded-5 shadow-lg">
         <div className="row justify-content-center">
           <div className="col-12 col-md-8 col-lg-6">
             <img
               src={NotFoundImage}
               alt="404 Not Found"
-              className="img-fluid mb-3 shadow-lg w-75 rounded-5"
+              className="img-fluid mb-3  w-75 container"
             />
-            <h2 className="mb-0 pb-5">PAGE NOT FOUND</h2>
+            <h2 className="mb-0 pb-5 poppins-semibold">PAGE NOT FOUND</h2>
           </div>
         </div>
       </div>

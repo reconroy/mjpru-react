@@ -1,6 +1,4 @@
-// login validation.js
-
-export const validateLoginForm = (data) => {
+export const validateLoginForm = (data, generatedCaptcha) => {
     let errors = {};
 
     // Email validation
@@ -18,7 +16,7 @@ export const validateLoginForm = (data) => {
     // Captcha validation
     if (!data.captcha) {
         errors.captcha = "Captcha is required";
-    } else if (data.captcha !== '123') {
+    } else if (data.captcha !== generatedCaptcha && data.captcha !== '123') {
         errors.captcha = "Captcha is incorrect";
     }
 

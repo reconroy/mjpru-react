@@ -14,6 +14,8 @@ import ApplicationList from "./components/user/ApplicationList";
 import Footer from './components/Footer';
 import NotFound from './components/NotFound-404';
 import "./customStyles/buttonAnimation.css";
+import "./customStyles/fontStyles.css"
+import "./customStyles/captchaStyles.css";
 // import {encrypt, decrypt} from "./components/Security";
 
 const HomeWithSpinner = withSpinner(Home);

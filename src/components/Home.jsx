@@ -37,9 +37,9 @@ const Home = () => {
                 <IoMdNotifications className="me-2" /> Notice Board
               </h5>
               <div className="card-body">
-                <p className="card-text fw-bold text-dark">{latestUpdates}</p>
-                <p className="card-text fw-bold text-dark">{latestUpdates}</p>
-                <button className="btn btn-primary card-button" onClick={fetchData} >
+                <p className="card-text fw-bol text-dark poppins-semibold">{latestUpdates}</p>
+                <p className="card-text fw-bol text-dark poppins-semibold">{latestUpdates}</p>
+                <button className="btn btn-primary card-button poppins" onClick={fetchData} >
                   Refresh
                 </button>
               </div>

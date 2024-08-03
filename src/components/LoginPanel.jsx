@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUserLock } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import Captcha1 from './../assets/captcha/captcha_1.png';
 import { Link, useNavigate } from 'react-router-dom';
 import Homebar from './Homebar';
-import { validateLoginForm } from './../customScripts/loginValidations'; // Adjust the import if necessary
+import { validateLoginForm } from './../customScripts/loginValidations.js'; // Adjust the import if necessary
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './../customStyles/toastifyStyles.css'; // Ensure this file exists if used
+import { generateCaptcha } from './../customScripts/captchaCodeGenerator.js'; // Adjust the import if necessary
+import CaptchaBG from "./../assets/images/bg1.jpg";
 
 const LoginPanel = () => {
     const [formData, setFormData] = useState({
@@ -16,11 +17,15 @@ const LoginPanel = () => {
         password: '',
         captcha: ''
     });
-
+    const [generatedCaptcha, setGeneratedCaptcha] = useState('');
     const [errors, setErrors] = useState({});
     const [passwordVisible, setPasswordVisible] = useState(false);
     const navigate = useNavigate();
     const [processingToastId, setProcessingToastId] = useState(null);
+
+    useEffect(() => {
+        setGeneratedCaptcha(generateCaptcha());
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,12 +37,9 @@ const LoginPanel = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted'); // Check if this log appears in the console
-        
-        const validationErrors = validateLoginForm(formData);
+        const validationErrors = validateLoginForm(formData, generatedCaptcha);
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
-            console.log('Validation errors:', validationErrors); // Log validation errors
             Object.values(validationErrors).forEach(error => toast.error(error)); // Show toast for validation errors
             return;
         }
@@ -56,9 +58,6 @@ const LoginPanel = () => {
 
         try {
             const response = await axios.post('https://localhost:7142/api/Login', formData);
-            console.log('Response:', response.data); // Log response data
-
-            // Remove processing toast before showing result
             toast.dismiss(processingId);
 
             if (response.status === 200) {
@@ -66,7 +65,6 @@ const LoginPanel = () => {
                 navigate('/user/applicationlist'); // Redirect on success
             }
         } catch (error) {
-            // Remove processing toast before showing result
             toast.dismiss(processingId);
 
             if (error.response) {
@@ -153,8 +151,13 @@ const LoginPanel = () => {
                                 />
                                 {errors.captcha && <div className="invalid-feedback">{errors.captcha}</div>}
                             </div>
-                            <div className="captcha-code">
-                                <img src={Captcha1} alt="Captcha Code" style={{ border: '2px solid black' }} />
+                            <div className="captcha-code ">
+                                <div style={{ border: '2px solid black', padding: '5px', fontSize: '20px',userSelect:"none",letterSpacing:"5px",backgroundImage:`url(${CaptchaBG})`}} 
+                                className='text-dark poppins-bold rounded-3'>
+                                    <span style={{color:"rgba(0,0,0,.7)"}}>
+                                    {generatedCaptcha}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div className='m-3 d-flex justify-content-between align-items-center'>
