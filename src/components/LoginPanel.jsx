@@ -3,12 +3,12 @@ import { FaUserLock } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';
 import Homebar from './Homebar';
-import { validateLoginForm } from './../customScripts/loginValidations.js'; // Adjust the import if necessary
+import { validateLoginForm } from './../customScripts/loginValidations.js';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './../customStyles/toastifyStyles.css'; // Ensure this file exists if used
-import { generateCaptcha } from './../customScripts/captchaCodeGenerator.js'; // Adjust the import if necessary
+import './../customStyles/toastifyStyles.css'; 
+import { generateCaptcha } from './../customScripts/captchaCodeGenerator.js'; 
 import CaptchaBG from "./../assets/images/bg1.jpg";
 import { LuRefreshCcw } from "react-icons/lu";
 

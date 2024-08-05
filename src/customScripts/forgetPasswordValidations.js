@@ -1,23 +1,19 @@
-const validateFields = (email, captcha) => {
-    const errors = [];
-  
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email) {
-      errors.push('Email ID is required.');
-    } else if (!emailRegex.test(email)) {
-      errors.push('Invalid Email ID.');
-    }
-  
-    // Captcha validation
-    if (!captcha) {
-      errors.push('Captcha Code is required.');
-    } else if (captcha !== '123') {
-      errors.push('Invalid Captcha Code.');
-    }
-  
-    return errors;
-  };
-  
-  export default validateFields;
-  
+const validateFields = (email, inputCaptcha, generatedCaptcha) => {
+  const errors = [];
+
+  if (!email) {
+      errors.push("Email is required.");
+  } else if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+      errors.push("Invalid email format.");
+  }
+
+  if (!inputCaptcha) {
+      errors.push("Captcha code is required.");
+  } else if (inputCaptcha !== generatedCaptcha) {
+      errors.push("Captcha code is incorrect.");
+  }
+
+  return errors;
+};
+
+export default validateFields;

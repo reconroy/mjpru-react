@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaLock } from "react-icons/fa";
-import Captcha1 from './../assets/captcha/captcha_1.png';
 import { Link, useNavigate } from 'react-router-dom';
 import Homebar from './Homebar';
 import axios from 'axios';
@@ -8,47 +7,76 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./../customStyles/buttonAnimation.css";
 import { Bounce } from 'react-toastify';
+import CaptchaBG from "./../assets/images/bg1.jpg";
+import { LuRefreshCcw } from "react-icons/lu";
+import { Spinner } from 'react-bootstrap'; // Import Bootstrap Spinner
 
 const ActivateAccount = () => {
   const [email, setEmail] = useState('');
-  const [captcha, setCaptcha] = useState('123'); // Captcha code for frontend validation
+  // const [captcha, setCaptcha] = useState('123'); // for default put 123
+  const [inputCaptcha, setInputCaptcha] = useState('');
   const [otp, setOtp] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [generatedCaptcha, setGeneratedCaptcha] = useState('');
   const navigate = useNavigate(); // Hook for redirection
+
+  // Function to generate a random captcha code
+  const generateCaptcha = () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let captcha = '';
+    for (let i = 0; i < 6; i++) {
+      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return captcha;
+  };
+
+  useEffect(() => {
+    setGeneratedCaptcha(generateCaptcha());
+  }, []);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
+  const handleRefreshCaptcha = () => {
+    setGeneratedCaptcha(generateCaptcha());
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Validate email
     if (!validateEmail(email)) {
       toast.error('Invalid email format');
       return;
     }
-  
+
     // Validate captcha
-    if (captcha !== '123') { // Ensure this matches the expected captcha value
+    if (inputCaptcha !== generatedCaptcha) {
       toast.error('Invalid captcha code');
       return;
     }
-  
+
     // Validate OTP
     if (!otp) {
       toast.error('Please enter the OTP');
       return;
     }
-  
-    // Show processing notification
-    const processingToast = toast.info('Processing activation...', {
-      autoClose: false,
-      closeOnClick: false,
-      draggable: false,
-    });
-  
+
+    // Show processing notification with spinner
+    const processingToast = toast.info(
+      <div className="d-flex align-items-center">
+        <Spinner animation="border" size="sm" className="me-2" /> {/* Spinner component */}
+        Processing activation...
+      </div>,
+      {
+        autoClose: false,
+        closeOnClick: false,
+        draggable: false,
+      }
+    );
+
     // Add a small buffer before making the request
     setTimeout(async () => {
       try {
@@ -56,14 +84,14 @@ const ActivateAccount = () => {
           email, // Send email and OTP only, not captcha
           otp,
         });
-  
+
         toast.dismiss(processingToast);
-  
+
         // Log the response for debugging
         console.log("API Response:", response.data);
-  
+
         // Check if response contains success field
-        if (response.data && response.data.result === 'email sent') { //
+        if (response.data && response.data.result === 'email sent') {
           toast.success('Password sent to your email.', {
             position: "top-right",
             autoClose: 5000,
@@ -71,7 +99,7 @@ const ActivateAccount = () => {
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            theme: "light",
+            // theme: "light",
             transition: Bounce,
             onClose: () => {
               navigate('/login');
@@ -88,7 +116,7 @@ const ActivateAccount = () => {
         }
       } catch (error) {
         toast.dismiss(processingToast);
-  
+
         if (error.response) {
           console.log("Error response data:", error.response.data);
           console.log("Error response status:", error.response.status);
@@ -102,13 +130,13 @@ const ActivateAccount = () => {
           toast.error('An error occurred. Please try again.');
         }
       }
-    }, 500); // 500ms buffer
+    }, 500); 
   };
-  
+
   return (
     <>
       <Homebar />
-      <div className='container d-flex justify-content-center align-items-center mt-5'>
+      <div className='container d-flex justify-content-center align-items-center mt-5 pb-5'>
         <div className='col-12 col-md-6 col-lg-4 border rounded-2 card'>
           <div className="card-header text-light" style={{ backgroundColor: '#005174' }}>
             <FaLock size={25} style={{ marginRight: '8px' }} />
@@ -147,12 +175,20 @@ const ActivateAccount = () => {
                   type="text"
                   className="form-control"
                   id="captchaInput"
-                  value={captcha}
-                  onChange={(e) => setCaptcha(e.target.value)}
+                  value={inputCaptcha}
+                  onChange={(e) => setInputCaptcha(e.target.value)}
                 />
               </div>
-              <div className="captcha-code">
-                <img src={Captcha1} alt="Captcha Code" style={{ border: '2px solid black' }} />
+              <div className="d-flex align-items-center">
+                <div className="captcha-code mx-2">
+                  <div style={{ border: '2px solid black', padding: '5px', fontSize: '18px', userSelect: "none", letterSpacing: "5px", backgroundImage: `url(${CaptchaBG})` }}
+                    className='text-dark poppins-bold rounded-3 d-inline'>
+                    <span style={{ color: "rgba(0,0,0,.7)" }}>
+                      {generatedCaptcha}
+                    </span>
+                  </div>
+                </div>
+                <button type="button" className="btn btn-secondary btn-sm border-dark" onClick={handleRefreshCaptcha}><LuRefreshCcw size="25" /></button>
               </div>
             </div>
             <div className='m-3 d-flex justify-content-between align-items-center'>
@@ -162,7 +198,6 @@ const ActivateAccount = () => {
           </form>
         </div>
       </div>
-      <div className="pb-5"></div>
       <div className="pb-5"></div>
       <ToastContainer
         position="top-right"
