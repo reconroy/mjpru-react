@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HiUserAdd } from "react-icons/hi";
 import CountryCodes from "./../countryCodes.json";
-import Captcha1 from "./../assets/captcha/captcha_1.png";
 import { useNavigate } from "react-router-dom";
 import Homebar from "./Homebar";
 import { Modal, Button } from "react-bootstrap";
@@ -11,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import './../customStyles/toastifyStyles.css';
 import axios from "axios";
 import { encrypt } from "./Security";
+import { generateCaptcha } from './../customScripts/captchaCodeGenerator.js';
+import { LuRefreshCcw } from "react-icons/lu";
+import CaptchaBG from "./../assets/images/bg1.jpg";
 
 const RegistrationForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -21,14 +23,23 @@ const RegistrationForm = () => {
   //For params 
   const [fullName, setFullName] = useState("");
   const [fullEmail, setFullEmail] = useState("");
-
+  //For captcha
+  const [generatedCaptcha, setGeneratedCaptcha] = useState('');
+  useEffect(() => {
+    setGeneratedCaptcha(generateCaptcha());
+  }, []);
+  const handleRefreshCaptcha = () => {
+    setGeneratedCaptcha(generateCaptcha());
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
     }));
+
+
     //For params 
     const email = `${formData.Email || ''}`
     const newFullName = `${formData.first_name || ''} ${formData.middle_name || ''} ${formData.last_name || ''}`.trim();
@@ -44,7 +55,7 @@ const RegistrationForm = () => {
       return;
     }
 
-    const validationErrors = validateFormData(formData);
+    const validationErrors = validateFormData(formData, generatedCaptcha);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       toast.error("Data Invalid", {
@@ -57,7 +68,7 @@ const RegistrationForm = () => {
       const processingToastId = toast.loading("Processing your registration...", {
         toastId: 'processingToast',
         theme: "colored",
-        className: 'toastify-blue'        
+        className: 'toastify-blue'
       });
 
       try {
@@ -372,10 +383,10 @@ const RegistrationForm = () => {
                   {/* Captcha */}
                   <div className="mb-3 w-100">
                     <label htmlFor="captcha" className="form-label fw-bold">
-                      Enter Captcha Code <span className="text-danger ">*</span>
+                      Enter Captcha Code <span className="text-danger">*</span>
                     </label>
-                    <div className="d-flex align-items-center">
-                      <div className="d-flex flex-column">
+                    <div className="d-flex flex-wrap align-items-center">
+                      <div className="d-flex flex-column me-2">
                         <input
                           placeholder="Enter Captcha"
                           type="text"
@@ -387,21 +398,29 @@ const RegistrationForm = () => {
                           onChange={handleChange}
                         />
                       </div>
-                      <div className="ms-2">
-                        <img
-                          src={Captcha1}
-                          alt="Captcha"
-                          className="border border-3 border-dark rounded-2"
-                          style={{ width: "150px", height: "40px" }}
-                        />
+                      <div className="d-flex align-items-center">
+                        <div className="captcha-code me-2">
+                          <div
+                            style={{ border: '2px solid black', padding: '5px', fontSize: '18px', userSelect: "none", letterSpacing: "5px", backgroundImage: `url(${CaptchaBG})` }}
+                            className="text-dark poppins-bold rounded-3 d-inline"
+                          >
+                            <span style={{ color: "rgba(0,0,0,.7)" }}>
+                              {generatedCaptcha}
+                            </span>
+                          </div>
+                        </div>
+                        <button type="button" className="btn btn-secondary btn-sm border-dark" onClick={handleRefreshCaptcha}>
+                          <LuRefreshCcw size="25" />
+                        </button>
                       </div>
                       {errors.captcha && (
-                        <div className="invalid-feedback d-block ms-2 ">
+                        <div className="invalid-feedback d-block ms-2">
                           {errors.captcha}
                         </div>
                       )}
                     </div>
                   </div>
+
 
                   {/* Checkbox and Buttons */}
                   <div className="mb-3 form-check">

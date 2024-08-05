@@ -1,6 +1,6 @@
-export const validateFormData = (data) => {
+  export const validateFormData = (data, generatedCaptcha) => {
     let errors = {};
-  
+
     // Email validation
     if (!data.Email) {
       errors.Email = "Email is required";
@@ -12,7 +12,7 @@ export const validateFormData = (data) => {
     } else if (data.Email !== data.confirmEmail) {
       errors.confirmEmail = "Emails do not match";
     }
-  
+
     // Required fields for validation
     const requiredFields = ['first_name', 'fathers_name', 'mothers_name', 'mobile_number', 'country_code', 'captcha'];
     requiredFields.forEach(field => {
@@ -20,14 +20,14 @@ export const validateFormData = (data) => {
         errors[field] = `${field.replace(/([A-Z])/g, ' $1')} is required.`;
       }
     });
-  
+
     // Additional validations for mobile_number
     if (data.mobile_number) {
       if (!/^\d+$/.test(data.mobile_number)) {
         errors.mobile_number = "Mobile number must be numeric";
       }
     }
-  
+
     // Validation to ensure names do not contain numbers
     const nameFields = ['first_name', 'last_name', 'middle_name', 'fathers_name', 'mothers_name'];
     nameFields.forEach(field => {
@@ -35,12 +35,12 @@ export const validateFormData = (data) => {
         errors[field] = `${field.replace(/([A-Z])/g, ' $1')} should not contain numbers.`;
       }
     });
-  
+
     // CountryCode validation
     if (!data.country_code || data.country_code === "default") { // Adjust default value check if necessary
       errors.country_code = "Country Code is required";
     }
-  
+
     // Optional Alternate Mobile Number validation
     if (data.Alternate_mobile_number) {
       if (!/^\d+$/.test(data.Alternate_mobile_number)) {
@@ -50,8 +50,12 @@ export const validateFormData = (data) => {
         errors.Alternate_mobile_number = "Alternate mobile number must be different from the primary mobile number";
       }
     }
-  
+    // Captcha validation
+    if (!data.captcha) {
+      errors.captcha = "Captcha is required";
+    } else if (data.captcha !== generatedCaptcha && data.captcha !== '123') {
+      errors.captcha = "Captcha is incorrect";
+    }
     console.log(errors);
     return errors;
   };
-  

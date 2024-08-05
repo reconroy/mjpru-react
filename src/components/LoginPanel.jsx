@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './../customStyles/toastifyStyles.css'; // Ensure this file exists if used
 import { generateCaptcha } from './../customScripts/captchaCodeGenerator.js'; // Adjust the import if necessary
 import CaptchaBG from "./../assets/images/bg1.jpg";
+import { LuRefreshCcw } from "react-icons/lu";
 
 const LoginPanel = () => {
     const [formData, setFormData] = useState({
@@ -21,7 +22,6 @@ const LoginPanel = () => {
     const [errors, setErrors] = useState({});
     const [passwordVisible, setPasswordVisible] = useState(false);
     const navigate = useNavigate();
-    const [processingToastId, setProcessingToastId] = useState(null);
 
     useEffect(() => {
         setGeneratedCaptcha(generateCaptcha());
@@ -54,7 +54,6 @@ const LoginPanel = () => {
             draggable: false,
             theme: "colored"
         });
-        setProcessingToastId(processingId);
 
         try {
             const response = await axios.post('https://localhost:7142/api/Login', formData);
@@ -155,16 +154,17 @@ const LoginPanel = () => {
                                 />
                                 {errors.captcha && <div className="invalid-feedback">{errors.captcha}</div>}
                             </div>
+                            {/* Captcha Div */}
                             <div className="d-flex align-items-center">
                                 <div className="captcha-code mx-2">
-                                    <div style={{ border: '2px solid black', padding: '5px', fontSize: '20px', userSelect: "none", letterSpacing: "5px", backgroundImage: `url(${CaptchaBG})` }}
-                                        className='text-dark poppins-bold rounded-3'>
+                                    <div style={{ border: '2px solid black', padding: '5px', fontSize: '18px', userSelect: "none", letterSpacing: "5px", backgroundImage: `url(${CaptchaBG})` }}
+                                        className='text-dark poppins-bold rounded-3 d-inline'>
                                         <span style={{ color: "rgba(0,0,0,.7)" }}>
                                             {generatedCaptcha}
                                         </span>
                                     </div>
                                 </div>
-                                <button type="button" className="btn btn-secondary btn-sm" onClick={handleRefreshCaptcha}>Refresh</button>
+                                <button type="button" className="btn btn-secondary btn-sm border-dark" onClick={handleRefreshCaptcha}><LuRefreshCcw size="25" /></button>
                             </div>
                         </div>
                         <div className='m-3 d-flex justify-content-between align-items-center'>

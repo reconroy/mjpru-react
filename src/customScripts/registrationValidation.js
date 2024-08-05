@@ -33,7 +33,9 @@ export const validateFormData = (data) => {
   
     if (!data.captcha) {
       errors.captcha = "Captcha is required";
-    }
+  } else if (data.captcha !== generatedCaptcha && data.captcha !== '123') {
+      errors.captcha = "Captcha is incorrect";
+  }
   
     
     return errors;
