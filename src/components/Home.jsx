@@ -46,7 +46,7 @@ const Home = () => {
             </div>
           </div>
           <div className="col-lg-4 mb-3">
-            <div className="card mt-2" style={{ borderColor: "#005174", borderWidth: "2px", borderStyle: "solid", height: '300px' }}>
+            <div className="card mt-2" style={{ borderColor: "#005174", borderWidth: "2px", borderStyle: "solid", height: '300px' }}>{/* 350px if last button is enabled */}
               <h5 className="card-header  text-white d-flex align-items-center" style={{ backgroundColor: '#005174' }}>
                 <FaUsers className="me-2" /> Applicant's Corner
               </h5>
@@ -64,6 +64,9 @@ const Home = () => {
                   <Link to="/forgot-password" type="button" className="btn btn-danger mb-2 d-flex align-items-center justify-content-center card-button">
                     Forgot Password <FaBrain className="ms-2" size="20"/>
                   </Link>
+                  {/* <Link to="/change-password" type="button" className="btn btn-info mb-2 d-flex align-items-center justify-content-center card-button">
+                    Change Password <RiLockPasswordFill className="ms-2" size="20"/>
+                  </Link> */}
                 </div>
               </div>
 

@@ -3,12 +3,12 @@ import { FaUserLock } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';
 import Homebar from './Homebar';
-import { validateLoginForm } from './../customScripts/loginValidations.js';
+import { validateLoginForm } from './../customScripts/loginValidations.js'; // Adjust the import if necessary
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './../customStyles/toastifyStyles.css'; 
-import { generateCaptcha } from './../customScripts/captchaCodeGenerator.js'; 
+import './../customStyles/toastifyStyles.css'; // Ensure this file exists if used
+import { generateCaptcha } from './../customScripts/captchaCodeGenerator.js'; // Adjust the import if necessary
 import CaptchaBG from "./../assets/images/bg1.jpg";
 import { LuRefreshCcw } from "react-icons/lu";
 
@@ -106,7 +106,7 @@ const LoginPanel = () => {
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div className="m-3">
-                            <label htmlFor="email" className="form-label">Email ID</label>
+                            <label htmlFor="email" className="form-label">Email ID <span className='text-danger'>*</span></label>
                             <input
                                 placeholder="Username"
                                 type="email"
@@ -119,7 +119,7 @@ const LoginPanel = () => {
                             {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                         </div>
                         <div className="m-3 position-relative">
-                            <label htmlFor="password" className="form-label">Password (Case Sensitive)</label>
+                            <label htmlFor="password" className="form-label">Password (Case Sensitive) <span className='text-danger'>*</span></label>
                             <div className="password-container">
                                 <input
                                     placeholder="Password"
@@ -142,7 +142,7 @@ const LoginPanel = () => {
                         </div>
                         <div className="m-3 d-flex justify-content-between align-items-end">
                             <div className="captcha-field">
-                                <label htmlFor="captcha" className="form-label">Captcha Code</label>
+                                <label htmlFor="captcha" className="form-label">Captcha Code <span className='text-danger'>*</span></label>
                                 <input
                                     placeholder="Enter Captcha"
                                     type="text"
@@ -154,17 +154,16 @@ const LoginPanel = () => {
                                 />
                                 {errors.captcha && <div className="invalid-feedback">{errors.captcha}</div>}
                             </div>
-                            {/* Captcha Div */}
                             <div className="d-flex align-items-center">
                                 <div className="captcha-code mx-2">
-                                    <div style={{ border: '2px solid black', padding: '5px', fontSize: '18px', userSelect: "none", letterSpacing: "5px", backgroundImage: `url(${CaptchaBG})` }}
-                                        className='text-dark poppins-bold rounded-3 d-inline'>
+                                    <div style={{ border: '2px solid black', padding: '5px', fontSize: '20px', userSelect: "none", letterSpacing: "5px", backgroundImage: `url(${CaptchaBG})` }}
+                                        className='text-dark poppins-bold rounded-3'>
                                         <span style={{ color: "rgba(0,0,0,.7)" }}>
                                             {generatedCaptcha}
                                         </span>
                                     </div>
                                 </div>
-                                <button type="button" className="btn btn-secondary btn-sm border-dark" onClick={handleRefreshCaptcha}><LuRefreshCcw size="25" /></button>
+                                <button type="button" className="btn btn-secondary btn-sm" onClick={handleRefreshCaptcha}><LuRefreshCcw size="25"/></button>
                             </div>
                         </div>
                         <div className='m-3 d-flex justify-content-between align-items-center'>

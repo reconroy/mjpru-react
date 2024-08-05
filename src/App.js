@@ -11,12 +11,12 @@ import withSpinner from './withSpinner';
 import RegistrationComplete from './components/RegistrationComplete';
 import UserLayout from './components/user/UserLayout';
 import ApplicationList from "./components/user/ApplicationList";
+import ChangePassword from './components/ChangePassword';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound-404';
 import "./customStyles/buttonAnimation.css";
 import "./customStyles/fontStyles.css"
 import "./customStyles/captchaStyles.css";
-// import {encrypt, decrypt} from "./components/Security";
 
 const HomeWithSpinner = withSpinner(Home);
 const LoginPanelWithSpinner = withSpinner(LoginPanel);
@@ -25,6 +25,7 @@ const ForgotPasswordWithSpinner = withSpinner(ForgotPassword);
 const NewUserWithSpinner = withSpinner(NewUser);
 const RegistrationFormWithSpinner = withSpinner(RegistrationForm);
 const RegistrationCompleteWithSpinner = withSpinner(RegistrationComplete);
+const ChangePasswordWithSpinner = withSpinner(ChangePassword);
 const ApplicationListWithSpinner = withSpinner(ApplicationList);
 const NotFoundWithSpinner = withSpinner(NotFound);
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/login" element={<LoginPanelWithSpinner />} />
           <Route path="/activate-account" element={<ActivateAcccountWithSpinner />} />
           <Route path="/forgot-password" element={<ForgotPasswordWithSpinner />} />
+          <Route path="/change-password" element={<ChangePasswordWithSpinner />} />
           <Route path="/new-user" element={<NewUserWithSpinner />} />
           <Route path="/registration-page" element={<RegistrationFormWithSpinner />} />
           <Route path="/registration-complete/:name/:email" element={<RegistrationCompleteWithSpinner />} />

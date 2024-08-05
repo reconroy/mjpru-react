@@ -9,6 +9,11 @@ export const encrypt = (data) => {
 
 export const decrypt = (encryptedData) => {
   encryptedData = encryptedData.replace(/;/g, '/');
-  const decryptedData = CryptoJS.AES.decrypt(encryptedData, SecretKey).toString(CryptoJS.enc.Utf8);
-  return decryptedData;
+  try{
+    const decryptedData = CryptoJS.AES.decrypt(encryptedData, SecretKey).toString(CryptoJS.enc.Utf8);
+    return decryptedData;
+  }
+  catch(err){
+    console.log(err.message)
+  }
 };

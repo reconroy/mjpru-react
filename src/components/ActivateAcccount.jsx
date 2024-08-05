@@ -143,9 +143,9 @@ const ActivateAccount = () => {
             Account Verification
           </div>
           <p className='text-center text-danger mt-2'>Auto-generated password for your account will be sent to your Email Id.</p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} >
             <div className="m-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">Email ID</label>
+              <label htmlFor="exampleInputEmail1" className="form-label">Email ID <span className='text-danger'>*</span></label>
               <input
                 placeholder="Username"
                 type="email"
@@ -157,7 +157,7 @@ const ActivateAccount = () => {
               />
             </div>
             <div className="m-3">
-              <label htmlFor="otpInput" className="form-label">OTP</label>
+              <label htmlFor="otpInput" className="form-label">OTP <span className='text-danger'>*</span></label>
               <input
                 placeholder="Enter OTP"
                 type="text"
@@ -169,7 +169,7 @@ const ActivateAccount = () => {
             </div>
             <div className="m-3 d-flex justify-content-between align-items-end">
               <div className="captcha-field">
-                <label htmlFor="captchaInput" className="form-label">Captcha Code</label>
+                <label htmlFor="captchaInput" className="form-label">Captcha Code <span className='text-danger'>*</span></label>
                 <input
                   placeholder="Enter Captcha"
                   type="text"

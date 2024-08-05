@@ -230,7 +230,7 @@ const NewUser = () => {
                   onChange={handleCheckboxChange}
                   checked={isChecked}
                 />
-                I Agree to the Declaration Statement
+                I Agree to the Declaration Statement <span className='text-danger'>*</span>
               </label>
             </div>
             <div className="text-center mt-4">

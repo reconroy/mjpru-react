@@ -85,7 +85,7 @@ const ForgotPassword = () => {
           <p className='text-center text-danger mt-2'>Reset Password link will be sent to your Email Id.</p>
           <form onSubmit={handleSubmit}>
             <div className="m-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">Email ID</label>
+              <label htmlFor="exampleInputEmail1" className="form-label">Email ID <span className='text-danger'>*</span></label>
               <input
                 placeholder="Enter Email ID"
                 type="email"
@@ -98,7 +98,7 @@ const ForgotPassword = () => {
             </div>
             <div className="m-3 d-flex justify-content-between align-items-end">
               <div className="captcha-field">
-                <label htmlFor="captchaInput" className="form-label">Captcha Code</label>
+                <label htmlFor="captchaInput" className="form-label">Captcha Code <span className='text-danger'>*</span></label>
                 <input
                   placeholder="Enter Captcha"
                   type="text"
