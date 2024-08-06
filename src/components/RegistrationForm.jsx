@@ -4,7 +4,7 @@ import CountryCodes from "./../countryCodes.json";
 import { useNavigate } from "react-router-dom";
 import Homebar from "./Homebar";
 import { Modal, Button } from "react-bootstrap";
-import { validateFormData } from "./../dataPOST/RegistrationForm";
+import { validateFormData } from "./../customScripts/registrationValidation.js";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './../customStyles/toastifyStyles.css';
@@ -309,8 +309,8 @@ const RegistrationForm = () => {
                   {/* Mobile Numbers */}
                   <div className="row mb-3">
                     <div className="col-md-6">
-                      <label htmlFor="Mobile" className="form-label fw-bold">
-                        Mobile No. with Country Code <span className="text-danger ">*</span>
+                      <label htmlFor="mobile_number" className="form-label fw-bold">
+                        Mobile No. with Country Code <span className="text-danger">*</span>
                       </label>
                       <div className="input-group">
                         <select
@@ -346,7 +346,7 @@ const RegistrationForm = () => {
                     </div>
                     <div className="col-md-6">
                       <label htmlFor="Alternate_mobile_number" className="form-label fw-bold">
-                        Alternate Mobile No. with Country Code <span className="text-danger ">*</span>
+                        Alternate Mobile No. with Country Code <span className="text-danger">*</span>
                       </label>
                       <div className="input-group">
                         <select
