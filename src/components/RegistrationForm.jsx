@@ -39,14 +39,13 @@ const RegistrationForm = () => {
       [name]: value,
     }));
 
-
-    //For params 
-    const email = `${formData.Email || ''}`
+    // Update email and full name for params
+    const email = `${formData.Email || ''}`;
     const newFullName = `${formData.first_name || ''} ${formData.middle_name || ''} ${formData.last_name || ''}`.trim();
     setFullName(newFullName);
     setFullEmail(email);
-
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,7 +76,7 @@ const RegistrationForm = () => {
             'Content-Type': 'application/json'
           }
         });
-        console.log(formData)
+        console.log(formData);
         console.log("Form submitted successfully:", response);
         if (response.data) {
           toast.update(processingToastId, {
@@ -86,11 +85,11 @@ const RegistrationForm = () => {
             autoClose: 5000,
             className: 'toastify-success'
           });
-          // navigate("/registration-complete",);
-          //For params 
+          // navigate("/registration-complete");
+          // For params
           const enName = encrypt(fullName);
           const enEmail = encrypt(fullEmail);
-          navigate(`/registration-complete/${enName}/${enEmail}`,);
+          navigate(`/registration-complete/${enName}/${enEmail}`);
         }
       } catch (error) {
         console.error("Error submitting form:", error);
@@ -107,16 +106,17 @@ const RegistrationForm = () => {
             });
           }
         }
-        toast.update(processingToastId, {
-          render: `Error: ${error.response?.data?.title || 'Email already registered'}`,
-          type: "error",
-          autoClose: true,
-          closeButton: true,
+        // Dismiss the processing toast
+        toast.dismiss(processingToastId);
+
+        // Show a new error toast
+        toast.error(`Error: ${error.response?.data?.title || 'Email already registered'}`, {
+          className: 'custom-toast-error',
+          closeButton: true
         });
       }
     }
-  };
-
+  }
   const handleReset = () => {
     setFormData({});
     setIsChecked(false);
@@ -305,6 +305,7 @@ const RegistrationForm = () => {
                     </div>
                   </div>
 
+
                   {/* Mobile Numbers */}
                   <div className="row mb-3">
                     <div className="col-md-6">
@@ -379,7 +380,6 @@ const RegistrationForm = () => {
                       </div>
                     </div>
                   </div>
-
                   {/* Captcha */}
                   <div className="mb-3 w-100">
                     <label htmlFor="captcha" className="form-label fw-bold">
