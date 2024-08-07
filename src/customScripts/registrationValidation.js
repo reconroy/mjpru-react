@@ -9,7 +9,7 @@ export const validateFormData = (data, generatedCaptcha) => {
   let errors = {};
 
   // Email validation
-  const email = (data.email || "").trim();
+  const email = (data.Email || "").trim();
   const confirmEmail = (data.confirmEmail || "").trim();
 
   if (!email) {
