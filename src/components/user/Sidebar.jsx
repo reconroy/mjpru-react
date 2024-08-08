@@ -10,6 +10,7 @@ import JRFNetSletSet from './RegistrationData/JRF_NET_SLET_SET';
 import ResearchQualifications from "./RegistrationData/ResearchQualifications";
 import References from './RegistrationData/References';
 import ResearchGuidance from './RegistrationData/ResearchGuidance';
+import ResearchPapers from './RegistrationData/ResearchPapers';
 import { IoBarChart } from "react-icons/io5";
 import { HiMenuAlt1 } from "react-icons/hi";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,6 +26,7 @@ const componentsWithSpinner = {
   References: withSpinner(References),
   JRFNetSletSet: withSpinner(JRFNetSletSet),
   ResearchGuidance: withSpinner(ResearchGuidance),
+  ResearchPapers: withSpinner(ResearchPapers),
 };
 
 const links = [

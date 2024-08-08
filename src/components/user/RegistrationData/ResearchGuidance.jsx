@@ -77,14 +77,14 @@ const ResearchGuidance = () => {
   };
 
   return (
-    <div className="container mt-4 mb-5">
+    <div className="container  mb-5">
       <div className="card">
         <div className="card-header d-flex justify-content-between align-items-center text-light" style={{ backgroundColor: "#005174" }}>
           <div className="d-flex align-items-center">
             <HiAcademicCap size="25px" />
             <h5 className="ms-2 mb-0">Research Guidance (Students currently working/completed their thesis (Numbers Only))</h5>
           </div>
-          <button className="btn btn-light card-button" onClick={handleShowModal}>Add</button>
+          <button className="btn btn-light card-button" onClick={handleShowModal}>Add Gauidance</button>
         </div>
         <div className="card-body">
           <div className="table-responsive">
@@ -118,7 +118,7 @@ const ResearchGuidance = () => {
               </tbody>
               <tfoot>
                 <tr>
-                  <td colSpan="5" className='text-end'>Total Self Assessment Score</td>
+                  <td colSpan="5" className='text-end fw-bold'>Total Self Assessment Score</td>
                   <td>
                     <b>{tableData.reduce((sum, data) => sum + parseFloat(data.selfAssessmentScore || 0), 0).toFixed(2)}</b>
                   </td>
@@ -128,8 +128,8 @@ const ResearchGuidance = () => {
             </table>
           </div>
           <div className="d-flex justify-content-end">
-            <button type="submit" className="btn btn-success m-1">Save & Next</button>
-            <button type="button" disabled className="btn btn-secondary m-1">Skip This Step</button>
+            <button type="submit" className="btn btn-success m-1 card-button">Save & Next</button>
+            <button type="button" disabled className="btn btn-secondary m-1 card-button">Skip This Step</button>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@ const ResearchGuidance = () => {
           <Modal.Body>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formRole">
-                <Form.Label>Role<span className='text-danger'> * </span></Form.Label>
+                <Form.Label>Role<span className='text-danger fw-bold'> * </span></Form.Label>
                 <Form.Select name="role" value={formData.role} onChange={handleChange} isInvalid={!!formErrors.role}>
                   <option value="">Select Role</option>
                   <option value="Sole Supervisor">Sole Supervisor</option>
@@ -153,7 +153,7 @@ const ResearchGuidance = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formDegree">
-                <Form.Label>Degree<span className='text-danger'> * </span></Form.Label>
+                <Form.Label>Degree<span className='text-danger fw-bold'> * </span></Form.Label>
                 <Form.Select name="degree" value={formData.degree} onChange={handleChange} isInvalid={!!formErrors.degree}>
                   <option value="">Select Degree</option>
                   <option value="Ph.D.">Ph.D.</option>
@@ -166,7 +166,7 @@ const ResearchGuidance = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formAwarded">
-                <Form.Label>Awarded<span className='text-danger'> * </span></Form.Label>
+                <Form.Label>Awarded<span className='text-danger fw-bold'> * </span></Form.Label>
                 <Form.Control
                   type="text"
                   name="awarded"
@@ -180,7 +180,7 @@ const ResearchGuidance = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formSubmitted">
-                <Form.Label>Submitted<span className='text-danger'> * </span></Form.Label>
+                <Form.Label>Submitted<span className='text-danger fw-bold'> * </span></Form.Label>
                 <Form.Control
                   type="text"
                   name="submitted"
@@ -194,7 +194,7 @@ const ResearchGuidance = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formSelfAssessmentScore">
-                <Form.Label>Self Assessment Score<span className='text-danger'> * </span></Form.Label>
+                <Form.Label>Self Assessment Score<span className='text-danger fw-bold'> * </span></Form.Label>
                 <Form.Control
                   type="text"
                   name="selfAssessmentScore"

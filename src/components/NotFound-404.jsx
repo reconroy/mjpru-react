@@ -7,7 +7,7 @@ const _404 = () => {
   return (
     <>
       <Homebar />
-      <div className="container text-center mt-3 rounded-5 shadow-lg">
+      <div className="container text-center mt-3 rounded-4 shadow-lg">
         <div className="row justify-content-center">
           <div className="col-12 col-md-8 col-lg-6">
             <img

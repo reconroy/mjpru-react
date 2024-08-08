@@ -223,8 +223,8 @@ const ResearchQualifications = () => {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="danger" onClick={handleCloseModal}>Close</Button>
-            <Button variant="primary" onClick={handleSaveChanges}>Save changes</Button>
+            <Button variant="danger" onClick={handleCloseModal} className='card-button'>Close</Button>
+            <Button variant="primary" onClick={handleSaveChanges} className='card-button'>Save changes</Button>
           </Modal.Footer>
         </Modal>
       )}
