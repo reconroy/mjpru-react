@@ -12,6 +12,7 @@ import { generateCaptcha } from './../customScripts/captchaCodeGenerator.js'; //
 import CaptchaBG from "./../assets/images/bg1.jpg";
 import { LuRefreshCcw } from "react-icons/lu";
 
+
 const LoginPanel = () => {
     const [formData, setFormData] = useState({
         email: '',
@@ -61,7 +62,10 @@ const LoginPanel = () => {
 
             if (response.status === 200) {
                 toast.success('Login successful');
-                navigate('/user/applicationlist'); // Redirect on success
+                console.log(response.data);
+                localStorage.setItem('token',response.data.token)
+                navigate('/user/applicationlist');
+                //  Redirect on success
             }
         } catch (error) {
             toast.dismiss(processingId);

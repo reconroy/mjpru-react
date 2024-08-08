@@ -54,7 +54,7 @@ const EmployementDetails = () => {
     <div className="card">
       <div className="card-header text-light d-flex justify-content-between align-items-center" style={{ backgroundColor: "#005174" }}>
         <div className="left d-flex align-items-center fs-6">
-          <HiAcademicCap className="me-2" size="24" />Research Qualification
+          <HiAcademicCap className="me-2" size="24" />Employement Details
         </div>
         <div className="right">
           <Button onClick={handleShowModal} className="btn btn-light card-button">Add Employement</Button>
