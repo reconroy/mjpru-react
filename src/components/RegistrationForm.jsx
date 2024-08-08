@@ -60,6 +60,7 @@ const RegistrationForm = () => {
       toast.error("Data Invalid", {
         className: 'custom-toast-error'
       });
+      console.log(formData)
     } else {
       setErrors({});
 
@@ -69,9 +70,9 @@ const RegistrationForm = () => {
         theme: "colored",
         className: 'toastify-blue'
       });
-
+      const {captcha , confirmEmail , ...apiData} = formData;
       try {
-        const response = await axios.post("https://localhost:7142/api/Users", formData, {
+        const response = await axios.post("https://localhost:7142/api/Users", apiData, {
           headers: {
             'Content-Type': 'application/json'
           }

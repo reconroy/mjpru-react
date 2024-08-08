@@ -8,14 +8,18 @@ const getCountryCodeLength = (code) => {
 export const validateFormData = (data, generatedCaptcha) => {
   let errors = {};
 
+  // Debugging output for input data
+  console.log("Validating data:", data);
+  console.log("Generated captcha:", generatedCaptcha);
+
   // Email validation
   const email = (data.Email || "").trim();
   const confirmEmail = (data.confirmEmail || "").trim();
 
   if (!email) {
-    errors.email = "Email is required";
+    errors.Email = "Email is required";
   } else if (!/\S+@\S+\.\S+/.test(email)) {
-    errors.email = "Email is invalid";
+    errors.Email = "Email is invalid";
   }
 
   if (!confirmEmail) {
@@ -25,22 +29,22 @@ export const validateFormData = (data, generatedCaptcha) => {
   }
 
   // Name validations
-  if (!data.firstName) {
-    errors.firstName = "First name is required";
-  } else if (/\d/.test(data.firstName)) {
-    errors.firstName = "First name should not contain numbers.";
+  if (!data.first_name) {
+    errors.first_name = "First name is required";
+  } else if (/\d/.test(data.first_name)) {
+    errors.first_name = "First name should not contain numbers.";
   }
 
-  if (!data.fatherName) {
-    errors.fatherName = "Father's name is required";
-  } else if (/\d/.test(data.fatherName)) {
-    errors.fatherName = "Father's name should not contain numbers.";
+  if (!data.fathers_name) {
+    errors.fathers_name = "Father's name is required";
+  } else if (/\d/.test(data.fathers_name)) {
+    errors.fathers_name = "Father's name should not contain numbers.";
   }
 
-  if (!data.motherName) {
-    errors.motherName = "Mother's name is required";
-  } else if (/\d/.test(data.motherName)) {
-    errors.motherName = "Mother's name should not contain numbers.";
+  if (!data.mothers_name) {
+    errors.mothers_name = "Mother's name is required";
+  } else if (/\d/.test(data.mothers_name)) {
+    errors.mothers_name = "Mother's name should not contain numbers.";
   }
 
   // Mobile number validation
@@ -73,6 +77,9 @@ export const validateFormData = (data, generatedCaptcha) => {
   } else if (data.captcha !== generatedCaptcha && data.captcha !== '123') {
     errors.captcha = "Captcha is incorrect";
   }
+
+  // Debugging output for validation errors
+  console.log("Validation errors:", errors);
 
   return errors;
 };
