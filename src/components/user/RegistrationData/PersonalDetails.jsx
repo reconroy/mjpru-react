@@ -1,12 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { FaFile } from 'react-icons/fa';
-// import { jwtDecode } from "jwt-decode";
-// import {userStore} from './../../../customScripts/userStore.js';
 const PersonalDetails = () => {
   const formRef = useRef(null);
-  // const [userId, SetUserId] = useState('')
-  // const {userId} = useStoreID;
-  // console.log(userId)
 
   const [correspondenceAddress, setCorrespondenceAddress] = useState({
     address: '',

@@ -1,38 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaFile, FaPowerOff } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
 import Homebar from './../Homebar';
 import "./../../customStyles/buttonAnimation.css";
+import getUserIdFromToken from "../../customScripts/getUserIdToken";
+import axios from "axios";
 
 const ApplicationList = () => {
+    const token = localStorage.getItem('token');
+    const userId = getUserIdFromToken();
     const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [applications, setApplications] = useState([
-        {
-            sn: 1,
-            applicationId: "APP-001",
-            advtNoPost: "Advertisement 123",
-            department: "Department XYZ",
-            appliedDate: "2024-07-15",
-            status: "Completed"
-        },
-        {
-            sn: 2,
-            applicationId: "APP-002",
-            advtNoPost: "Advertisement 456",
-            department: "Department ABC",
-            appliedDate: "2024-08-12",
-            status: "Incomplete"
-        }
-    ]);
+    const [applications, setApplications] = useState([]);
     const [formData, setFormData] = useState({
         applicationId: "",
         advtNoPost: "",
-        department: "",
-        appliedDate: "",
-        status: "Incomplete"
+        departmentSubject: "",
+        applied: "",
+        status: "Incomplete",
+        userID:userId
     });
+
+
+    useEffect(() => {
+        if (token && userId) {
+            fetchApplications();
+        }
+    }, [token, userId]);
+
+    const fetchApplications = async () => {
+        try {
+            const response = await axios.get(`https://localhost:7142/api/YourApplication?UserId=${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            // Ensure response data is an array
+            if (Array.isArray(response.data)) {
+                setApplications(response.data);
+            } else {
+                console.error("Unexpected response format:", response.data);
+                setApplications([]); // Set to empty array if response is not an array
+            }
+        } catch (error) {
+            console.error("Error fetching applications:", error.message);
+            setApplications([]); // Set to empty array on error
+        }
+    };
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -45,18 +61,26 @@ const ApplicationList = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const newApplication = { ...formData, sn: applications.length + 1 };
-        setApplications([...applications, newApplication]);
-        handleClose();
+        console.log("Submitting form data:", formData); // Debug line
+        try {
+            const response = await axios.post(`https://localhost:7142/api/YourApplication`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("Application added:", response.data); // Debug line
+            fetchApplications(); // Refresh the list of applications
+            handleClose();
+        } catch (error) {
+            console.error("Error adding new application:", error.response ? error.response.data : error.message);
+        }
     };
 
     const handleLogout = () => {
         handleLogoutClose();
-        // Clear token or logout logic here
-        // For example: localStorage.removeItem('token');
-        // Redirect to home or login page
+        localStorage.removeItem('token');
         window.location.href = "/";
     };
 
@@ -88,35 +112,41 @@ const ApplicationList = () => {
                                         <th scope="col">Sr.No.</th>
                                         <th scope="col">Application Id</th>
                                         <th scope="col">Advt. No. / Post</th>
-                                        <th scope="col">Department / Subject</th>
-                                        <th scope="col">Applied</th>
+                                        <th scope="col">departmentSubject / Subject</th>
+                                        <th scope="col">Applied Date</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Print / Update</th>
                                     </tr>
                                 </thead>
                                 <tbody className="table-group-divider">
-                                    {applications.map((app, index) => (
-                                        <tr key={index}>
-                                            <td className="sn">{app.sn}</td>
-                                            <td>{app.applicationId}</td>
-                                            <td>{app.advtNoPost}</td>
-                                            <td>{app.department}</td>
-                                            <td>{app.appliedDate}</td>
-                                            <td className={app.status === "Completed" ? "text-success" : "text-danger"}>{app.status}</td>
-                                            <td>
-                                                {app.status === "Completed" ? (
-                                                    <>
-                                                        <button className="btn btn-sm btn-primary me-2 card-button">
-                                                            Print
-                                                        </button>
-                                                        <button className="btn btn-sm btn-success card-button">Update</button>
-                                                    </>
-                                                ) : (
-                                                    <Link to="/user/Status">Click here to Fill</Link>
-                                                )}
-                                            </td>
+                                    {Array.isArray(applications) && applications.length > 0 ? (
+                                        applications.map((app, index) => (
+                                            <tr key={index}>
+                                                <td className="sn">{app.yourApplicationID}</td>
+                                                <td>{app.applicationId}</td>
+                                                <td>{app.advtNoPost}</td>
+                                                <td>{app.departmentSubject}</td>
+                                                <td>{app.applied}</td>
+                                                <td className={app.status === "Completed" ? "text-success" : "text-danger"}>{app.status}</td>
+                                                <td>
+                                                    {app.status === "Completed" ? (
+                                                        <>
+                                                            <button className="btn btn-sm btn-primary me-2 card-button">
+                                                                Print
+                                                            </button>
+                                                            <button className="btn btn-sm btn-success card-button">Update</button>
+                                                        </>
+                                                    ) : (
+                                                        <Link to="/user/Status">Click here to Fill</Link>
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="7" className="text-center">No Applications Available</td>
                                         </tr>
-                                    ))}
+                                    )}
                                 </tbody>
                             </table>
                         </div>
@@ -151,34 +181,34 @@ const ApplicationList = () => {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDepartment">
-                            <Form.Label>Department / Subject</Form.Label>
+                        <Form.Group className="mb-3" controlId="formdepartmentSubject">
+                            <Form.Label>departmentSubject / Subject</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Enter Department / Subject"
-                                name="department"
-                                value={formData.department}
+                                placeholder="Enter departmentSubject / Subject"
+                                name="departmentSubject"
+                                value={formData.departmentSubject}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAppliedDate">
+                        <Form.Group className="mb-3" controlId="formapplied">
                             <Form.Label>Applied Date</Form.Label>
                             <Form.Control
                                 type="date"
-                                name="appliedDate"
-                                value={formData.appliedDate}
+                                name="applied"
+                                value={formData.applied}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" className="card-button">
                             Add Application
                         </Button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
+                    <Button variant="danger" onClick={handleClose} className="card-button">
                         Close
                     </Button>
                 </Modal.Footer>
